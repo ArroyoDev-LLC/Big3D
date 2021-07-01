@@ -16,7 +16,7 @@
     <div class="flex justify-evenly">
       <div class="flex flex-col">
         <img src="../../public/sample1.png" />
-        <div>African Elephant</div>
+        <div>Africans Elephants</div>
       </div>
       <div class="flex flex-col">
         <img src="../../public/sample2.png" />
