@@ -41,7 +41,7 @@
               p-2
             "
           >
-            GO BIG NOW
+            GO BIG NOW!
           </div>
         </div>
       </div>
