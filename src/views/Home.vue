@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 100vw; height: 100vh">
     <div
       id="nav"
       class="justify-between flex navbar items-center text-black h-28"

@@ -22,58 +22,56 @@
     </div>
     <div id="step3" :class="step2 ? '' : 'disabled'" class="mt-6 cardBig">
       Step 3: Choose your connector style
-      <div class="flex p-4 justify-evenly">
-        <div>
-          <table class="">
-            <tr>
-              <th>Sizes</th>
-              <th>Square Wood Dowels</th>
-              <th>Round PVC tubing</th>
-            </tr>
-            <tr>
-              <td><span style="color: dodgerblue">recommended</span> 3/4"</td>
-              <td>
-                <input type="radio" id="34" value="one" v-model="picked" />
-                <label for="34">.25 cents per ft.</label>
-              </td>
-              <td>
-                <input type="radio" id="342nd" value="two" v-model="picked" />
-                <label for="342nd">.19 cents pr ft.</label>
-              </td>
-            </tr>
-            <tr>
-              <td>1/2"</td>
-              <td>
-                <input type="radio" id="12" value="three" v-model="picked" />
-                <label for="12">.17 cents per ft.</label>
-              </td>
-              <td>
-                <input type="radio" id="122nd" value="four" v-model="picked" />
-                <label for="122nd">.13 cents pr ft.</label>
-              </td>
-            </tr>
-            <tr>
-              <td>1/4"</td>
-              <td>
-                <input type="radio" id="14" value="five" v-model="picked" />
-                <label for="14">.04 cents pr ft.</label>
-              </td>
-              <td>
-                <div v-if="false">
-                  <input type="radio" id="142nd" value="six" v-model="picked" />
-                  <label for="142nd"></label>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+      <div class="flex-col flex p-4 justify-evenly">
+        <table class="">
+          <tr>
+            <th>Sizes</th>
+            <th>Square Wood Dowels</th>
+            <th>Round PVC tubing</th>
+          </tr>
+          <tr>
+            <td><span style="color: dodgerblue">recommended</span> 3/4"</td>
+            <td>
+              <input type="radio" id="34" value="one" v-model="picked" />
+              <label for="34">.25 cents per ft.</label>
+            </td>
+            <td>
+              <input type="radio" id="342nd" value="two" v-model="picked" />
+              <label for="342nd">.19 cents pr ft.</label>
+            </td>
+          </tr>
+          <tr>
+            <td>1/2"</td>
+            <td>
+              <input type="radio" id="12" value="three" v-model="picked" />
+              <label for="12">.17 cents per ft.</label>
+            </td>
+            <td>
+              <input type="radio" id="122nd" value="four" v-model="picked" />
+              <label for="122nd">.13 cents pr ft.</label>
+            </td>
+          </tr>
+          <tr>
+            <td>1/4"</td>
+            <td>
+              <input type="radio" id="14" value="five" v-model="picked" />
+              <label for="14">.04 cents pr ft.</label>
+            </td>
+            <td>
+              <div v-if="false">
+                <input type="radio" id="142nd" value="six" v-model="picked" />
+                <label for="142nd"></label>
+              </div>
+            </td>
+          </tr>
+        </table>
         <div class="flex flex-col">
-          <div class="flex justify-between items-center">
+          <div class="flex justify-evenly items-center">
             <div>Connectors:</div>
             <div class="mr-2 ml-2">{{ connectorCount }}</div>
             <div><img src="../../public/connectors.png" /></div>
           </div>
-          <div class="flex justify-between items-center">
+          <div class="flex justify-evenly items-center">
             <div>Edges:</div>
             <div>{{ edges }}</div>
             <div><img src="../../public/edges.png" /></div>

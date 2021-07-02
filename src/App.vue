@@ -1,12 +1,12 @@
 <template>
-  <router-view />
+  <RouterView />
 </template>
 <Script>
 
-import Home from "@/views/Home.vue"
+
 
 export default {
-  components: { }
+  components: {  }
 }
 
 </Script>

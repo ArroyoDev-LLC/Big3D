@@ -1,8 +1,8 @@
 <template>
-  <div class="relative w-full h-full" style="height: 100vh">
+  <div class="relative w-full h-full" style="height: 100vh; width: 100vw">
 
     <div class="text-8xl font-bold">Big Printing Partners</div>
-    <div class="flex flex-row">
+    <div class="flex flex-row justify-evenly">
       <div id="partners">
         <img src="../../public/craftcloud.png" />
         <img src="../../public/shape.png" />

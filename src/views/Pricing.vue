@@ -3,7 +3,7 @@
     <div class="text-black font-bold">What does it Cost?</div>
 
     <div class="flex justify-evenly p-6 text-left">
-      <div class="shadow-md rounded-md w-1/4">
+      <div class="shadow-md rounded-md w-1/3">
         <div class="font-bold">DIY Route</div>
         <div>
           If you have your own 3D printer and are ready to print your own models
