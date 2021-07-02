@@ -21,9 +21,21 @@
       </div>
       <div id="step2" :class="step1 ? '' : 'disabled'" class="card mt-6">
         <div>Step 2: Tell us the longest dimension in your model</div>
-        <input type="text" placeholder="size" v-model="step2" />
+        <div class="flex justify-evenly">
+          <input type="text" placeholder="size" v-model="step2" />
+          <Dropdown
+            v-model="selectedMeasurement"
+            :options="measurements"
+            optionLabel="name"
+            placeholder="Select a Measurement"
+          />
+        </div>
       </div>
-      <div id="step3" :class="step2 ? '' : 'disabled'" class="mt-6 cardBig">
+      <div
+        id="step3"
+        :class="step2 && selectedMeasurement ? '' : 'disabled'"
+        class="mt-6 cardBig"
+      >
         Step 3: Choose your connector style
         <div class="flex-col flex p-4 justify-evenly">
           <table class="">
@@ -193,8 +205,13 @@
 </template>
 
 <script>
+import Dropdown from "primevue/dropdown";
+
 export default {
   name: "Purchase",
+  components: {
+    Dropdown,
+  },
   methods: {
     watchFileMethod() {
       const element = document.getElementById("fileinput");
@@ -227,6 +244,13 @@ export default {
   },
   data() {
     return {
+      measurements: [
+        { name: "mili-meters" },
+        { name: "centi-meters" },
+        { name: "inches" },
+        { name: "meters" },
+      ],
+      selectedMeasurement: "",
       deliveryCheckbox1: "",
       deliveryCheckbox2: "",
       DiyCheckbox1: "",
