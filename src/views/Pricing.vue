@@ -31,14 +31,20 @@
       </div>
     </div>
     <div class="flex items-center justify-center">
-      <div class="goBigButton">go BIG now</div>
+      <GoBigButton @click="$emit('scrollMeTo')" />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import GoBigButton from "@/components/GoBigButton.vue";
+
 export default {
   name: "Pricing",
+  components: {
+    GoBigButton,
+  },
+  methods: {},
 };
 </script>
 

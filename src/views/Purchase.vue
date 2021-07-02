@@ -171,7 +171,7 @@
             <div v-else>$0.00</div>
           </div>
           <div class="test">
-            <input type="input" placeholder="zip code" />
+            <input type="input" placeholder="zip code" v-model="zipCode" />
             <div>Shipping and handling</div>
           </div>
           <div class="total">
@@ -227,7 +227,7 @@ export default {
       } else return false;
     },
     computedStep4() {
-      if (this.deliveryCheckbox1 && this.deliveryCheckbox2) {
+      if (this.deliveryCheckbox1 && this.deliveryCheckbox2 && this.zipCode) {
         return true;
       } else return false;
     },
@@ -244,6 +244,7 @@ export default {
   },
   data() {
     return {
+      zipCode: "",
       measurements: [
         { name: "mili-meters" },
         { name: "centi-meters" },

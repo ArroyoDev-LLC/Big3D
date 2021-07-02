@@ -1,13 +1,19 @@
 <template>
   <div class="relative w-full h-full" style="height: 100vh">
     <div class="storyHeader">What is big<span>3D</span>.me?</div>
-    <div class="goBigButton">go BIG now</div>
+    <GoBigButton @click="$emit('scrollMeTo')" />
+
   </div>
 </template>
 
 <script>
+import GoBigButton from "@/components/GoBigButton";
+
 export default {
   name: "Story",
+  components: {
+    GoBigButton,
+  },
 };
 </script>
 

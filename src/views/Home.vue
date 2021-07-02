@@ -34,12 +34,22 @@
       </div>
     </div>
 
-    <a ref="Story"> <Story /></a>
-    <a ref="Samples"> <Samples id="Samples" /> </a>
-    <!--    <a ref="Gallery"> <Gallery id="Gallery" /> </a>-->
-    <a ref="Pricing"> <Pricing id="Pricing" /> </a>
-    <a ref="Printing"> <Printing id="Printing" /> </a>
-    <a ref="Purchase"> <Purchase id="Purchase" /> </a>
+    <a ref="Story">
+      <Story @scrollMeTo="scrollMeTo('Purchase')" />
+    </a>
+    <a ref="Samples">
+      <Samples id="Samples" />
+    </a>
+    <!--    <a ref="Gallery"> <Gallery id="Gallery" @scrollMeTo="scrollMeTo('Purchase')" /> </a>-->
+    <a ref="Pricing">
+      <Pricing id="Pricing" @scrollMeTo="scrollMeTo('Purchase')" />
+    </a>
+    <a ref="Printing">
+      <Printing id="Printing" />
+    </a>
+    <a ref="Purchase">
+      <Purchase id="Purchase" />
+    </a>
   </div>
 </template>
 
@@ -84,10 +94,12 @@ export default class Home extends Vue {}
 .imageDeSaturation {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
 }
+
 .imgStyle {
   @apply bg-opacity-5;
   width: 100%;
 }
+
 .navbar {
   @apply justify-between
   flex
@@ -97,12 +109,15 @@ export default class Home extends Vue {}
   flex-col
   md:flex-row;
 }
+
 .home {
   @apply relative text-center;
 }
+
 .homeHeader {
   @apply md:text-9xl text-center centered font-bold;
 }
+
 .homeSubheader {
   @apply text-white md:text-3xl pt-12;
 }

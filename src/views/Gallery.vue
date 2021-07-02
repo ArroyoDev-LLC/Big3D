@@ -24,25 +24,12 @@
           class="shadow-md bg-black flex flex-col mt-2 relative text-white"
         >
           <div
-            class="absolute centered  divHighlight outline-white p-2 md:text-sm"
+            class="absolute centered divHighlight outline-white p-2 md:text-sm"
           >
             View More Projects +
           </div>
-          <div
-            class="
-            md:text-sm
 
-        md:mt-14
-              absolute
-              centered
-
-              divHighlight
-              outline-white
-              p-2
-            "
-          >
-            GO BIG NOW
-          </div>
+          <GoBigButton     @click="$emit('scrollMeTo')" />
         </div>
       </div>
     </div>
@@ -50,8 +37,12 @@
 </template>
 
 <script>
+import GoBigButton from "@/components/GoBigButton";
 export default {
   name: "Gallery",
+  components:{
+    GoBigButton
+  }
 };
 </script>
 
