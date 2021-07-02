@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full h-full" style="height: 100vh">
-    <div class="text-8xl text-black font-bold">
+    <div class="text-3xl md:text-8xl text-black font-bold">
       What is big<span>3D</span>.me?
     </div>
     <div

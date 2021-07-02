@@ -30,20 +30,21 @@
         </div>
       </div>
     </div>
-    <div
-      class="
-        text-black
-        font-bold
-        rounded-lg
-        bg-yellow
-        w-64
-        p-6
-        centered
-        shadow-md
-        text-4xl
-      "
-    >
-      go BIG now
+    <div class="flex items-center justify-center">
+      <div
+        class="
+          text-black
+          font-bold
+          rounded-lg
+          bg-yellow
+          w-64
+          p-6
+          shadow-md
+          text-4xl
+        "
+      >
+        go BIG now
+      </div>
     </div>
   </div>
 </template>
@@ -54,4 +55,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>

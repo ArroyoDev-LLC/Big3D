@@ -2,7 +2,16 @@
   <div style="width: 100vw; height: 100vh">
     <div
       id="nav"
-      class="justify-between flex navbar items-center text-black h-28"
+      class="
+        justify-between
+        flex
+        navbar
+        items-center
+        text-black
+
+        flex-col
+        md:flex-row
+      "
     >
       <img src="../../public/big3dlogo.png" />
       <a @click="scrollMeTo('Home')">Home</a>
@@ -35,7 +44,7 @@
           <div class="white">build</div>
           <div class="yellow">BIG</div>
         </div>
-        <div class="white md: text-3xl pt-12">
+        <div class="white md:text-3xl pt-12">
           Upload a low poly 3D model and generate a life size BIG 3D puzzle
         </div>
       </div>
@@ -43,7 +52,7 @@
 
     <a ref="Story"> <Story /></a>
     <a ref="Samples"> <Samples id="Samples" /> </a>
-    <a ref="Gallery"> <Gallery id="Gallery" /> </a>
+<!--    <a ref="Gallery"> <Gallery id="Gallery" /> </a>-->
     <a ref="Pricing"> <Pricing id="Pricing" /> </a>
     <a ref="Printing"> <Printing id="Printing" /> </a>
     <a ref="Purchase"> <Purchase id="Purchase" /> </a>
