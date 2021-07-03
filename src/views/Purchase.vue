@@ -209,7 +209,7 @@ import Dropdown from "primevue/dropdown";
 
 export default {
   name: "Purchase",
-  components: {
+    components: {
     Dropdown,
   },
   methods: {
