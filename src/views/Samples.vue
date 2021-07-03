@@ -1,16 +1,18 @@
 <template>
-  <div class="relative w-full h-full p-8" style="height: 100vh">
-    <div class="font-bold text-2xl mb-6">
-      Sometimes you just need to go <span>BIG</span>! Here are a few projects
-      where a life size print was just too much fun to build
+  <div class="relative w-full h-full p-8 " >
+    <div class="font-bold text-2xl mb-6 max-w-prose justify-center ">
+      <p>Sometimes you just need to go <span>BIG</span>! Here are a few projects
+      where a life size print was just too much fun to build</p>
     </div>
-    <div class="flex flex-wrap mb-6">
-      Our original inspiration was a personal quest to build a lifesize Tesla
+    <div class="flex flex-wrap mb-6 max-w-prose justify-center ">
+      <p>Our original inspiration was a personal quest to build a lifesize Tesla
       Cybertruck for all the fans who may need to wait a little longer to pull
-      that beast in to there garage. But in the process of building the model,
+      that beast in to there garage. </p>
+      
+      <p>But in the process of building the model,
       we stumbled on an even better idea... The ability to build AN ANYTHING at
       all kinds of scales .Here are a few examples of some really fun projects
-      build with big3D.me.
+      build with big3D.me.</p>
     </div>
 
     <div class="flex justify-evenly">
@@ -39,6 +41,7 @@ export default {
 
 <style scoped>
 span {
-  color: yellow;
+  color: #FBBF24;
 }
+
 </style>

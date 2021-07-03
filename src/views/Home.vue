@@ -4,7 +4,7 @@
       id="nav"
       class="justify-between flex navbar items-center text-black h-28"
     >
-      <img src="../../public/big3dlogo.png" />
+      <img src="../../public/big3dlogo.png" /> 
       <a @click="scrollMeTo('Home')">Home</a>
       <a @click="scrollMeTo('Story')">Story</a>
       <a @click="scrollMeTo('Samples')">Samples</a>
@@ -22,20 +22,21 @@
           src="../../public/truckFrame.png"
         />
       </div>
-      <div class="md:text-9xl text-center centered font-bold">
-        <div class="flex justify-evenly">
-          <div class="white">think</div>
-          <div class="yellow">BIG</div>
+      <div class="md:text-9xl text-6xl text-center centered font-bold">
+        <div class="flex justify-evenly ">
+          <div class="white font-thin">THINK</div>
+          <div class="yellow font-black">BIG</div>
         </div>
         <div class="flex justify-evenly">
-          <div class="white">print</div>
-          <div class="yellow">BIG</div>
+          <div class="white font-thin">PRINT</div>
+          <div class="yellow font-black">BIG</div>
         </div>
         <div class="flex justify-evenly">
-          <div class="white">build</div>
-          <div class="yellow">BIG</div>
+          <div class="white font-thin">BUILD</div>
+          <div class="yellow font-black">BIG</div>
         </div>
-        <div class="white md: text-3xl pt-12">
+        
+        <div class="pt-6 text-base text-white leading-6 font-bold text-lg sm:leading-7">
           Upload a low poly 3D model and generate a life size BIG 3D puzzle
         </div>
       </div>
@@ -81,8 +82,9 @@ import { Options, Vue } from "vue-class-component";
 export default class Home extends Vue {}
 </script>
 <style>
+
 .yellow {
-  color: yellow;
+  color: #FBBF24;
 }
 .centered {
   position: absolute;
@@ -93,6 +95,7 @@ export default class Home extends Vue {}
 .white {
   color: white;
 }
+
 .image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
 }

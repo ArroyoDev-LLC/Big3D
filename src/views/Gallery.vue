@@ -1,10 +1,10 @@
 <template>
-  <div style="">
-    <div class="text-2xl">
+  <div style="w-24 md:w-auto m-8">
+    <div class="text-2xl pt-9 font-bold m-8 leading-7">
       Our fans have shared some of their print adventures with us its AMAZING
-      what they have come up with!
+      what they have come up with!!
     </div>
-    <div class="row">
+    <div class="row m-8  md:m-4">
       <div class="column">
         <img src="https://picsum.photos/200/165?grayscale" />
         <img src="https://picsum.photos/200/165?grayscale" />
@@ -21,26 +21,13 @@
         <img src="https://picsum.photos/200/165?grayscale" />
         <div
           style="height: 49%"
-          class="shadow-md bg-black flex flex-col mt-2 relative text-white"
-        >
+          class="column shadow-md bg-black flex flex-col mt-2 relative text-white">
           <div
-            class="absolute centered  divHighlight outline-white p-2 md:text-sm"
-          >
+            class="absolute centered  divHighlight outline-white p-2 md:text-sm">
             View More Projects +
           </div>
           <div
-            class="
-            md:text-sm
-
-        md:mt-14
-              absolute
-              centered
-
-              divHighlight
-              outline-white
-              p-2
-            "
-          >
+            class="md:text-sm md:mt-14 absolute centered divHighlight outline-white p-2">
             GO BIG NOW!
           </div>
         </div>
