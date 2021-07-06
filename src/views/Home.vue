@@ -11,25 +11,22 @@
       <a @click="scrollMeTo('Purchase')">Purchase</a>
       <a @click="scrollMeTo('Login')">Login</a>
     </div>
-    <div ref="Home" class="home">
+    <div ref="Home" class="home flex min-h-screen">
       <div class="imageDeSaturation">
         <img class="imgStyle" src="../../public/truckFrame.png" />
       </div>
-      <div class="homeHeader">
-        <div class="flex justify-evenly">
-          <div class="text-white">think</div>
-          <div class="text-yellow">BIG</div>
+      <div class="homeHeader flex-auto">
+        <div class="flex-1 justify-evenly">
+          <div class="text-white">THINK<span>BIG</span></div>
         </div>
-        <div class="flex justify-evenly">
-          <div class="text-white">print</div>
-          <div class="text-yellow">BIG</div>
+        <div class="flex-1 justify-evenly">
+          <div class="text-white">PRINT<span>BIG</span></div>
         </div>
-        <div class="flex justify-evenly">
-          <div class="text-white">build</div>
-          <div class="text-yellow">BIG</div>
+        <div class="flex-1 justify-evenly">
+          <div class="text-white">BUILD<span>BIG</span></div>
         </div>
-        <div class="homeSubheader">
-          Upload a low poly 3D model and generate a life size BIG 3D puzzle
+        <div class="homeSubheader flex-auto">
+          Upload a low poly 3D model and generate a life size <span>BIG 3D</span> puzzle
         </div>
       </div>
     </div>
@@ -111,14 +108,19 @@ export default class Home extends Vue {}
 }
 
 .home {
-  @apply relative text-center;
+  @apply relative text-center h-auto;
 }
 
 .homeHeader {
-  @apply md:text-9xl text-center centered font-bold;
+  @apply pt-9 text-5xl lg:text-9xl md:text-9xl sm:text-9xl text-center centered font-extralight leading-10;
 }
 
 .homeSubheader {
-  @apply text-white md:text-3xl pt-12;
+  @apply pt-6 text-base text-white leading-6 font-semibold sm:text-lg sm:leading-7;
+}
+
+span {
+  color: yellow;
+  @apply font-black;
 }
 </style>
