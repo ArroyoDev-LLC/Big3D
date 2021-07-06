@@ -4,7 +4,7 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   theme: {
     colors: {
-      yellow: "#FFFF00",
+      yellow: "#FBBF24",
       white: "#ffffff",
       black: "#000000",
       gray: colors.coolGray,
