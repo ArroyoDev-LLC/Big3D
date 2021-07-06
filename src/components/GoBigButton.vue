@@ -1,10 +1,16 @@
 <template>
-  <div class="goBigButton">go Big Now</div>
+  <div class="goBigButton" :class="relative ? 'relClass' : 'centered'">go Big Now</div>
 </template>
 
 <script>
 export default {
   name: "goBigButton",
+  props: {
+    relative:{
+      type: Boolean,
+      required: false,
+    }
+  }
 };
 </script>
 
@@ -16,7 +22,7 @@ export default {
   bg-yellow
   w-64
   p-6
-  centered
+
   shadow-md
   text-4xl;
 }
@@ -26,5 +32,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.relClass{
+  @apply relative;
 }
 </style>
