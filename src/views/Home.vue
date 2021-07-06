@@ -13,7 +13,7 @@
     </div>
     <div ref="Home" class="home flex min-h-screen">
       <div class="imageDeSaturation">
-        <img class="imgStyle" src="../../public/truckFrame.png" />
+        <img class="imgStyle" src="../../public/truckFrame.png" style="width:100vw"/>
       </div>
       <div class="homeHeader flex-auto">
         <div class="flex-1 justify-evenly">

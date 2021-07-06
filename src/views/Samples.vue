@@ -1,6 +1,6 @@
 <template>
-  <div class="samples-page relative w-full h-full p-8" style="height: 100vh">
-    <div class="font-bold text-2xl mb-6 max-w-prose">
+  <div class="samples-page w-full h-full" style="width: 100%">
+    <div class="font-bold text-2xl mb-6 text-center">
       Sometimes you just need to go <span>BIG</span>! Here are a few projects
       where a life size print was just too much fun to build
     </div>

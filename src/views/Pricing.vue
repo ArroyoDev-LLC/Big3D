@@ -2,14 +2,14 @@
   <div class="relative w-full h-full grid-rows-3">
     <div class="pricingHeader">What does it Cost</div>
 
-    <div class="pricingCardContainer grid grid-rows-1 gap-4">
+    <div class="pricingCardContainer grid grid-rows-1 gap-4 flex-col md:flex-row lg:mt-12">
       <div class="pricingCards p-8">
         <div class="font-bold">DIY Route</div>
         <div>
           If you have your own 3D printer and are ready to print your own models
           then this is the route for you.
         </div>
-    <!-- DIY List -->        
+    <!-- DIY List -->
           <ul class="list-disc space-y-2 download-list justify-center object-center">
             <li class="items-start download-list-item">
               <span class="h-6 flex items-center sm:h-7">
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="flex items-center justify-center">
-      <GoBigButton @click="$emit('scrollMeTo')" />
+      <GoBigButton relative @click="$emit('scrollMeTo')" />
     </div>
   </div>
 </template>
@@ -85,24 +85,7 @@ export default {
 </script>
 
 <style scoped>
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
-.goBigButton {
-  @apply text-black
-  font-bold
-  rounded-lg
-  bg-yellow
-  w-64
-  p-6
-  centered
-  shadow-md
-  text-4xl;
-}
 .pricingHeader {
   @apply text-black font-bold;
 }
@@ -112,6 +95,6 @@ export default {
 }
 
 .pricingCards {
-  @apply shadow-md rounded-md w-1/3 text-left bg-gray-100;;
+  @apply shadow-md rounded-md md:w-1/3 text-left bg-gray-100;;
 }
 </style>
