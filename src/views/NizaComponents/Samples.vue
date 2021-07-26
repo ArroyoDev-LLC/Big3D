@@ -24,8 +24,7 @@
 
           <text class="text-white pb-10">What is your plan?</text>
 
-
-         <hr class="dotted-hr"/>
+          <hr class="dotted-hr" />
         </div>
 
         <div name="pricing details" class="flex flex-col text-left pb-20">
@@ -37,7 +36,7 @@
         <hr />
         <div name="included" class="flex flex-col text-left">
           <text class="text-white">Whats included?</text>
-         <hr class="dotted-hr"/>
+          <hr class="dotted-hr" />
           <ul class="list-disc text-white pl-4">
             <li class="">zip file of pre supported .stl files</li>
             <li>full cutsheet listing stick lenghts to cut</li>
@@ -46,7 +45,9 @@
         </div>
 
         <div name="bottom">
-          <div class="font-bold bg-yellow w-full p-2 text-center">GO BIG NOW</div>
+          <div class="font-bold bg-yellow w-full p-2 text-center">
+            GO BIG NOW
+          </div>
         </div>
       </div>
       <!--diy container end-->
@@ -64,21 +65,24 @@
             print and build your own models by yourself.
           </text>
           <hr />
-<div class="flex justify-between">          <text class="text-white">What is your plan?</text> <div @click="changeState("build1text")">+</div></div>
-
-             <hr class="dotted-hr"/>
+          <div class="flex justify-between">
+            <text class="text-white">What is your plan?</text>
+            <div @click="() => (this.build1text = !this.build1text)">+</div>
+          </div>
         </div>
+
+        <hr class="dotted-hr" />
 
         <div name="pricing details b" class="flex flex-col text-left pb-20">
           <text class="text-white">Pricing Details</text>
-          <ul v-if='build1text' class="list-disc text-white pl-4">
+          <ul v-if="build1text" class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
           </ul>
         </div>
         <hr />
-        <div name="includedb" class="flex flex-col text-left ">
+        <div name="includedb" class="flex flex-col text-left">
           <text class="text-white">Whats included?</text>
-         <hr class="dotted-hr"/>
+          <hr class="dotted-hr" />
           <ul class="list-disc text-white pl-4">
             <li class="">zip file of pre supported .stl files</li>
             <li>full cutsheet listing stick lenghts to cut</li>
@@ -87,41 +91,37 @@
         </div>
 
         <div name="bottomb">
-          <div class="font-bold bg-yellow w-full p-2 text-center">GO BIG NOW</div>
+          <div class="font-bold bg-yellow w-full p-2 text-center">
+            GO BIG NOW
+          </div>
         </div>
       </div>
       <!--      build container end-->
     </div>
-    <!--    routes container end-->
   </div>
+  <!--    routes container end-->
 </template>
 
 <script lang="ts">
 export default {
   name: "defaultname",
-  componets: {
 
-  },
-  methods: {
-  },
-  
-  data(){
-      return {
-          build1text: false,
-          build2text: false,
-          diy1text: false,
-          diy2text: false,
+  methods: {},
 
-      }
-  }
+  data() {
+    return {
+      build1text: false,
+      build2text: false,
+      diy1text: false,
+      diy2text: false,
+    };
+  },
 };
 </script>
 
 <style scoped lang="postcss">
-
 .dotted-hr {
   border-top: 2px dashed white;
-  opacity: .20;
+  opacity: 0.2;
 }
-
 </style>
