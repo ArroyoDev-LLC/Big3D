@@ -1,6 +1,6 @@
 <template>
   <div name="parent container">
-    <div name="text-container-top">
+    <div name="text-container-top" class="text-left">
       <text>PRICING</text>
       <hr />
       <text class="text-2xl text-left">What does it <span>cost?</span></text>
@@ -22,7 +22,7 @@
           </text>
           <hr />
 
-          <text class="text-white pb-10">What is your plan?</text>
+          <text class="text-white pb-10">What's in plan?</text>
 
           <hr class="dotted-hr" />
         </div>
@@ -35,7 +35,7 @@
         </div>
         <hr />
         <div name="included" class="flex flex-col text-left">
-          <text class="text-white">Whats included?</text>
+          <text class="text-white">What's included?</text>
           <hr class="dotted-hr" />
           <ul class="list-disc text-white pl-4">
             <li class="">zip file of pre supported .stl files</li>
@@ -55,14 +55,13 @@
       <div name="Build" class="bg-big3dBlack p-4 text-left">
         <div name="topB">
           <div class="flex justify-between">
-            <text class="font-black text-white text-2xl">DIY route</text>
-            <text class="text-white font-bold">$500.00-$1500.00</text>
+            <text class="font-black text-white text-2xl">Finished frame route</text>
+            <text class="text-white font-bold">$1000.00-$3000.00</text>
           </div>
 
           <img src="https://picsum.photos/1200/300" />
           <text class="font-bold text-white"
-            >Choose this option if you have your own 3D printer and ready to
-            print and build your own models by yourself.
+            >Choose this option if you want to receive a complete ready-to-assemble kit from us.
           </text>
           <hr />
           <div class="flex justify-between">
@@ -79,16 +78,17 @@
           <text class="text-white">Pricing Details</text>
           <ul v-if="build1text" class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
+            
           </ul>
         </div>
         <hr />
         <div name="includedb" class="flex flex-col text-left">
-          <text class="text-white">Whats included?</text>
+          <text class="text-white">What's included?</text>
           <hr class="dotted-hr" />
           <ul class="list-disc text-white pl-4">
-            <li class="">zip file of pre supported .stl files</li>
-            <li>full cutsheet listing stick lenghts to cut</li>
-            <li>simple instruction guide for assembly</li>
+            <li class="">¢20 to ¢70 per. ft of stick material</li>
+            <li>$2.20 to $4.00 each joint</li>
+            
           </ul>
         </div>
 

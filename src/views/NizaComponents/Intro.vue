@@ -1,9 +1,11 @@
 <template>
 <div class ="flex justify-evenly">
     <div class="intro-left-container" > 
-        <Text class ="font-bold">Think</Text>
+        <text class ="font-bold text-2xl">think</text>
+        <text class ="font-bold text-2xl">print</text>
+        <text class ="font-bold text-2xl">build</text>
         <div>
-            <Text class="intro-header">BIG</Text> 
+            <Text class="intro-header text-6xl">BIG</Text> 
             
         </div>
 
