@@ -1,10 +1,28 @@
 <template>
-<div>test</div>
+<div>
+
+
+  <NavBar  />
+  <Intro />
+  <Story />
+  <Samples />
+  <Gallery />
+  <Pricing />
+  <Printing />
+  <Purchase />
+  <Login />
+  
+  </div>
 </template>
 
-<script>
+<script lang="ts">
+import Intro from './NizaComponents/Intro.vue'
+import NavBar from './NizaComponents/NavBar.vue'
+import Story from './NizaComponents/Story.vue'
+import Samples from './NizaComponents/Samples.vue'
 export default {
-  name: "NizaHome"
+  name: "NizaHome",
+  components:{NavBar, Intro, Story, Samples}
 }
 </script>
 
