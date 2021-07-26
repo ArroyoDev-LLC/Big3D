@@ -67,7 +67,9 @@
           <hr />
           <div class="flex justify-between">
             <text class="text-white">What is your plan?</text>
-            <div @click="() => (this.build1text = !this.build1text)">+</div>
+            <button @click="() => (build1text = !build1text)">
+              +
+            </button>
           </div>
         </div>
 
@@ -104,7 +106,7 @@
 
 <script lang="ts">
 export default {
-  name: "defaultname",
+  name: "Samples",
 
   methods: {},
 
