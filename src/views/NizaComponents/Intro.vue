@@ -5,11 +5,11 @@
         <text class ="font-bold text-2xl">print</text>
         <text class ="font-bold text-2xl">build</text>
         <div>
-            <Text class="intro-header text-6xl">BIG</Text> 
+            <text class="intro-header text-6xl">BIG</text> 
             
         </div>
 
-        <Text>Upload a low poly 3D model and generate a life size BIG 3D puzzle</Text>
+        <text>Upload a low poly 3D model and generate a life size BIG 3D puzzle</text>
          </div>
     <div> <img src="https://picsum.photos/600/600"/> </div>
  

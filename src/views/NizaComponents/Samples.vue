@@ -60,15 +60,15 @@
           </div>
 
           <img src="https://picsum.photos/1200/300" />
-          <text class="font-bold text-white"
-            >Choose this option if you want to receive a complete ready-to-assemble kit from us.
+          <text class="font-bold text-white">
+            Choose this option if you want to receive a complete ready-to-assemble kit from us.
           </text>
           <hr />
-          <div class="flex justify-between">
-            <text class="text-white">What is your plan?</text>
-            <button @click="() => (build1text = !build1text)">
+          <div>
+            <text class="text-white">What's in plan?</text>
+            <!--<button @click="() => (build1text = !build1text)">
               +
-            </button>
+            </button>-->
           </div>
         </div>
 
@@ -76,19 +76,31 @@
 
         <div name="pricing details b" class="flex flex-col text-left pb-20">
           <text class="text-white">Pricing Details</text>
-          <ul v-if="build1text" class="list-disc text-white pl-4">
+          <ul class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
+             <li>¢20 to ¢70 per. ft of stick material</li>
+            <li>$2.20 to $4.00 each joint</li>
             
           </ul>
         </div>
         <hr />
-        <div name="includedb" class="flex flex-col text-left">
+        <div name="includedb" class="flex flex-col text-left flex justify-between">
+          <div class="flex justify-between">
           <text class="text-white">What's included?</text>
-          <hr class="dotted-hr" />
-          <ul class="list-disc text-white pl-4">
-            <li class="">¢20 to ¢70 per. ft of stick material</li>
-            <li>$2.20 to $4.00 each joint</li>
-            
+           <button @click="() => (build1text = !build1text)">
+              +
+            </button>
+          </div>
+          <hr :class="build1text ? 'dotted-hr' : '' " />
+          <ul v-if="build1text" class="list-disc text-white pl-4">
+            <li>full set of 3D puzzle pieces</li>
+            <li>full set of pre-cut and labeled stick to join them together</li>
+            <li>custom instruction sheet</li>
+            <li>zip file of pre supported .stl files</li>
+            <li>full cutsheet listing stick lengths to cut</li>
+            <li>simple instruction guide for assembly</li>
+            <li>shipping cost ofc;)</li>
+
           </ul>
         </div>
 
@@ -126,4 +138,6 @@ export default {
   border-top: 2px dashed white;
   opacity: 0.2;
 }
+
+
 </style>
