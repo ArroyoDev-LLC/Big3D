@@ -8,36 +8,53 @@
     <!--    route container start-->
     <div name="routes-container " class="flex justify-evenly p-2 m-4">
       <!--      diy container start-->
-      <div name="DIY" class="bg-big3dBlack p-4 text-left mr-4">
+      <div name="DIY" class="bg-big3dBlack p-4 text-left mr-4" style="width:45rem">
         <div name="top">
           <div class="flex justify-between">
             <text class="font-black text-white text-2xl">DIY route</text>
             <text class="text-white font-bold">$500.00-$1500.00</text>
           </div>
 
-          <img src="https://picsum.photos/1200/300" />
+          <img src="Group 58.png" width="700" height="200" />
           <text class="font-bold text-white"
             >Choose this option if you have your own 3D printer and ready to
             print and build your own models by yourself.
           </text>
           <hr />
 
-          <text class="text-white pb-10">What's in plan?</text>
+  <div class="flex justify-between"> 
+  
+  <text class="text-white">What's in plan?</text>
 
-          <hr class="dotted-hr" />
+          <button @click="() => diy1text = !diy1text">
+            +
+            </button>
+        
+            </div>
+          
+                 <hr :class="diy1text ? 'dotted-hr' : '' " />
+
         </div>
 
         <div name="pricing details" class="flex flex-col text-left pb-20">
-          <text class="text-white">Pricing Details</text>
-          <ul class="list-disc text-white pl-4">
+          <div>
+         
+          </div>
+
+          <ul v-if="diy1text" class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
           </ul>
         </div>
         <hr />
         <div name="included" class="flex flex-col text-left">
-          <text class="text-white">What's included?</text>
-          <hr class="dotted-hr" />
-          <ul class="list-disc text-white pl-4">
+        
+          <div class='flex justify-between'>  <text class="text-white">What's included?</text>
+             <button @click="() => (diy2text = !diy2text)">
+              +
+            </button> </div>
+                   <hr :class="diy2text ? 'dotted-hr' : '' " />
+
+          <ul v-if="diy2text" class="list-disc text-white pl-4">
             <li class="">zip file of pre supported .stl files</li>
             <li>full cutsheet listing stick lenghts to cut</li>
             <li>simple instruction guide for assembly</li>
@@ -45,7 +62,7 @@
         </div>
 
         <div name="bottom">
-          <div class="font-bold bg-yellow w-full p-2 text-center">
+          <div class="font-bold bg-yellow w-full p-2 text-center mt-4">
             GO BIG NOW
           </div>
         </div>
@@ -59,24 +76,32 @@
             <text class="text-white font-bold">$1000.00-$3000.00</text>
           </div>
 
-          <img src="https://picsum.photos/1200/300" />
+          <img src="Group 59.png" width="700" height="200" />
           <text class="font-bold text-white">
             Choose this option if you want to receive a complete ready-to-assemble kit from us.
           </text>
           <hr />
-          <div>
+          <div class="flex justify-between">
             <text class="text-white">What's in plan?</text>
-            <!--<button @click="() => (build1text = !build1text)">
+                    <button @click="() => (build1text = !build1text)">
               +
-            </button>-->
+            </button>
           </div>
+          <hr :class="build1text ? 'dotted-hr' : '' " />
+         
         </div>
 
-        <hr class="dotted-hr" />
+        
 
         <div name="pricing details b" class="flex flex-col text-left pb-20">
-          <text class="text-white">Pricing Details</text>
-          <ul class="list-disc text-white pl-4">
+
+      
+
+
+                 
+
+         
+          <ul v-if="build1text" class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
              <li>¢20 to ¢70 per. ft of stick material</li>
             <li>$2.20 to $4.00 each joint</li>
@@ -87,12 +112,12 @@
         <div name="includedb" class="flex flex-col text-left flex justify-between">
           <div class="flex justify-between">
           <text class="text-white">What's included?</text>
-           <button @click="() => (build1text = !build1text)">
+   <button @click="() => (build2text = !build2text)">
               +
             </button>
           </div>
-          <hr :class="build1text ? 'dotted-hr' : '' " />
-          <ul v-if="build1text" class="list-disc text-white pl-4">
+          <hr :class="build2text ? 'dotted-hr' : '' " />
+          <ul v-if="build2text" class="list-disc text-white pl-4">
             <li>full set of 3D puzzle pieces</li>
             <li>full set of pre-cut and labeled stick to join them together</li>
             <li>custom instruction sheet</li>
@@ -105,7 +130,7 @@
         </div>
 
         <div name="bottomb">
-          <div class="font-bold bg-yellow w-full p-2 text-center">
+          <div class="font-bold bg-yellow w-full p-2 text-center mt-4">
             GO BIG NOW
           </div>
         </div>
@@ -116,11 +141,15 @@
   <!--    routes container end-->
 </template>
 
-<script lang="ts">
+<script>
+
 export default {
   name: "Samples",
+  components: {},
 
-  methods: {},
+  methods: {
+  
+  },
 
   data() {
     return {

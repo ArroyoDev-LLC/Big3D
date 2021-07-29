@@ -1,6 +1,6 @@
 <template>
 <div class="nav-container">
-    <div> <img src="Big3D\public\big3dlogo.png"/> </div>
+    <div> <img src="big3dlogo.png"/> </div>
     <div> Home</div>
     <div> Story+</div>
     <div> Samples+</div>
