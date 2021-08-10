@@ -1,24 +1,28 @@
 <template>
   <div class="wizard">
     <div class="wizard__current">
-      <div v-if="currentStep === WizardSteps.UPLOAD">Upload Files</div>
-      <div v-else-if="currentStep === WizardSteps.DIMENSIONS">
-        Enter Dimensions
+      <div v-if="currentStep.name === WizardSteps.UPLOAD">
+        {{ currentStep.label }}
       </div>
-      <div v-else-if="currentStep === WizardSteps.CONNECTORS">
-        Choose Connecters
+      <div v-else-if="currentStep.name === WizardSteps.DIMENSIONS">
+        {{ currentStep.label }}
       </div>
-      <div v-else-if="currentStep === WizardSteps.DELIVERY">
-        Choose Delivery
+      <div v-else-if="currentStep.name === WizardSteps.CONNECTORS">
+        {{ currentStep.label }}
       </div>
-      <div v-else-if="currentStep === WizardSteps.CHECKOUT">Checkout</div>
+      <div v-else-if="currentStep.name === WizardSteps.DELIVERY">
+        {{ currentStep.label }}
+      </div>
+      <div v-else-if="currentStep.name === WizardSteps.CHECKOUT">
+        {{ currentStep.label }}
+      </div>
       <div v-else>INVALID STEP</div>
     </div>
 
     <div
       :class="`order-${getStepOrder(WizardSteps.UPLOAD)}`"
       class="wizard__step"
-      @click="currentStep = WizardSteps.UPLOAD"
+      @click="setStep(WizardSteps.UPLOAD)"
     >
       <div>File Upload</div>
     </div>
@@ -26,7 +30,7 @@
     <div
       :class="`order-${getStepOrder(WizardSteps.DIMENSIONS)}`"
       class="wizard__step"
-      @click="currentStep = WizardSteps.DIMENSIONS"
+      @click="setStep(WizardSteps.DIMENSIONS)"
     >
       <div>Enter Dimensions</div>
     </div>
@@ -34,15 +38,15 @@
     <div
       :class="`order-${getStepOrder(WizardSteps.CONNECTORS)}`"
       class="wizard__step"
-      @click="currentStep = WizardSteps.CONNECTORS"
+      @click="setStep(WizardSteps.CONNECTORS)"
     >
       <div>Choose Connectors</div>
     </div>
 
     <div
+      @click="setStep(WizardSteps.DELIVERY)"
       :class="`order-${getStepOrder(WizardSteps.DELIVERY)}`"
       class="wizard__step"
-      @click="currentStep = WizardSteps.DELIVERY"
     >
       <div>Choose Delivery</div>
     </div>
@@ -50,7 +54,7 @@
     <div
       :class="`order-${getStepOrder(WizardSteps.CHECKOUT)}`"
       class="wizard__step"
-      @click="currentStep = WizardSteps.CHECKOUT"
+      @click="setStep(WizardSteps.CHECKOUT)"
     >
       <div>Checkout</div>
     </div>
@@ -58,9 +62,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
 
-export enum WizardSteps {
+enum WizardSteps {
   UPLOAD,
   DIMENSIONS,
   CONNECTORS,
@@ -68,12 +72,52 @@ export enum WizardSteps {
   CHECKOUT,
 }
 
+interface StepT {
+  name: WizardSteps;
+  isDisabled: boolean;
+  label: string;
+}
+
 export default defineComponent({
   name: "ModelGeneratorWizard",
   components: {},
   props: {},
   setup() {
-    const currentStep = ref<WizardSteps>(WizardSteps.UPLOAD);
+    const steps = reactive<StepT[]>([
+      {
+        name: WizardSteps.UPLOAD,
+        isDisabled: false,
+        label: "Upload Files",
+      },
+      {
+        name: WizardSteps.DIMENSIONS,
+        isDisabled: false,
+        label: "Enter Dimensions",
+      },
+      {
+        name: WizardSteps.CONNECTORS,
+        isDisabled: false,
+        label: "Choose Connectors",
+      },
+      {
+        name: WizardSteps.DELIVERY,
+        isDisabled: false,
+        label: "Choose Delivery",
+      },
+      {
+        name: WizardSteps.CHECKOUT,
+        isDisabled: false,
+        label: "Checkout",
+      },
+    ]);
+
+    const activeStep = ref<number>(0);
+    const currentStep = computed(() => steps[activeStep.value]);
+
+    const getStep = (step: number) => steps[step];
+    const setStep = (step: number) => (activeStep.value = step);
+    const enableStep = (step: number) => (steps[step].isDisabled = false);
+    const disableStep = (step: number) => (steps[step].isDisabled = true);
 
     const getStepOrder = (step: WizardSteps) => {
       if (step === WizardSteps.UPLOAD) return 1;
@@ -88,6 +132,10 @@ export default defineComponent({
       WizardSteps,
       currentStep,
       getStepOrder,
+      getStep,
+      setStep,
+      enableStep,
+      disableStep,
     };
   },
 });
@@ -120,6 +168,8 @@ export default defineComponent({
 }
 
 .wizard__current {
-  @apply col-span-7 text-white;
+  @apply col-span-7
+    text-white
+    flex justify-center items-center;
 }
 </style>
