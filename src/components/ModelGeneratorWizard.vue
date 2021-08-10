@@ -1,6 +1,19 @@
 <template>
   <div class="wizard">
-    <div class="wizard__current">Selected Step{{ currentStep }}</div>
+    <div class="wizard__current">
+      <div v-if="currentStep === WizardSteps.UPLOAD">Upload Files</div>
+      <div v-else-if="currentStep === WizardSteps.DIMENSIONS">
+        Enter Dimensions
+      </div>
+      <div v-else-if="currentStep === WizardSteps.CONNECTORS">
+        Choose Connecters
+      </div>
+      <div v-else-if="currentStep === WizardSteps.DELIVERY">
+        Choose Delivery
+      </div>
+      <div v-else-if="currentStep === WizardSteps.CHECKOUT">Checkout</div>
+      <div v-else>INVALID STEP</div>
+    </div>
 
     <div
       :class="`order-${getStepOrder(WizardSteps.UPLOAD)}`"
