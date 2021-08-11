@@ -1,6 +1,6 @@
 <template>
   <div class="wizard">
-    <div class="wizard__current">
+    <div class="wizard__current" :class="`order-${activeStep + 1}`">
       <div
         v-if="currentStep.name === WizardSteps.UPLOAD"
         class="p-4 md:p-8 flex flex-col items-center h-full w-full"
@@ -130,14 +130,7 @@ export default defineComponent({
     const enableStep = (step: number) => (steps[step].isDisabled = false);
     const disableStep = (step: number) => (steps[step].isDisabled = true);
 
-    const getStepOrder = (step: WizardSteps) => {
-      if (step === WizardSteps.UPLOAD) return 1;
-      else if (step === WizardSteps.DIMENSIONS) return 2;
-      else if (step === WizardSteps.CONNECTORS) return 3;
-      else if (step === WizardSteps.DELIVERY) return 4;
-      else if (step === WizardSteps.CHECKOUT) return 5;
-      else return 6;
-    };
+    const getStepOrder = (step: WizardSteps) => step + 1;
 
     const handleModelUpload = (files: FileList) => {
       console.log(files);
@@ -145,6 +138,7 @@ export default defineComponent({
 
     return {
       WizardSteps,
+      activeStep,
       currentStep,
       getStepOrder,
       getStep,
