@@ -1,16 +1,11 @@
 <template>
-  <div
-    @click="goToWizard"
-    class="goBigButton"
-    :class="relative ? 'relClass' : 'centered'"
-  >
-    go Big Now
-  </div>
+  <div @click="goToWizard" class="goBigButton">Go Big Now</div>
 </template>
 
-<script>
-export default {
-  name: "goBigButton",
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "GoBigButton",
   props: {
     relative: {
       type: Boolean,
@@ -28,12 +23,12 @@ export default {
       goToWizard,
     };
   },
-};
+});
 </script>
 
 <style scoped>
 .goBigButton {
-  @apply text-black
+  @apply text-black cursor-pointer
   font-bold
   rounded-lg
   bg-yellow
