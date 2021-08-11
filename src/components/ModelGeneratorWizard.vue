@@ -30,8 +30,15 @@
       <div v-show="currentStep.name === WizardSteps.DIMENSIONS">
         {{ currentStep.label }}
       </div>
-      <div v-show="currentStep.name === WizardSteps.CONNECTORS">
-        {{ currentStep.label }}
+      <div
+        v-show="currentStep.name === WizardSteps.CONNECTORS"
+        class="p-4 md:p-8 h-full w-full"
+      >
+        <ConnectorView
+          :connector-info="connectorInfo"
+          :title="currentStep.title"
+          @radioChange="handleConnecterInput"
+        />
       </div>
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
         <Delivery
@@ -61,6 +68,7 @@
 import { computed, defineComponent, reactive, ref } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
+import ConnectorView from "@/components/ConnectorView.vue";
 import Delivery from "@/components/Delivery.vue";
 
 enum WizardSteps {
@@ -80,7 +88,12 @@ interface StepT {
 
 export default defineComponent({
   name: "ModelGeneratorWizard",
-  components: { NextStepButton, ModelUploader, Delivery },
+  components: {
+    NextStepButton,
+    ModelUploader,
+    ConnectorView,
+    Delivery,
+  },
   props: {},
   setup() {
     const steps = reactive<StepT[]>([
@@ -146,6 +159,13 @@ export default defineComponent({
       isLoading.value = false;
     };
 
+    const connectorInfo = reactive({
+      connectors: 0,
+      edges: 0,
+    });
+
+    const handleConnecterInput = (selection: string) => console.log(selection);
+
     return {
       WizardSteps,
       steps,
@@ -155,12 +175,14 @@ export default defineComponent({
       isLoading,
       disabledClasses,
       modelFile,
+      connectorInfo,
       getStepOrder,
       getStep,
       setStep,
       enableStep,
       disableStep,
       handleModelUpload,
+      handleConnecterInput,
     };
   },
 });
