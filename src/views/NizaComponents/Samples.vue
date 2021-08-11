@@ -5,12 +5,9 @@
       <text class="text-2xl text-left font-bold">What does it cost?</text>
     </div>
     <!--    route container start-->
-    <div name="routes-container " class="p-2 m-4 grid grid-cols-2">
+    <div name="routes-container " class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
       <!--      diy container start-->
-      <div
-        name="DIY"
-        class="bg-big3dBlack p-4 text-left mr-4 relative col-span-1"
-      >
+      <div name="DIY" class="bg-big3dBlack p-4 text-left relative col-span-1">
         <div name="top">
           <div class="flex justify-between pb-2">
             <text class="font-black text-white text-2xl">DIY route</text>
@@ -38,8 +35,8 @@
           >
             <text class="text-white text-lg font-bold">What's in plan?</text>
 
-            <button class="text-white">
-              {{ diy1text ? "-" : "+" }}
+            <button class="text-yellow text-xl font-bold">
+              {{ diy1text ? "x" : "+" }}
             </button>
           </div>
         </div>
@@ -66,8 +63,8 @@
             @click="() => (diy2text = !diy2text)"
           >
             <text class="text-white text-lg font-bold">What's included?</text>
-            <button class="text-white">
-              {{ diy2text ? "-" : "+" }}
+            <button class="text-yellow text-xl font-bold">
+              {{ diy2text ? "x" : "+" }}
             </button>
           </div>
 
@@ -128,8 +125,8 @@
             @click="() => (build1text = !build1text)"
           >
             <text class="text-white text-lg font-bold">What's in plan?</text>
-            <button class="text-white">
-              {{ build1text ? "-" : "+" }}
+            <button class="text-yellow text-xl font-bold">
+              {{ build1text ? "x" : "+" }}
             </button>
           </div>
         </div>
@@ -161,8 +158,8 @@
             @click="() => (build2text = !build2text)"
           >
             <text class="text-white text-lg font-bold">What's included?</text>
-            <button class="text-white">
-              {{ build2text ? "-" : "+" }}
+            <button class="text-yellow text-xl font-bold">
+              {{ build2text ? "x" : "+" }}
             </button>
           </div>
           <ul v-if="build2text" class="list-disc text-white pl-5">
@@ -218,10 +215,10 @@ export default defineComponent({
   setup(props, { emit }) {
     const goToWizard = () => {
       emit("goBig");
-    }
+    };
     return {
       goToWizard,
     };
-  }
+  },
 });
 </script>
