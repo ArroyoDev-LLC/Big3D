@@ -5,11 +5,16 @@
         v-if="currentStep.name === WizardSteps.UPLOAD"
         class="p-4 md:p-8 flex flex-col items-center h-full w-full"
       >
-        <div class="text-3xl text-left w-full">{{ currentStep.label }}</div>
+        <div class="text-lg md:text-3xl text-left w-full">
+          {{ currentStep.label }}
+        </div>
         <ModelUploader
           class="w-full md:w-3/4 h-full m-4"
           label="Drag’n’drop your model here"
           accept=".stl,.blend"
+          bg-image-path="images/elephant-model.png"
+          :is-loading="isLoading"
+          :selected-model-name="isLoading ? modelFile.name : null"
           :handle-file-change="handleModelUpload"
           :error-message="null"
         />
@@ -125,6 +130,9 @@ export default defineComponent({
     const activeStep = ref<number>(0);
     const currentStep = computed(() => steps[activeStep.value]);
 
+    const isLoading = ref<boolean>(false);
+    const modelFile = ref<File | null>(null);
+
     const getStep = (step: number) => steps[step];
     const setStep = (step: number) => (activeStep.value = step);
     const enableStep = (step: number) => (steps[step].isDisabled = false);
@@ -132,14 +140,23 @@ export default defineComponent({
 
     const getStepOrder = (step: WizardSteps) => step + 1;
 
-    const handleModelUpload = (files: FileList) => {
+    const handleModelUpload = async (files: FileList) => {
       console.log(files);
+      modelFile.value = files[0];
+      isLoading.value = true;
+
+      await new Promise((r) => setTimeout(r, 5000));
+
+      console.log(files);
+      isLoading.value = false;
     };
 
     return {
       WizardSteps,
       activeStep,
       currentStep,
+      isLoading,
+      modelFile,
       getStepOrder,
       getStep,
       setStep,
