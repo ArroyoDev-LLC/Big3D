@@ -2,7 +2,7 @@
   <div class="wizard">
     <div class="wizard__current" :class="`order-${activeStep + 1}`">
       <div
-        v-if="currentStep.name === WizardSteps.UPLOAD"
+        v-show="currentStep.name === WizardSteps.UPLOAD"
         class="p-4 md:p-8 flex flex-col items-center h-full w-full"
       >
         <div class="text-lg md:text-3xl text-left w-full">
@@ -19,19 +19,18 @@
           :error-message="null"
         />
       </div>
-      <div v-else-if="currentStep.name === WizardSteps.DIMENSIONS">
+      <div v-show="currentStep.name === WizardSteps.DIMENSIONS">
         {{ currentStep.label }}
       </div>
-      <div v-else-if="currentStep.name === WizardSteps.CONNECTORS">
+      <div v-show="currentStep.name === WizardSteps.CONNECTORS">
         {{ currentStep.label }}
       </div>
-      <div v-else-if="currentStep.name === WizardSteps.DELIVERY">
+      <div v-show="currentStep.name === WizardSteps.DELIVERY">
         {{ currentStep.label }}
       </div>
-      <div v-else-if="currentStep.name === WizardSteps.CHECKOUT">
+      <div v-show="currentStep.name === WizardSteps.CHECKOUT">
         {{ currentStep.label }}
       </div>
-      <div v-else>INVALID STEP</div>
     </div>
 
     <div
