@@ -1,58 +1,75 @@
 <template>
   <div name="parent container">
-    <div name="text-container-top" class="text-left">
+    <div name="text-container-top" class="text-left flex flex-col ml-10">
       <text>PRICING</text>
-      <hr />
-      <text class="text-2xl text-left">What does it <span>cost?</span></text>
+      <text class="text-2xl text-left font-bold">What does it cost?</text>
     </div>
     <!--    route container start-->
-    <div name="routes-container " class="flex justify-evenly p-2 m-4">
+    <div name="routes-container " class="p-2 m-4 grid grid-cols-2">
       <!--      diy container start-->
-      <div name="DIY" class="bg-big3dBlack p-4 text-left mr-4" style="width:45rem">
+      <div
+        name="DIY"
+        class="bg-big3dBlack p-4 text-left mr-4 relative col-span-1"
+      >
         <div name="top">
-          <div class="flex justify-between">
+          <div class="flex justify-between pb-2">
             <text class="font-black text-white text-2xl">DIY route</text>
             <text class="text-white font-bold">$500.00-$1500.00</text>
           </div>
 
-          <img src="Group 58.png" width="700" height="200" />
-          <text class="font-bold text-white"
-            >Choose this option if you have your own 3D printer and ready to
-            print and build your own models by yourself.
-          </text>
+          <img src="Group 58.png" class="w-full h-40" />
+          <div class="max-w-xl py-3">
+            <text class="font-bold text-white"
+              >Choose this option if you have your own 3D printer and ready to
+              print and build your own models by yourself.
+            </text>
+          </div>
           <hr />
 
-  <div class="flex justify-between"> 
-  
-  <text class="text-white">What's in plan?</text>
+          <div
+            class="
+              flex
+              justify-between
+              cursor-pointer
+              border-dotted border-b border-opacity-40
+              py-1
+            "
+            @click="() => (diy1text = !diy1text)"
+          >
+            <text class="text-white text-lg font-bold">What's in plan?</text>
 
-          <button @click="() => diy1text = !diy1text">
-            +
+            <button class="text-white">
+              {{ diy1text ? "-" : "+" }}
             </button>
-        
-            </div>
-          
-                 <hr :class="diy1text ? 'dotted-hr' : '' " />
-
+          </div>
         </div>
 
-        <div name="pricing details" class="flex flex-col text-left pb-20">
-          <div>
-         
-          </div>
-
+        <div
+          name="pricing details"
+          class="flex flex-col text-left"
+          :class="diy1text ? 'h-40' : 'h-2'"
+        >
           <ul v-if="diy1text" class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
           </ul>
         </div>
         <hr />
-        <div name="included" class="flex flex-col text-left">
-        
-          <div class='flex justify-between'>  <text class="text-white">What's included?</text>
-             <button @click="() => (diy2text = !diy2text)">
-              +
-            </button> </div>
-                   <hr :class="diy2text ? 'dotted-hr' : '' " />
+        <div name="included" class="flex flex-col text-left mb-10">
+          <div
+            class="
+              flex
+              justify-between
+              cursor-pointer
+              border-dotted border-b border-opacity-40
+              py-1
+            "
+            @click="() => (diy2text = !diy2text)"
+          >
+            <text class="text-white text-lg font-bold">What's included?</text>
+            <button class="text-white">
+              {{ diy2text ? "-" : "+" }}
+            </button>
+          </div>
 
           <ul v-if="diy2text" class="list-disc text-white pl-4">
             <li class="">zip file of pre supported .stl files</li>
@@ -62,62 +79,91 @@
         </div>
 
         <div name="bottom">
-          <div class="font-bold bg-yellow w-full p-2 text-center mt-4">
+          <div
+            class="
+              font-bold
+              bg-yellow
+              p-2
+              text-center
+              mt-4
+              absolute
+              bottom-1
+              left-1
+              right-1
+            "
+          >
             GO BIG NOW
           </div>
         </div>
       </div>
       <!--diy container end-->
       <!--      build container start-->
-      <div name="Build" class="bg-big3dBlack p-4 text-left">
+      <div name="Build" class="bg-big3dBlack p-4 text-left relative col-span-1">
         <div name="topB">
-          <div class="flex justify-between">
-            <text class="font-black text-white text-2xl">Finished frame route</text>
+          <div class="flex justify-between pb-2">
+            <text class="font-black text-white text-2xl"
+              >Finished frame route</text
+            >
             <text class="text-white font-bold">$1000.00-$3000.00</text>
           </div>
 
-          <img src="Group 59.png" width="700" height="200" />
-          <text class="font-bold text-white">
-            Choose this option if you want to receive a complete ready-to-assemble kit from us.
-          </text>
+          <img src="Group 59.png" class="w-full h-40" />
+          <div class="max-w-xl py-3">
+            <text class="font-bold text-white">
+              Choose this option if you want to receive a complete
+              ready-to-assemble kit from us.
+            </text>
+          </div>
           <hr />
-          <div class="flex justify-between">
-            <text class="text-white">What's in plan?</text>
-                    <button @click="() => (build1text = !build1text)">
-              +
+          <div
+            class="
+              flex
+              justify-between
+              cursor-pointer
+              border-dotted border-b border-opacity-40
+              py-1
+            "
+            @click="() => (build1text = !build1text)"
+          >
+            <text class="text-white text-lg font-bold">What's in plan?</text>
+            <button class="text-white">
+              {{ build1text ? "-" : "+" }}
             </button>
           </div>
-          <hr :class="build1text ? 'dotted-hr' : '' " />
-         
         </div>
 
-        
-
-        <div name="pricing details b" class="flex flex-col text-left pb-20">
-
-      
-
-
-                 
-
-         
+        <div
+          name="pricing details b"
+          class="flex flex-col text-left"
+          :class="build1text ? 'h-40' : 'h-2'"
+        >
           <ul v-if="build1text" class="list-disc text-white pl-4">
             <li>¢50 per .STL joint generated</li>
-             <li>¢20 to ¢70 per. ft of stick material</li>
+            <li>¢20 to ¢70 per. ft of stick material</li>
             <li>$2.20 to $4.00 each joint</li>
-            
           </ul>
         </div>
         <hr />
-        <div name="includedb" class="flex flex-col text-left flex justify-between">
-          <div class="flex justify-between">
-          <text class="text-white">What's included?</text>
-   <button @click="() => (build2text = !build2text)">
-              +
+        <div
+          name="includedb"
+          class="flex flex-col text-left justify-between mb-10"
+        >
+          <div
+            class="
+              flex
+              justify-between
+              cursor-pointer
+              border-dotted border-b border-opacity-40
+              py-1
+            "
+            @click="() => (build2text = !build2text)"
+          >
+            <text class="text-white text-lg font-bold">What's included?</text>
+            <button class="text-white">
+              {{ build2text ? "-" : "+" }}
             </button>
           </div>
-          <hr :class="build2text ? 'dotted-hr' : '' " />
-          <ul v-if="build2text" class="list-disc text-white pl-4">
+          <ul v-if="build2text" class="list-disc text-white pl-5">
             <li>full set of 3D puzzle pieces</li>
             <li>full set of pre-cut and labeled stick to join them together</li>
             <li>custom instruction sheet</li>
@@ -125,12 +171,23 @@
             <li>full cutsheet listing stick lengths to cut</li>
             <li>simple instruction guide for assembly</li>
             <li>shipping cost ofc;)</li>
-
           </ul>
         </div>
 
         <div name="bottomb">
-          <div class="font-bold bg-yellow w-full p-2 text-center mt-4">
+          <div
+            class="
+              font-bold
+              bg-yellow
+              p-2
+              text-center
+              mt-4
+              absolute
+              bottom-1
+              left-1
+              right-1
+            "
+          >
             GO BIG NOW
           </div>
         </div>
@@ -142,31 +199,17 @@
 </template>
 
 <script>
-
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "Samples",
   components: {},
-
-  methods: {
-  
-  },
-
   data() {
     return {
-      build1text: false,
-      build2text: false,
-      diy1text: false,
-      diy2text: false,
+      build1text: true,
+      build2text: true,
+      diy1text: true,
+      diy2text: true,
     };
   },
-};
+});
 </script>
-
-<style scoped lang="postcss">
-.dotted-hr {
-  border-top: 2px dashed white;
-  opacity: 0.2;
-}
-
-
-</style>
