@@ -160,9 +160,9 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .wizard {
   height: 30rem;
-  @apply grid
-  grid-cols-12
-  md:m-8 m-4
+  display: grid;
+  grid-template-columns: repeat(18, minmax(0, 1fr));
+  @apply md:m-8 m-4
   p-3
   bg-big3dBlack
   select-none;
@@ -184,8 +184,8 @@ export default defineComponent({
 }
 
 .wizard__current {
-  @apply col-span-7
-    text-white
+  grid-column: span 13 / span 13;
+  @apply text-white
     flex justify-center items-center;
 }
 </style>
