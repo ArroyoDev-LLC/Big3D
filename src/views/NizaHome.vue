@@ -1,13 +1,13 @@
 <template>
   <div>
-    <NavBar />
-    <Intro />
-    <Story />
-    <Samples @goBig="jumpToWizard" />
-    <Gallery />
-    <Pricing />
-    <Printing />
-    <Purchase />
+    <NavBar @tabClick="goToSection" />
+    <Intro id="home" />
+    <Story id="story" />
+    <Samples id="samples" />
+    <Gallery id="gallery" />
+    <Pricing id="pricing" />
+    <Printing id="printing" />
+    <Purchase id="purchasing" />
     <ModelGeneratorWizard id="generator-wizard" />
     <Login />
   </div>
@@ -34,11 +34,18 @@ export default defineComponent({
     Gallery
   },
   setup() {
+    const goToSection = (section: string) => {
+      const sectionId = document.getElementById(section);
+      if (sectionId) {
+        sectionId.scrollIntoView();
+      }
+    };
     const jumpToWizard = () => {
       const wizardId = document.getElementById("generator-wizard");
       if (wizardId) wizardId.scrollIntoView();
     };
     return {
+      goToSection,
       jumpToWizard,
     };
   },
