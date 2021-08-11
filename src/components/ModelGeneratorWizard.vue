@@ -1,8 +1,18 @@
 <template>
   <div class="wizard">
     <div class="wizard__current">
-      <div v-if="currentStep.name === WizardSteps.UPLOAD">
-        {{ currentStep.label }}
+      <div
+        v-if="currentStep.name === WizardSteps.UPLOAD"
+        class="p-4 md:p-8 flex flex-col items-center h-full w-full"
+      >
+        <div class="text-3xl text-left w-full">{{ currentStep.label }}</div>
+        <ModelUploader
+          class="w-full md:w-3/4 h-full m-4"
+          label="Drag’n’drop your model here"
+          accept=".stl,.blend"
+          :handle-file-change="handleModelUpload"
+          :error-message="null"
+        />
       </div>
       <div v-else-if="currentStep.name === WizardSteps.DIMENSIONS">
         {{ currentStep.label }}
@@ -63,6 +73,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from "vue";
+import ModelUploader from "@/components/ModelUploader.vue";
 
 enum WizardSteps {
   UPLOAD,
@@ -80,14 +91,14 @@ interface StepT {
 
 export default defineComponent({
   name: "ModelGeneratorWizard",
-  components: {},
+  components: { ModelUploader },
   props: {},
   setup() {
     const steps = reactive<StepT[]>([
       {
         name: WizardSteps.UPLOAD,
         isDisabled: false,
-        label: "Upload Files",
+        label: "Upload Low Poly 3D model here (.blend or .stl)",
       },
       {
         name: WizardSteps.DIMENSIONS,
@@ -128,6 +139,10 @@ export default defineComponent({
       else return 6;
     };
 
+    const handleModelUpload = (files: FileList) => {
+      console.log(files);
+    };
+
     return {
       WizardSteps,
       currentStep,
@@ -136,6 +151,7 @@ export default defineComponent({
       setStep,
       enableStep,
       disableStep,
+      handleModelUpload,
     };
   },
 });
