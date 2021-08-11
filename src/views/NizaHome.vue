@@ -1,6 +1,6 @@
 <template>
   <NavBar @tabClick="goToSection" />
-  <Intro id="home" />
+  <Intro id="home" class="mb-5" />
   <Story id="story" />
   <Samples id="samples" />
   <Gallery id="gallery" />

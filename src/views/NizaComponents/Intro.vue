@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-evenly">
-    <div class="intro-left-container">
+  <div class="flex flex-col sm:flex-row justify-evenly">
+    <div class="intro-left-container px-4 sm:p-0">
       <text class="font-bold text-4xl text-big3dBlack"> Stop wondering. </text>
 
       <text class="font-bold text-4xl pb-2 text-big3dBlack"> Think big </text>
@@ -9,7 +9,7 @@
         Time for big toys! Generate full-size 3D model any form <br />
         you wantand get constructor model of your dreams
       </text>
-      <GoBigButton class="mt-5" />
+      <GoBigButton class="my-5 ml-10 sm:ml-0" />
     </div>
 
     <div>
