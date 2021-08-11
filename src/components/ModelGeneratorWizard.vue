@@ -6,10 +6,10 @@
         class="p-4 md:p-8 flex flex-col items-center h-full w-full"
       >
         <div class="text-lg md:text-3xl text-left w-full">
-          {{ currentStep.label }}
+          {{ currentStep.title }}
         </div>
         <ModelUploader
-          class="w-full md:w-3/4 h-full m-4"
+          class="w-full md:w-5/6 h-full m-3"
           label="Drag’n’drop your model here"
           accept=".stl,.blend"
           bg-image-path="images/elephant-model.png"
@@ -17,6 +17,14 @@
           :selected-model-name="isLoading ? modelFile.name : null"
           :handle-file-change="handleModelUpload"
           :error-message="null"
+        />
+        <NextStepButton
+          v-if="nextStep && modelFile"
+          class="self-end"
+          :class="disabledClasses"
+          :label="nextStep.label"
+          :disabled="isLoading"
+          @click="setStep(activeStep + 1)"
         />
       </div>
       <div v-show="currentStep.name === WizardSteps.DIMENSIONS">
@@ -49,6 +57,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
+import NextStepButton from "@/components/NextStepButton.vue";
 
 enum WizardSteps {
   UPLOAD,
@@ -67,7 +76,7 @@ interface StepT {
 
 export default defineComponent({
   name: "ModelGeneratorWizard",
-  components: { ModelUploader },
+  components: { NextStepButton, ModelUploader },
   props: {},
   setup() {
     const steps = reactive<StepT[]>([
@@ -105,8 +114,14 @@ export default defineComponent({
 
     const activeStep = ref<number>(0);
     const currentStep = computed(() => steps[activeStep.value]);
+    const nextStep = computed(() => steps[activeStep.value + 1] || null);
 
     const isLoading = ref<boolean>(false);
+    const disabledClasses = computed(() => ({
+      "cursor-not-allowed": isLoading.value,
+      "opacity-30": isLoading.value,
+    }));
+
     const modelFile = ref<File | null>(null);
 
     const getStep = (step: number) => steps[step];
@@ -132,7 +147,9 @@ export default defineComponent({
       steps,
       activeStep,
       currentStep,
+      nextStep,
       isLoading,
+      disabledClasses,
       modelFile,
       getStepOrder,
       getStep,
