@@ -8,6 +8,39 @@
         <div class="text-lg md:text-3xl text-left w-full">
           {{ currentStep.title }}
         </div>
+        <div class="grid grid-cols-6 m-6 z-10">
+          <div class="col-span-4 text-left text-yellow text-xl md:text-3xl">
+            What will the longest dimension be for this model?
+          </div>
+          <div class="grid grid-cols-6 gap-4 items-center col-span-2">
+            <input
+              class="col-span-4 text-black p-4"
+              type="number"
+              min="1"
+              max="100"
+              step="0.01"
+              name="longest-dimension-input"
+              id="longest-dimension-input"
+              v-model="longestDimension"
+              :disabled="isLoading"
+            />
+            <select
+              class="col-span-2 bg-white p-4 text-black"
+              name="unit-selector"
+              id="unit-selector"
+              v-model="longestDimensionUnit"
+              :disabled="isLoading"
+            >
+              <option
+                v-for="(unit, index) in unitOptions"
+                :key="`${unit}-${index}`"
+                :value="unit"
+              >
+                {{ unit }}
+              </option>
+            </select>
+          </div>
+        </div>
         <ModelUploader
           class="w-full md:w-5/6 h-full m-3"
           label="Drag’n’drop your model here"
@@ -17,6 +50,8 @@
           :selected-model-name="isLoading ? modelFile.name : null"
           :handle-file-change="handleModelUpload"
           :error-message="null"
+          :disabled="isLoading || !isLongestDimensionValid"
+          :class="disabledClasses"
         />
         <NextStepButton
           v-if="nextStep && modelFile"
@@ -65,7 +100,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
+import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
 import ConnectorView from "@/components/ConnectorView.vue";
@@ -159,6 +194,25 @@ export default defineComponent({
       isLoading.value = false;
     };
 
+    const longestDimension = ref<number>(0);
+    const unitOptions = ref(["ft", "in", "m", "mm", "cm"]);
+    const longestDimensionUnit = ref("ft");
+    const isLongestDimensionValid = computed(() => longestDimension.value > 0);
+
+    watchEffect(() => {
+      const min = 1;
+      const max = 100;
+      if (longestDimension.value < min) {
+        longestDimension.value = min;
+      } else if (longestDimension.value > max) {
+        longestDimension.value = max;
+      }
+    });
+
+    watchEffect(() => {
+      console.log(!isLongestDimensionValid.value);
+    });
+
     const connectorInfo = reactive({
       connectors: 0,
       edges: 0,
@@ -176,6 +230,10 @@ export default defineComponent({
       disabledClasses,
       modelFile,
       connectorInfo,
+      longestDimension,
+      unitOptions,
+      longestDimensionUnit,
+      isLongestDimensionValid,
       getStepOrder,
       getStep,
       setStep,
