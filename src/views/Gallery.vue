@@ -1,7 +1,7 @@
 <template>
-  <div class="grid grid-cols-2">
+  <div class="grid grid-cols-1 gap-4 sm:gap-0 sm:grid-cols-2">
     <div class="col-span-1 text-left flex justify-center items-center">
-      <div class="w-1/2">
+      <div class="px-4 sm:px-0 sm:w-1/2">
         <div class="text-lg">Community</div>
         <div class="text-4xl font-bold">Our fans featured big prints</div>
         <div>
