@@ -56,7 +56,7 @@ import Samples from "@/views/Samples.vue";
 import Gallery from "@/views/Gallery.vue";
 import Pricing from "@/views/Pricing.vue";
 import Printing from "@/views/Printing.vue";
-import Purchase from "@/views/Purchase.vue";
+import Purchase from "@/views/CreditCardCheckout.vue";
 
 import { Options, Vue } from "vue-class-component";
 

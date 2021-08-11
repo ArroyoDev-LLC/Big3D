@@ -38,6 +38,7 @@
       </div>
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
         {{ currentStep.label }}
+        <CreditCardCheckout />
       </div>
     </div>
 
@@ -55,6 +56,7 @@
 </template>
 
 <script lang="ts">
+import CreditCardCheckout from "../views/CreditCardCheckout.vue";
 import { computed, defineComponent, reactive, ref } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
@@ -76,7 +78,7 @@ interface StepT {
 
 export default defineComponent({
   name: "ModelGeneratorWizard",
-  components: { NextStepButton, ModelUploader },
+  components: { NextStepButton, ModelUploader, CreditCardCheckout },
   props: {},
   setup() {
     const steps = reactive<StepT[]>([
@@ -191,6 +193,6 @@ export default defineComponent({
 .wizard__current {
   grid-column: span 13 / span 13;
   @apply text-white
-    flex justify-center items-center;
+  flex justify-center items-center;
 }
 </style>

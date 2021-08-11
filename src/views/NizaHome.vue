@@ -7,7 +7,6 @@
     <Gallery />
     <Pricing />
     <Printing />
-    <Purchase />
     <ModelGeneratorWizard />
     <Login />
   </div>
