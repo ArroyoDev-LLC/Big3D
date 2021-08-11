@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <NavBar @tabClick="goToSection" />
-    <Intro id="home" />
-    <Story id="story" />
-    <Samples id="samples" />
-    <Gallery id="gallery" />
-    <Pricing id="pricing" />
-    <Printing id="printing" />
-    <Purchase id="purchasing" />
-    <ModelGeneratorWizard id="generator-wizard" />
-    <Login />
-  </div>
+  <NavBar @tabClick="goToSection" />
+  <Intro id="home" />
+  <Story id="story" />
+  <Samples id="samples" />
+  <Gallery id="gallery" />
+  <Pricing id="pricing" />
+  <Printing id="printing" />
+  <Purchase id="purchasing" />
+  <ModelGeneratorWizard id="generator-wizard" />
+  <Login />
 </template>
 
 <script lang="ts">
@@ -51,5 +49,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped></style>

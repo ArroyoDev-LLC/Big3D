@@ -38,14 +38,4 @@ export default defineComponent({
   shadow-md
   text-4xl;
 }
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.relClass {
-  @apply relative;
-}
 </style>
