@@ -3,18 +3,18 @@
     <NavBar />
     <Intro />
     <Story />
-    <Samples />
+    <Samples @goBig="jumpToWizard" />
     <Gallery />
     <Pricing />
     <Printing />
     <Purchase />
-    <ModelGeneratorWizard />
+    <ModelGeneratorWizard id="generator-wizard" />
     <Login />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import Intro from "./NizaComponents/Intro.vue";
 import NavBar from "./NizaComponents/NavBar.vue";
 import Story from "./NizaComponents/Story.vue";
@@ -31,6 +31,15 @@ export default defineComponent({
     Story,
     Samples,
     Printing,
+  },
+  setup() {
+    const jumpToWizard = () => {
+      const wizardId = document.getElementById("generator-wizard");
+      if (wizardId) wizardId.scrollIntoView();
+    };
+    return {
+      jumpToWizard,
+    };
   },
 });
 </script>

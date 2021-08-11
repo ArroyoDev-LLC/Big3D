@@ -90,7 +90,9 @@
               bottom-1
               left-1
               right-1
+              cursor-pointer
             "
+            @click="goToWizard"
           >
             GO BIG NOW
           </div>
@@ -186,7 +188,9 @@
               bottom-1
               left-1
               right-1
+              cursor-pointer
             "
+            @click="goToWizard"
           >
             GO BIG NOW
           </div>
@@ -211,5 +215,13 @@ export default defineComponent({
       diy2text: true,
     };
   },
+  setup(props, { emit }) {
+    const goToWizard = () => {
+      emit("goBig");
+    }
+    return {
+      goToWizard,
+    };
+  }
 });
 </script>
