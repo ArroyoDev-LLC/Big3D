@@ -33,44 +33,15 @@
       </div>
     </div>
 
+    <!-- generate steps selectors -->
     <div
-      :class="`order-${getStepOrder(WizardSteps.UPLOAD)}`"
+      v-for="(step, index) in steps"
+      :key="`${step.name}-${index}`"
       class="wizard__step"
-      @click="setStep(WizardSteps.UPLOAD)"
+      :class="`order-${getStepOrder(step.name)}`"
+      @click="setStep(step.name)"
     >
-      <div>File Upload</div>
-    </div>
-
-    <div
-      :class="`order-${getStepOrder(WizardSteps.DIMENSIONS)}`"
-      class="wizard__step"
-      @click="setStep(WizardSteps.DIMENSIONS)"
-    >
-      <div>Enter Dimensions</div>
-    </div>
-
-    <div
-      :class="`order-${getStepOrder(WizardSteps.CONNECTORS)}`"
-      class="wizard__step"
-      @click="setStep(WizardSteps.CONNECTORS)"
-    >
-      <div>Choose Connectors</div>
-    </div>
-
-    <div
-      @click="setStep(WizardSteps.DELIVERY)"
-      :class="`order-${getStepOrder(WizardSteps.DELIVERY)}`"
-      class="wizard__step"
-    >
-      <div>Choose Delivery</div>
-    </div>
-
-    <div
-      :class="`order-${getStepOrder(WizardSteps.CHECKOUT)}`"
-      class="wizard__step"
-      @click="setStep(WizardSteps.CHECKOUT)"
-    >
-      <div>Checkout</div>
+      <div>{{ step.label }}</div>
     </div>
   </div>
 </template>
@@ -91,6 +62,7 @@ interface StepT {
   name: WizardSteps;
   isDisabled: boolean;
   label: string;
+  title: string;
 }
 
 export default defineComponent({
@@ -102,27 +74,32 @@ export default defineComponent({
       {
         name: WizardSteps.UPLOAD,
         isDisabled: false,
-        label: "Upload Low Poly 3D model here (.blend or .stl)",
+        label: "Upload Model",
+        title: "Upload Low Poly 3D model here (.blend or .stl)",
       },
       {
         name: WizardSteps.DIMENSIONS,
         isDisabled: false,
         label: "Enter Dimensions",
+        title: "Enter Dimensions",
       },
       {
         name: WizardSteps.CONNECTORS,
         isDisabled: false,
         label: "Choose Connectors",
+        title: "Choose type of Connectors",
       },
       {
         name: WizardSteps.DELIVERY,
         isDisabled: false,
         label: "Choose Delivery",
+        title: "Delivery Details",
       },
       {
         name: WizardSteps.CHECKOUT,
         isDisabled: false,
         label: "Checkout",
+        title: "Checkout",
       },
     ]);
 
@@ -152,6 +129,7 @@ export default defineComponent({
 
     return {
       WizardSteps,
+      steps,
       activeStep,
       currentStep,
       isLoading,
