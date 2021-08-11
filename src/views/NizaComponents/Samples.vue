@@ -1,11 +1,14 @@
 <template>
-  <div name="parent container">
+  <div name="parent container" class="mb-5">
     <div name="text-container-top" class="text-left flex flex-col ml-10">
       <text>PRICING</text>
       <text class="text-2xl text-left font-bold">What does it cost?</text>
     </div>
     <!--    route container start-->
-    <div name="routes-container " class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <div
+      name="routes-container "
+      class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2"
+    >
       <!--      diy container start-->
       <div name="DIY" class="bg-big3dBlack p-4 text-left relative col-span-1">
         <div name="top">

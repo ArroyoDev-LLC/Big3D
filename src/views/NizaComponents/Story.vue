@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 ml-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 ml-10 mb-10">
     <div class="flex items-center">
       <div class="flex flex-col text-left">
         <text class="text-base pb-3">PROJECTS</text>
