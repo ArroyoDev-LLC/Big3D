@@ -14,68 +14,6 @@
 export default {
   name: "Purchase",
   components: {},
-  methods: {
-    watchFileMethod() {
-      const element = document.getElementById("fileinput");
-      if (element) {
-        return (this.step1 = true);
-      } else this.step1 = false;
-    },
-  },
-  computed: {
-    computedStep3() {
-      if (this.picked || this.picked2 || this.picked3) {
-        return true;
-      } else return false;
-    },
-    computedStep4() {
-      if (this.deliveryCheckbox1 && this.deliveryCheckbox2 && this.zipCode) {
-        return true;
-      } else return false;
-    },
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    watchFile() {
-      const element = document.getElementById("fileinput");
-      if (element === {}) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.step1 = true;
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      } else this.step1 = false;
-      return this.step1;
-    },
-  },
-  data() {
-    return {
-      zipCode: "",
-      measurements: [
-        { name: "mili-meters" },
-        { name: "centi-meters" },
-        { name: "inches" },
-        { name: "meters" },
-      ],
-      selectedMeasurement: "",
-      deliveryCheckbox1: "",
-      deliveryCheckbox2: "",
-      DiyCheckbox1: "",
-      DiyCheckbox2: "",
-      KITCheckbox1: "",
-      KITCheckbox2: "",
-      step1: false,
-      step2: "",
-      step3: "",
-      step4: "",
-      step5: "",
-
-      picked: "",
-      picked2: "",
-      picked3: "",
-      connectorCount: "150",
-      edges: "150",
-      KITprice: 0,
-      DIYprice: 0,
-      Total: 0,
-    };
-  },
 };
 const appId = "sandbox-sq0idb-pQwx1Qsl06yTrVNGGqWjdg";
 const locationId = "LEGGMZBM3774X";
