@@ -12,7 +12,13 @@
       <div @click="tabClick('pricing')" class="cursor-pointer">Pricing</div>
       <div @click="tabClick('printing')" class="cursor-pointer">Printing</div>
       <div @click="tabClick('purchase')" class="cursor-pointer">Purchase</div>
-      <div @click="tabClick('login')" class="bg-yellow cursor-pointer">
+      <div
+        @click="
+          tabClick('login');
+          $emit('login');
+        "
+        class="bg-yellow cursor-pointer"
+      >
         Login
       </div>
     </div>
@@ -92,7 +98,7 @@ export default defineComponent({
       },
     ]);
     const menu = ref();
-    const toggleMenu = (event) => {
+    const toggleMenu = (event: boolean) => {
       menu.value.toggle(event);
     };
     return {
