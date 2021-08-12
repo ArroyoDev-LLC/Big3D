@@ -34,7 +34,10 @@
         {{ currentStep.label }}
       </div>
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
-        <Delivery class="w-full h-full m-3" />
+        <Delivery
+          class="w-full h-full m-3"
+          @toCheckout="setStep(activeStep + 1)"
+        />
       </div>
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
         {{ currentStep.label }}
