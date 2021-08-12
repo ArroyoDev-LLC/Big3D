@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-start h-80 relative">
-    <div>
+    <div class="flex flex-col sm:flex-row">
       <text class="text-lg font-bold mr-2">Forgot Password</text>
       <text class="text-xs"
         >enter email here. If you have an account, you will be emailed a reset
@@ -8,7 +8,7 @@
       >
     </div>
     <div class="flex mb-2 w-full">
-      <InputText class="w-1/2" placeholder="Email" v-model="email" />
+      <InputText class="w-full sm:w-1/2" placeholder="Email" v-model="email" />
     </div>
     <NextStepButton
       class="absolute bottom-0 right-0"
@@ -26,14 +26,22 @@
     />
     <div v-if="onEmailReset" class="flex flex-col w-full">
       <div class="flex mb-2">
-        <InputText class="w-1/2" placeholder="Reset Code" v-model="code" />
-      </div>
-      <div class="flex mb-2">
-        <InputText class="w-1/2" placeholder="New Password" v-model="pass" />
+        <InputText
+          class="w-full sm:w-1/2"
+          placeholder="Reset Code"
+          v-model="code"
+        />
       </div>
       <div class="flex mb-2">
         <InputText
-          class="w-1/2"
+          class="w-full sm:w-1/2"
+          placeholder="New Password"
+          v-model="pass"
+        />
+      </div>
+      <div class="flex mb-2">
+        <InputText
+          class="w-full sm:w-1/2"
           placeholder="New Password (confirm)"
           v-model="confirm"
         />

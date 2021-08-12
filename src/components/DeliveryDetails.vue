@@ -27,7 +27,7 @@
     </div>
   </div>
   <div
-    class="grid grid-cols-1 sm:grid-cols-2 gap-5 overflow-scroll h-96 pt-1 mx-2"
+    class="grid grid-cols-1 sm:grid-cols-2 gap-5 overflow-scroll h-80 pt-1 mx-2"
     v-else
   >
     <div class="col-span-1">
