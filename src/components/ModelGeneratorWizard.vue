@@ -2,7 +2,7 @@
   <div class="wizard">
     <div :class="`order-${activeStep + 1}`" class="wizard__current">
       <!-- ---------------------------------- -->
-      <!-- --------- Upload Step --------------->
+      <!------------ Upload Step --------------->
       <!-- ---------------------------------- -->
       <div
         v-show="currentStep.name === WizardSteps.UPLOAD"
@@ -21,11 +21,10 @@
               v-model="longestDimension"
               :disabled="isLoading"
               class="col-span-4 text-black p-4"
-              max="100"
-              min="1"
               name="longest-dimension-input"
               step="0.01"
               type="number"
+              @focus="$event.target.select()"
             />
             <select
               id="unit-selector"
@@ -67,14 +66,17 @@
       </div>
 
       <!-- ---------------------------------- -->
-      <!-- --------- Dimensions Step ----------->
+      <!------------ Dimensions Step ----------->
       <!-- ---------------------------------- -->
-      <div v-show="currentStep.name === WizardSteps.DIMENSIONS">
-        {{ currentStep.label }}
+      <div
+        v-show="currentStep.name === WizardSteps.DIMENSIONS"
+        class="p-4 md:p-8 h-full w-full"
+      >
+        <DimensionsView :title="currentStep.title" />
       </div>
 
       <!-- ---------------------------------- -->
-      <!-- --------- Connectors Step ----------->
+      <!------------ Connectors Step ----------->
       <!-- ---------------------------------- -->
       <div
         v-show="currentStep.name === WizardSteps.CONNECTORS"
@@ -88,7 +90,7 @@
       </div>
 
       <!-- ---------------------------------- -->
-      <!-- --------- Delivery Step ------------->
+      <!------------ Delivery Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
         <Delivery
@@ -98,7 +100,7 @@
       </div>
 
       <!-- ---------------------------------- -->
-      <!-- --------- Checkout Step ------------->
+      <!------------ Checkout Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
         {{ currentStep.label }}
@@ -123,6 +125,7 @@ import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
 import ConnectorView from "@/components/ConnectorView.vue";
+import DimensionsView from "@/components/DimensionsView.vue";
 import Delivery from "@/components/Delivery.vue";
 
 enum WizardSteps {
@@ -161,7 +164,7 @@ export default defineComponent({
         name: WizardSteps.DIMENSIONS,
         isDisabled: false,
         label: "Enter Dimensions",
-        title: "Enter Dimensions",
+        title: "Confirm Dimensions",
       },
       {
         name: WizardSteps.CONNECTORS,
