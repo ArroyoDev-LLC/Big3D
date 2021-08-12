@@ -13,7 +13,7 @@
           v-model="dynamicLongestDimension"
           class="w-full text-black p-4"
           name="dynamic-longest-dimension-input"
-          step="0.01"
+          step="0.5"
           type="number"
         />
       </div>
@@ -21,9 +21,13 @@
 
     <div class="col-span-5 grid grid-rows-5">
       <div class="row-span-1 text-xl md:text-2xl">APPROXIMATE SIZE</div>
-      <div class="row-span-4 border border-white relative">
+      <div
+        class="row-span-4 border border-white relative"
+        ref="scaleContainerRef"
+      >
         <div class="human-scale-container absolute bottom-0 left-0">
           <img
+            class="transition-all"
             ref="humanScaleRef"
             :src="humanScaleSrc"
             alt="human-scale"
@@ -32,6 +36,7 @@
         </div>
         <div class="model-scale-container absolute bottom-0 right-0">
           <img
+            class="transition-all"
             ref="modelScaleRef"
             :src="modelScaleSrc"
             alt="model-scale"
@@ -44,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, watchEffect } from "vue";
 
 export interface ScaleInfoT {
   width: number;
@@ -72,12 +77,20 @@ export default defineComponent({
       required: false,
       default: "images/placeholder-model-for-scale.png",
     },
+    selectedLongestDimension: {
+      type: Number,
+      required: false,
+      default: 50,
+    },
   },
 
   setup(props) {
-    const dynamicLongestDimension = ref<number>(1);
-    const humanScaleRef = ref(null);
-    const modelScaleRef = ref(null);
+    const dynamicLongestDimension = ref<number>(
+      props.selectedLongestDimension as number
+    );
+    const scaleContainerRef = ref<HTMLDivElement | null>(null);
+    const humanScaleRef = ref<HTMLImageElement | null>(null);
+    const modelScaleRef = ref<HTMLImageElement | null>(null);
 
     const humanScaleInfo = reactive<ScaleInfoT>({
       height: 0,
@@ -109,7 +122,82 @@ export default defineComponent({
       console.log(modelScaleInfo);
     };
 
+    /**
+     * clamps a number between a range
+     */
+    const clamp = (n: number, min: number, max: number): number => {
+      return Math.max(min, Math.min(n, max));
+    };
+
+    /**
+     * Conserve aspect ratio of the original region. Useful when shrinking/enlarging
+     * images to fit into a certain area.
+     *
+     * @param {Number} srcWidth width of source image
+     * @param {Number} srcHeight height of source image
+     * @param {Number} maxWidth maximum available width
+     * @param {Number} maxHeight maximum available height
+     * @return {Object} { width, height }
+     */
+    const calculateAspectRatioFit = (
+      srcWidth: number,
+      srcHeight: number,
+      maxWidth: number,
+      maxHeight: number
+    ): { width: number; height: number } => {
+      const ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+      return {
+        width: srcWidth * ratio,
+        height: srcHeight * ratio,
+      };
+    };
+
+    watchEffect(() => {
+      const min = 0;
+      const max = 100;
+      if (dynamicLongestDimension.value < min) {
+        dynamicLongestDimension.value = min;
+      } else if (dynamicLongestDimension.value > max) {
+        dynamicLongestDimension.value = max;
+      }
+    });
+
+    watchEffect(() => {
+      let containerHeight = 0;
+      let containerWidth = 0;
+      if (scaleContainerRef.value) {
+        console.log(scaleContainerRef.value.clientHeight);
+        containerWidth = scaleContainerRef.value.clientWidth;
+        containerHeight = scaleContainerRef.value.clientHeight;
+      }
+
+      if (humanScaleRef.value && humanScaleInfo.width) {
+        humanScaleRef.value.style.height = `${
+          calculateAspectRatioFit(
+            humanScaleInfo.width,
+            humanScaleInfo.height,
+            containerWidth,
+            containerHeight
+          ).height * clamp(dynamicLongestDimension.value / 100, 0, 1)
+        }px`;
+        console.log(humanScaleRef.value.style.height);
+      }
+
+      if (modelScaleRef.value) {
+        modelScaleRef.value.style.height = `${
+          calculateAspectRatioFit(
+            humanScaleInfo.width,
+            humanScaleInfo.height,
+            containerWidth,
+            containerHeight
+          ).height * clamp(dynamicLongestDimension.value * 2 / 100, 0, 1)
+        }px`;
+        console.log(modelScaleRef.value.style.height);
+      }
+    });
+
     return {
+      scaleContainerRef,
       humanScaleRef,
       modelScaleRef,
       dynamicLongestDimension,
