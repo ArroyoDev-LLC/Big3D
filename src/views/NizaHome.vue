@@ -1,5 +1,6 @@
 <template>
   <NavBar class="mb-1" @tabClick="goToSection" />
+  <Login />
   <Intro id="home" class="mb-5" />
   <Story id="story" />
   <Samples id="samples" />
@@ -8,13 +9,14 @@
   <Printing id="printing" />
   <Purchase id="purchasing" />
   <ModelGeneratorWizard id="generator-wizard" />
-  <Login />
+  
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Intro from "./NizaComponents/Intro.vue";
 import NavBar from "./NizaComponents/NavBar.vue";
+import Login from "./NizaComponents/Login.vue";
 import Story from "./NizaComponents/Story.vue";
 import Samples from "./NizaComponents/Samples.vue";
 import Printing from "./NizaComponents/Printing.vue";
@@ -29,7 +31,8 @@ export default defineComponent({
     Story,
     Samples,
     Printing,
-    Gallery
+    Gallery,
+    Login
   },
   setup() {
     const goToSection = (section: string) => {
