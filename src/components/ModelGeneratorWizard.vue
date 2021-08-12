@@ -30,7 +30,7 @@
           </div>
         </div>
         <ModelUploader
-          :class="disabledClasses"
+          :class="disabledClasses && { 'opacity-30': !isLongestDimensionValid }"
           :disabled="isLoading || !isLongestDimensionValid"
           :error-message="null"
           :handle-file-change="handleModelUpload"
@@ -222,8 +222,8 @@ export default defineComponent({
      * greater than or less than specified value
      */
     watchEffect(() => {
-      const min = 1;
-      const max = 100;
+      const min = 0;
+      const max = 10000;
       if (longestDimension.value < min) {
         longestDimension.value = min;
       } else if (longestDimension.value > max) {
