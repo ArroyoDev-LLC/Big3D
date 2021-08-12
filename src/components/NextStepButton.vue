@@ -15,6 +15,7 @@
       {{ label }}
     </span>
     <svg
+      v-if="showIcon"
       class="bounce-right text-big3dBlack"
       fill="none"
       height="16"
@@ -41,6 +42,10 @@ export default defineComponent({
       type: String,
       required: false,
       default: "Next Step",
+    },
+    showIcon: {
+      type: Boolean,
+      default: true,
     },
   },
 });

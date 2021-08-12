@@ -9,7 +9,6 @@
   <Intro id="home" class="mb-5" />
   <Story id="story" />
   <Samples id="samples" />
-  <Gallery id="gallery" />
   <Pricing id="pricing" />
   <Printing id="printing" />
   <Purchase id="purchasing" />
@@ -62,6 +61,8 @@
       </Button>
     </template>
   </LoginModal>
+  <Gallery id="gallery" />
+  <Footer />
 </template>
 
 <script lang="ts">
@@ -77,10 +78,11 @@ import Printing from "./NizaComponents/Printing.vue";
 import ModelGeneratorWizard from "@/components/ModelGeneratorWizard.vue";
 import Gallery from "@/views/Gallery.vue";
 import LoginModal from "../components/LoginModal.vue";
-
+import Footer from "@/components/Footer.vue";
 export default defineComponent({
   name: "NizaHome",
   components: {
+    Footer,
     ModelGeneratorWizard,
     NavBar,
     Intro,

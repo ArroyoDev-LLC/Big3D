@@ -21,7 +21,7 @@
           >
         </div>
         <div
-          :class="deliveryOption === 'Finished KIT' ? 'opacity-40' : ''"
+          :class="deliveryOption === DeliveryOptions.KIT ? 'opacity-40' : ''"
           class="
             row-span-1
             border-b border-dashed border-opacity-30
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div
-          :class="deliveryOption === 'DIY Route' ? 'opacity-40' : ''"
+          :class="deliveryOption ===  DeliveryOptions.DIY ? 'opacity-40' : ''"
           class="
             row-span-1
             border-b border-dashed border-opacity-30
@@ -87,7 +87,7 @@
         <text>WHAT'S INCLUDED</text>
         <div class="pb-16 max-h-60 overflow-auto">
           <ul
-            v-show="deliveryOption === 'DIY Route'"
+            v-show="deliveryOption === DeliveryOptions.DIY"
             class="list-disc text-white px-6"
           >
             <li>zip file of pre supported .stl files</li>
@@ -95,7 +95,7 @@
             <li>simple instruction guide for assembly</li>
           </ul>
           <ul
-            v-show="deliveryOption === 'Finished KIT'"
+            v-show="deliveryOption === DeliveryOptions.KIT"
             class="list-disc text-white px-6"
           >
             <li>full set of 3D puzzle pieces</li>
@@ -107,14 +107,8 @@
             <li>shipping cost included</li>
           </ul>
         </div>
-        <div class="absolute bottom-2 left-0 right-0">
-          <Button
-            label="Checkout"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            @click="toCheckout"
-            :disabled="!deliveryOption"
-          />
+        <div class="absolute bottom-2 w-full">
+          <NextStepButton @click="toCheckout" class="w-full" />
         </div>
       </div>
     </span>
@@ -126,13 +120,13 @@
     header="WHAT'S INCLUDED"
   >
     <div class="pt-4">
-      <ul v-if="deliveryOption === 'DIY Route'" class="list-disc px-6">
+      <ul v-if="deliveryOption === DeliveryOptions.DIY" class="list-disc px-6">
         <li>zip file of pre supported .stl files</li>
         <li>full cutsheet listing stick lenghts to cut</li>
         <li>simple instruction guide for assembly</li>
       </ul>
       <ul
-        v-if="deliveryOption === 'Finished KIT'"
+        v-if="deliveryOption === DeliveryOptions.KIT"
         class="list-disc px-4 sm:px-6"
       >
         <li>full set of 3D puzzle pieces</li>
@@ -146,12 +140,7 @@
     </div>
     <template #footer>
       <div class="w-full flex justify-center mt-2">
-        <Button
-          label="Checkout"
-          icon="pi pi-arrow-right"
-          iconPos="right"
-          @click="toCheckout"
-        />
+        <NextStepButton @click="toCheckout" />
       </div>
     </template>
   </Dialog>
@@ -160,11 +149,16 @@
 import { defineComponent, ref } from "vue";
 import RadioButton from "primevue/radiobutton";
 import Dialog from "primevue/dialog";
-import Button from "primevue/button";
+import NextStepButton from "@/components/NextStepButton.vue";
+
+export enum DeliveryOptions {
+  DIY = "DIY Route",
+  KIT = "Finished KIT",
+}
 
 export default defineComponent({
   name: "Delivery",
-  components: { RadioButton, Dialog, Button },
+  components: { RadioButton, Dialog, NextStepButton },
   props: {
     numConnectors: {
       type: Number,
@@ -188,7 +182,9 @@ export default defineComponent({
     };
     const toCheckout = () => {
       display.value = false;
-      emit("toCheckout", deliveryOption.value);
+      if (deliveryOption.value) {
+        emit("toCheckout", deliveryOption.value);
+      }
     };
     const display = ref(false);
     return {
@@ -197,6 +193,7 @@ export default defineComponent({
       isMobile,
       display,
       toCheckout,
+      DeliveryOptions,
     };
   },
 });
