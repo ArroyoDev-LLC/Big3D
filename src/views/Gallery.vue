@@ -1,49 +1,48 @@
 <template>
-  <div style="">
-    <div class="text-2xl">
-      Our fans have shared some of their print adventures with us its AMAZING
-      what they have come up with!
-    </div>
-    <div class="row">
-      <div class="column">
-        <img src="https://picsum.photos/200/165?grayscale" />
-        <img src="https://picsum.photos/200/165?grayscale" />
-      </div>
-      <div class="column">
-        <img src="https://picsum.photos/200/165?grayscale" />
-        <img src="https://picsum.photos/200/165?grayscale" />
-      </div>
-      <div class="column">
-        <img src="https://picsum.photos/200/165?grayscale" />
-        <img src="https://picsum.photos/200/165?grayscale" />
-      </div>
-      <div class="column">
-        <img src="https://picsum.photos/200/165?grayscale" />
-        <div
-          style="height: 49%"
-          class="shadow-md bg-black flex flex-col mt-2 relative text-white"
-        >
-          <div
-            class="absolute centered divHighlight outline-white p-2 md:text-sm"
-          >
-            View More Projects +
-          </div>
-
-          <GoBigButton     @click="$emit('scrollMeTo')" />
+  <div class="grid grid-cols-1 gap-4 sm:gap-0 sm:grid-cols-2">
+    <div class="col-span-1 text-left flex justify-center items-center">
+      <div class="px-4 sm:px-0 sm:w-1/2">
+        <div class="text-lg">Community</div>
+        <div class="text-4xl font-bold">Our fans featured big prints</div>
+        <div>
+          We love the things that are being created out there and want to share
+          it with you. Here are some examples of cool stuff being created with
+          big3D
         </div>
       </div>
     </div>
+    <GalleryComponent class="col-span-1" :imageList="imageList" />
   </div>
 </template>
 
-<script>
-import GoBigButton from "@/components/GoBigButton";
-export default {
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import GalleryComponent from "@/components/Gallery.vue";
+export default defineComponent({
   name: "Gallery",
-  components:{
-    GoBigButton
-  }
-};
+  components: {
+    GalleryComponent,
+  },
+  setup() {
+    const imageList = ref([
+      [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png",
+        "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg",
+        "https://assets.fireside.fm/file/fireside-images/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover.jpg",
+        "https://www.softwaretestingnews.co.uk/wp-content/uploads/2021/06/logo-copy-2-2-copy.png",
+      ],
+      [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png",
+        "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg",
+        "https://assets.fireside.fm/file/fireside-images/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover.jpg",
+
+      ],
+    ]);
+    return {
+      imageList,
+    };
+  },
+});
 </script>
 
 <style scoped>

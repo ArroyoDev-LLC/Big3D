@@ -21,7 +21,7 @@ import Story from "./NizaComponents/Story.vue";
 import Samples from "./NizaComponents/Samples.vue";
 import Printing from "./NizaComponents/Printing.vue";
 import ModelGeneratorWizard from "@/components/ModelGeneratorWizard.vue";
-
+import Gallery from "@/views/Gallery.vue";
 export default defineComponent({
   name: "NizaHome",
   components: {
@@ -31,6 +31,7 @@ export default defineComponent({
     Story,
     Samples,
     Printing,
+    Gallery
   },
 });
 </script>
