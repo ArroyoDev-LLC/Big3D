@@ -2,7 +2,8 @@
   <NavBar
     class="mb-1"
     @tabClick="goToSection"
-    @login="() => (loginState = !loginState)"
+    @login="() => (loginClickedSate = !loginClickedSate)"
+    :isUserLoggedIn="userLoggedIn"
   />
   <Toast />
   <Intro id="home" class="mb-5" />
@@ -13,7 +14,11 @@
   <Printing id="printing" />
   <Purchase id="purchasing" />
   <ModelGeneratorWizard id="generator-wizard" />
-  <LoginModal v-show="loginState" @close="() => (loginState = !loginState)">
+  <LoginModal
+    v-if="!userLoggedIn"
+    v-show="loginClickedSate"
+    @close="() => (loginClickedSate = !loginClickedSate)"
+  >
     <template #header>Login</template>
     <template #body>
       <div class="flex justify-evenly">
@@ -21,12 +26,12 @@
           class="mr-4"
           type="text"
           placeholder="Username"
-          v-model="userLogin.username"
+          v-model="userLoginInfo.username"
         />
         <InputText
           type="text"
           placeholder="Password"
-          v-model="userLogin.password"
+          v-model="userLoginInfo.password"
         />
       </div>
     </template>
@@ -106,12 +111,16 @@ export default defineComponent({
     const loginToSite = () => {
       //success or error state on actual login through database
       showSuccess();
+      //if successful login then disable the login promptp
+      userLoggedIn.value = !userLoggedIn.value;
       showError();
-      console.log(userLogin.value);
+      console.log(userLoginInfo.value);
       console.log("logged in");
     };
-    const loginState = ref(false);
-    const userLogin = ref({
+
+    const userLoggedIn = ref(false);
+    const loginClickedSate = ref(false);
+    const userLoginInfo = ref({
       username: "",
       password: "",
     });
@@ -128,8 +137,9 @@ export default defineComponent({
     return {
       showSuccess,
       loginToSite,
-      loginState,
-      userLogin,
+      userLoggedIn,
+      loginClickedSate,
+      userLoginInfo,
       goToSection,
       jumpToWizard,
     };
