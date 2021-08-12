@@ -1,22 +1,34 @@
 <template>
-  <div class="goBigButton" :class="relative ? 'relClass' : 'centered'">go Big Now</div>
+  <div @click="goToWizard" class="goBigButton">Go Big Now</div>
 </template>
 
-<script>
-export default {
-  name: "goBigButton",
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "GoBigButton",
   props: {
-    relative:{
+    relative: {
       type: Boolean,
       required: false,
-    }
-  }
-};
+    },
+  },
+  setup() {
+    const goToWizard = () => {
+      const wizardElement = document.getElementById("generator-wizard");
+      if (wizardElement) {
+        wizardElement.scrollIntoView();
+      }
+    };
+    return {
+      goToWizard,
+    };
+  },
+});
 </script>
 
 <style scoped>
 .goBigButton {
-  @apply text-black
+  @apply text-black cursor-pointer
   font-bold
   rounded-lg
   bg-yellow
@@ -25,15 +37,5 @@ export default {
 
   shadow-md
   text-4xl;
-}
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.relClass{
-  @apply relative;
 }
 </style>

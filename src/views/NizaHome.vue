@@ -1,32 +1,51 @@
 <template>
-<div>
-
-
-  <NavBar  />
-  <Intro />
-  <Story />
-  <Samples />
-  <Gallery />
-  <Pricing />
-  <Printing />
-  <Purchase />
+  <NavBar class="mb-1" @tabClick="goToSection" />
+  <Intro id="home" class="mb-5" />
+  <Story id="story" />
+  <Samples id="samples" />
+  <Gallery id="gallery" />
+  <Pricing id="pricing" />
+  <Printing id="printing" />
+  <Purchase id="purchasing" />
+  <ModelGeneratorWizard id="generator-wizard" />
   <Login />
-  
-  </div>
 </template>
 
 <script lang="ts">
-import Intro from './NizaComponents/Intro.vue'
-import NavBar from './NizaComponents/NavBar.vue'
-import Story from './NizaComponents/Story.vue'
-import Samples from './NizaComponents/Samples.vue'
-import Printing from './NizaComponents/Printing.vue'
-export default {
+import { defineComponent } from "vue";
+import Intro from "./NizaComponents/Intro.vue";
+import NavBar from "./NizaComponents/NavBar.vue";
+import Story from "./NizaComponents/Story.vue";
+import Samples from "./NizaComponents/Samples.vue";
+import Printing from "./NizaComponents/Printing.vue";
+import ModelGeneratorWizard from "@/components/ModelGeneratorWizard.vue";
+import Gallery from "@/views/Gallery.vue";
+export default defineComponent({
   name: "NizaHome",
-  components:{NavBar, Intro, Story, Samples, Printing}
-}
+  components: {
+    ModelGeneratorWizard,
+    NavBar,
+    Intro,
+    Story,
+    Samples,
+    Printing,
+    Gallery
+  },
+  setup() {
+    const goToSection = (section: string) => {
+      const sectionId = document.getElementById(section);
+      if (sectionId) {
+        sectionId.scrollIntoView();
+      }
+    };
+    const jumpToWizard = () => {
+      const wizardId = document.getElementById("generator-wizard");
+      if (wizardId) wizardId.scrollIntoView();
+    };
+    return {
+      goToSection,
+      jumpToWizard,
+    };
+  },
+});
 </script>
-
-<style scoped>
-
-</style>
