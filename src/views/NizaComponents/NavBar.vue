@@ -1,17 +1,16 @@
 <template>
-  <span
-    class="flex"
-    :class="isMobile() ? 'bg-big3dBlack justify-between mb-5' : ''"
-  >
-    <div class="flex items-center overflow-x-auto" v-if="!isMobile()">
-      <img src="big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
+  <span class="flex" :class="sm ? 'bg-big3dBlack justify-between mb-5' : ''">
+    <img src="big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
+    <div class="flex items-center overflow-x-auto" v-if="!sm">
       <div @click="tabClick('home')" class="cursor-pointer">Home</div>
       <div @click="tabClick('story')" class="cursor-pointer">Story+</div>
       <div @click="tabClick('samples')" class="cursor-pointer">Samples+</div>
       <div @click="tabClick('gallery')" class="cursor-pointer">Gallery</div>
       <div @click="tabClick('pricing')" class="cursor-pointer">Pricing</div>
       <div @click="tabClick('printing')" class="cursor-pointer">Printing</div>
-      <div @click="tabClick('purchase')" class="cursor-pointer">Purchase</div>
+      <div @click="tabClick('generator-wizard')" class="cursor-pointer">
+        Purchase
+      </div>
       <div
         v-if="!isUserLoggedIn"
         @click="
@@ -32,8 +31,8 @@
       </div>
     </div>
     <span
-      v-if="isMobile()"
-      class="bg-yellow flex items-center justify-center w-24"
+      v-if="sm"
+      class="bg-yellow flex items-center justify-center h-16 w-24"
       @click="toggleMenu"
     >
       <img src="/icons/hamburgerMenu.svg" />
@@ -45,6 +44,9 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import Menu from "primevue/menu";
+import { useBreakpoints, breakpointsTailwind } from "@vueuse/core";
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const sm = breakpoints.smaller("sm");
 
 export default defineComponent({
   name: "NavBar",
@@ -102,7 +104,7 @@ export default defineComponent({
       {
         label: "Purchase",
         command: () => {
-          tabClick("purchase");
+          tabClick("generator-wizard");
         },
       },
       {
@@ -128,6 +130,7 @@ export default defineComponent({
       menuItems,
       toggleMenu,
       menu,
+      sm,
     };
   },
 });

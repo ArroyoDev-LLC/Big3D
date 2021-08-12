@@ -8,11 +8,11 @@
   <Toast />
   <Intro id="home" class="mb-5" />
   <Story id="story" />
-  <Samples id="samples" />
-  <Pricing id="pricing" />
+  <Samples id="pricing" />
   <Printing id="printing" />
-  <Purchase id="purchasing" />
-  <ModelGeneratorWizard id="generator-wizard" />
+  <div id="generator-wizard">
+    <ModelGeneratorWizard />
+  </div>
   <LoginModal
     v-if="!userLoggedIn"
     v-show="loginClickedSate"
@@ -62,6 +62,8 @@
     </template>
   </LoginModal>
   <Gallery id="gallery" />
+  <Pyramid id="samples" />
+  <Login />
   <Footer />
 </template>
 
@@ -79,6 +81,7 @@ import ModelGeneratorWizard from "@/components/ModelGeneratorWizard.vue";
 import Gallery from "@/views/Gallery.vue";
 import LoginModal from "../components/LoginModal.vue";
 import Footer from "@/components/Footer.vue";
+import Pyramid from "@/views/NizaComponents/Pyramid.vue";
 export default defineComponent({
   name: "NizaHome",
   components: {
@@ -90,6 +93,7 @@ export default defineComponent({
     Samples,
     Printing,
     Gallery,
+    Pyramid,
     LoginModal,
     InputText,
     Toast,
@@ -130,6 +134,7 @@ export default defineComponent({
       password: "",
     });
     const goToSection = (section: string) => {
+      console.log(section);
       const sectionId = document.getElementById(section);
       if (sectionId) {
         sectionId.scrollIntoView();
