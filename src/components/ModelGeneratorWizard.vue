@@ -148,6 +148,7 @@ export default defineComponent({
   components: {
     NextStepButton,
     ModelUploader,
+    DimensionsView,
     ConnectorView,
     Delivery,
   },
