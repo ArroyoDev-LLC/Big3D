@@ -2,7 +2,7 @@
   <div class="w-full relative">
     <div class="flex border-b border-dotted mb-10">
       <div
-        class="text-lg font-bold sm:mr-10"
+        class="text-lg font-bold mr-5 sm:mr-10"
         :class="page === 'delivery' ? '' : 'opacity-40'"
       >
         <text>Delivery Details</text>
@@ -27,7 +27,7 @@
     />
     <PaymentDetails v-if="page === 'payment'" />
     <div
-      class="absolute -bottom-5 right-2"
+      class="absolute -bottom-16 sm:-bottom-5 right-2"
       v-if="page === 'delivery' && hasAuth"
     >
       <NextStepButton label="Go to Payment" @click="goToPayment" />
