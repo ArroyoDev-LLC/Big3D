@@ -54,7 +54,7 @@
           </ul>
         </div>
         <hr />
-        <div name="included" class="flex flex-col text-left mb-10">
+        <div name="included" class="flex flex-col text-left mb-28 sm:mb-10">
           <div
             class="
               flex
@@ -78,23 +78,9 @@
           </ul>
         </div>
 
-        <div name="bottom">
-          <div
-            class="
-              font-bold
-              bg-yellow
-              p-2
-              text-center
-              mt-4
-              absolute
-              bottom-1
-              left-1
-              right-1
-              cursor-pointer
-            "
-            @click="goToWizard"
-          >
-            GO BIG NOW
+        <div name="bottom" class="absolute bottom-3 right-0 left-0">
+          <div class="flex items-center justify-center">
+            <GoBigButton />
           </div>
         </div>
       </div>
@@ -148,7 +134,7 @@
         <hr />
         <div
           name="includedb"
-          class="flex flex-col text-left justify-between mb-10"
+          class="flex flex-col text-left justify-between mb-28"
         >
           <div
             class="
@@ -176,23 +162,9 @@
           </ul>
         </div>
 
-        <div name="bottomb">
-          <div
-            class="
-              font-bold
-              bg-yellow
-              p-2
-              text-center
-              mt-4
-              absolute
-              bottom-1
-              left-1
-              right-1
-              cursor-pointer
-            "
-            @click="goToWizard"
-          >
-            GO BIG NOW
+        <div name="bottomb" class="absolute bottom-3 right-0 left-0">
+          <div class="flex items-center justify-center">
+            <GoBigButton />
           </div>
         </div>
       </div>
@@ -204,9 +176,11 @@
 
 <script>
 import { defineComponent } from "vue";
+import GoBigButton from "@/components/GoBigButton.vue";
+
 export default defineComponent({
   name: "Samples",
-  components: {},
+  components: { GoBigButton },
   data() {
     return {
       build1text: true,
@@ -215,13 +189,8 @@ export default defineComponent({
       diy2text: true,
     };
   },
-  setup(props, { emit }) {
-    const goToWizard = () => {
-      emit("goBig");
-    };
-    return {
-      goToWizard,
-    };
+  setup() {
+    return {};
   },
 });
 </script>

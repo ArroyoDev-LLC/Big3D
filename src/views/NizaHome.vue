@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <NavBar />
-    <Intro />
-    <Story />
-    <Samples @goBig="jumpToWizard" />
-    <Gallery />
-    <Pricing />
-    <Printing />
-    <Purchase />
-    <ModelGeneratorWizard id="generator-wizard" />
-    <Login />
-  </div>
+  <NavBar class="mb-1" @tabClick="goToSection" />
+  <Intro id="home" class="mb-5" />
+  <Story id="story" />
+  <Samples id="samples" />
+  <Gallery id="gallery" />
+  <Pricing id="pricing" />
+  <Printing id="printing" />
+  <Purchase id="purchasing" />
+  <ModelGeneratorWizard id="generator-wizard" />
+  <Login />
 </template>
 
 <script lang="ts">
@@ -34,15 +32,20 @@ export default defineComponent({
     Gallery
   },
   setup() {
+    const goToSection = (section: string) => {
+      const sectionId = document.getElementById(section);
+      if (sectionId) {
+        sectionId.scrollIntoView();
+      }
+    };
     const jumpToWizard = () => {
       const wizardId = document.getElementById("generator-wizard");
       if (wizardId) wizardId.scrollIntoView();
     };
     return {
+      goToSection,
       jumpToWizard,
     };
   },
 });
 </script>
-
-<style scoped></style>
