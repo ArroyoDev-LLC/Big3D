@@ -68,7 +68,9 @@
             <img src="parcel.png" class="w-10 sm:w-20" />
           </div>
           <div class="col-span-1 text-right flex flex-col">
-            <text class="font-bold">{{ formatToDollar(numEdges * 0.52) }}</text>
+            <text class="font-bold">{{
+              formatToDollar(numConnectors * 2.5)
+            }}</text>
             <text class="text-yellow">(2.50 per connector)</text>
           </div>
         </div>
