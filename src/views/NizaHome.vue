@@ -21,18 +21,21 @@
   >
     <template #header>Login</template>
     <template #body>
-      <div class="flex justify-evenly">
-        <InputText
-          class="mr-4"
-          type="text"
-          placeholder="Username"
-          v-model="userLoginInfo.username"
-        />
-        <InputText
-          type="text"
-          placeholder="Password"
-          v-model="userLoginInfo.password"
-        />
+      <div class="flex flex-col md:flex-row justify-evenly">
+        <div>
+          <InputText
+            type="text"
+            placeholder="Username"
+            v-model="userLoginInfo.username"
+          />
+        </div>
+        <div class="m-6 md:m-0">
+          <InputText
+            type="text"
+            placeholder="Password"
+            v-model="userLoginInfo.password"
+          />
+        </div>
       </div>
     </template>
     <template #footer>
