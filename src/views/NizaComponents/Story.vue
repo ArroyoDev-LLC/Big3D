@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-evenly">
-    <div class="left-container">
+  <div class="grid grid-cols-1 sm:grid-cols-2">
+    <div class="left-container ml-3 sm:ml-8 col-span-1">
       <text class="text-base pb-3">PROJECTS</text>
 
       <text class="text-3xl font-bold pb-4 text-big3dBlack">
@@ -31,10 +31,11 @@
         projects built with us:</text
       >
     </div>
-    <div class="flex flex-evenly pt-20 flex-col">
-      <img src="Group 51.png" />
-      <img src="Group 1607.png" />
-    </div>
+    <div class="flex col-span-1">
+      <div class="flex flex-evenly pt-20 flex-col">
+        <img src="Group 51.png" />
+        <img src="Group 1607.png" />
+      </div>
 
       <div class="flex flex-evenly pt-20 flex-col">
         <img src="Group 15.png" />
@@ -64,6 +65,6 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .left-container {
-  @apply flex flex-col text-left justify-center ml-8;
+  @apply flex flex-col text-left justify-center;
 }
 </style>
