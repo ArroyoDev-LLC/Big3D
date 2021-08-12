@@ -4,8 +4,10 @@
       <span class="col-span-7 text-left text-xl md:text-3xl">
         {{ title }}
       </span>
-      <div class="col-span-5 self-center text-left text-yellow text-xl md:text-3xl">
-        Longest Dimension:
+      <div
+        class="col-span-5 self-center text-left text-yellow text-xl md:text-3xl"
+      >
+        What will the longest dimension be for this model?
       </div>
       <div class="col-span-2 self-center">
         <input
@@ -171,14 +173,15 @@ export default defineComponent({
         containerHeight = scaleContainerRef.value.clientHeight;
       }
 
-      if (humanScaleRef.value && humanScaleInfo.width) {
+      if (humanScaleRef.value) {
         humanScaleRef.value.style.height = `${
           calculateAspectRatioFit(
             humanScaleInfo.width,
             humanScaleInfo.height,
             containerWidth,
             containerHeight
-          ).height * clamp(dynamicLongestDimension.value / 100, 0, 1)
+          ).height * 0.25
+          // * clamp((dynamicLongestDimension.value * 0.33) / 100, 0, 1)
         }px`;
         console.log(humanScaleRef.value.style.height);
       }
@@ -186,11 +189,11 @@ export default defineComponent({
       if (modelScaleRef.value) {
         modelScaleRef.value.style.height = `${
           calculateAspectRatioFit(
-            humanScaleInfo.width,
-            humanScaleInfo.height,
+            modelScaleInfo.width,
+            modelScaleInfo.height,
             containerWidth,
             containerHeight
-          ).height * clamp(dynamicLongestDimension.value * 2 / 100, 0, 1)
+          ).height * clamp(dynamicLongestDimension.value / 100, 0, 1)
         }px`;
         console.log(modelScaleRef.value.style.height);
       }
