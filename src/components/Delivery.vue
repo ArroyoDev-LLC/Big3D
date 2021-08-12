@@ -1,5 +1,5 @@
 <template>
-  <div class="pr-6 sm:pr-0">
+  <div class="px-1 sm:px-0">
     <text v-if="isMobile()">Choose Delivery</text>
     <span class="grid grid-cols-6 sm:grid-cols-3 text-xs sm:text-base sm:gap-1">
       <div class="grid grid-rows-4 col-span-6 sm:col-span-2 gap-2">
