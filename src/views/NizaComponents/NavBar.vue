@@ -23,6 +23,7 @@
         Login
       </div>
       <div
+        @click="$router.push('account')"
         v-else
         class="rounded-xl shadow-lg flex justify-center items-center"
         style="border: 1px solid black; height: 5rem"
@@ -108,6 +109,12 @@ export default defineComponent({
         label: "Login",
         command: () => {
           tabClick("login");
+        },
+      },
+      {
+        label: "Account",
+        command: () => {
+          tabClick("account");
         },
       },
     ]);
