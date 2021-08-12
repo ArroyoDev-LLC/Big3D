@@ -1,10 +1,18 @@
 <template>
   <div class="grid grid-cols-12 gap-4 h-full">
+    <AdvancedDimensionsForm
+      v-if="!isAdvancedFormActive"
+      class="col-span-12 md:col-span-7"
+      :advanced-dimensions-form-data="advancedDimensionsFormData"
+      @formUpdate="handleAdvancedFormUpdate"
+    />
     <div
+      v-else
       class="
         col-span-12
         md:col-span-7
-        grid grid-cols-7 grid-rows-2 gap-3
+        grid grid-cols-7 grid-rows-2
+        gap-3
         md:grid-rows-3
         m-6
       "
@@ -23,7 +31,6 @@
           v-model="dynamicLongestDimension"
           class="w-full text-black p-4"
           name="dynamic-longest-dimension-input"
-          step="0.5"
           type="number"
           placeholder="in mm"
         />
@@ -56,11 +63,21 @@
         </div>
       </div>
     </div>
+
+    <button
+      @click="isAdvancedFormActive = !isAdvancedFormActive"
+      class="underline cursor-pointer"
+    >
+      Advanced
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, ref, watchEffect } from "vue";
+import AdvancedDimensionsForm, {
+  AdvancedDimensionFormSchema,
+} from "@/components/AdvancedDimensionsForm.vue";
 
 export interface ScaleInfoT {
   width: number;
@@ -70,7 +87,7 @@ export interface ScaleInfoT {
 
 export default defineComponent({
   name: "DimensionsView",
-  components: {},
+  components: { AdvancedDimensionsForm },
   emits: [],
   props: {
     title: {
@@ -102,6 +119,23 @@ export default defineComponent({
     const scaleContainerRef = ref<HTMLDivElement | null>(null);
     const humanScaleRef = ref<HTMLImageElement | null>(null);
     const modelScaleRef = ref<HTMLImageElement | null>(null);
+    const isAdvancedFormActive = ref<boolean>(false);
+
+    const advancedDimensionsFormData = ref<AdvancedDimensionFormSchema>({
+      longestDimension: 0,
+      gap: 0,
+      supportScale: 0,
+      coreSizeMultiplier: 0,
+      fixtureShellThicknessMultiplier: 0,
+      labelSizeMultiplier: 0,
+      labelWidthMultiplier: 0,
+    });
+
+    const handleAdvancedFormUpdate = (
+      formData: AdvancedDimensionFormSchema
+    ) => {
+      console.log(formData);
+    };
 
     const humanScaleInfo = reactive<ScaleInfoT>({
       height: 0,
@@ -165,7 +199,7 @@ export default defineComponent({
 
     watchEffect(() => {
       const min = 0;
-      const max = 100;
+      const max = 10000;
       if (dynamicLongestDimension.value < min) {
         dynamicLongestDimension.value = min;
       } else if (dynamicLongestDimension.value > max) {
@@ -189,8 +223,7 @@ export default defineComponent({
             humanScaleInfo.height,
             containerWidth,
             containerHeight
-          ).height * 0.25
-          // * clamp((dynamicLongestDimension.value * 0.33) / 100, 0, 1)
+          ).height * clamp(1676 / 10000, 0, 1)
         }px`;
         console.log(humanScaleRef.value.style.height);
       }
@@ -202,7 +235,7 @@ export default defineComponent({
             modelScaleInfo.height,
             containerWidth,
             containerHeight
-          ).height * clamp(dynamicLongestDimension.value / 100, 0, 1)
+          ).height * clamp(dynamicLongestDimension.value / 10000, 0, 1)
         }px`;
         console.log(modelScaleRef.value.style.height);
       }
@@ -213,8 +246,11 @@ export default defineComponent({
       humanScaleRef,
       modelScaleRef,
       dynamicLongestDimension,
+      isAdvancedFormActive,
+      advancedDimensionsFormData,
       handleHumanScaleLoad,
       handleModelScaleLoad,
+      handleAdvancedFormUpdate,
     };
   },
 });
