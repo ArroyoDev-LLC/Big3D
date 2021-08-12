@@ -1,13 +1,13 @@
 <template>
   <div class="grid grid-cols-12 gap-4 h-full">
-    <div class="col-span-7 grid grid-cols-7 grid-rows-2 m-6">
+    <div class="col-span-7 grid grid-cols-7 grid-rows-3 m-6">
       <span class="col-span-7 text-left text-xl md:text-3xl">
         {{ title }}
       </span>
-      <div class="col-span-5 text-left text-yellow text-xl md:text-3xl">
+      <div class="col-span-5 self-center text-left text-yellow text-xl md:text-3xl">
         Longest Dimension:
       </div>
-      <div class="col-span-2">
+      <div class="col-span-2 self-center">
         <input
           id="dynamic-longest-dimension-input"
           v-model="dynamicLongestDimension"
