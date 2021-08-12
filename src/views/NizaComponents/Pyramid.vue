@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col sm:flex-row justify-center w-full">
-    <div class="text-right">
+    <div class="text-left sm:text-right">
       <p class="text-xl pb-3">TRY</p>
 
       <div class="font-bold text-5xl text-big3dBlack pb-7">
-        wanna <mark>practice first?</mark>
+        wanna practice first?
       </div>
 
       <p>
