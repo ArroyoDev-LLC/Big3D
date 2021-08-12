@@ -37,7 +37,7 @@
     </div>
 
     <img class="wood-option-img" src="images/square-wood-dowel.png" />
-    <div class="pvc-option">
+    <div class="pvc-option opacity-30">
       <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
       <div
         v-for="(value, index) in pvcValues"
@@ -48,8 +48,7 @@
           :id="`pvc-dimension-${index}`"
           class="col-span-1"
           type="radio"
-          v-model="currentSelection"
-          :value="`pvc:${value}`"
+          disabled
         />
         <label class="col-span-5" :for="`pvc-dimension-${index}`">
           {{ value }}
