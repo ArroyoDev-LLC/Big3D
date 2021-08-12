@@ -1,5 +1,10 @@
 <template>
-  <NavBar class="mb-1" @tabClick="goToSection" />
+  <NavBar
+    class="mb-1"
+    @tabClick="goToSection"
+    @login="() => (loginState = !loginState)"
+  />
+  <Toast />
   <Intro id="home" class="mb-5" />
   <Story id="story" />
   <Samples id="samples" />
@@ -8,7 +13,6 @@
   <Printing id="printing" />
   <Purchase id="purchasing" />
   <ModelGeneratorWizard id="generator-wizard" />
-  <Login />
   <LoginModal v-show="loginState" @close="() => (loginState = !loginState)">
     <template #header>Login</template>
     <template #body>
@@ -17,17 +21,18 @@
           class="mr-4"
           type="text"
           placeholder="Username"
-          :model-value="userLogin.username"
+          v-model="userLogin.username"
         />
         <InputText
           type="text"
           placeholder="Password"
-          :model-value="userLogin.password"
+          v-model="userLogin.password"
         />
       </div>
     </template>
     <template #footer>
       <Button
+        class="shadow-md"
         style="
           background: black;
           color: white;
@@ -36,8 +41,16 @@
         "
         >Forgot Password
       </Button>
-      <Button style="background: black; color: white; padding: 6px"
-        >Go BIG
+      <Button
+        @click="loginToSite"
+        class="shadow-md"
+        style="
+          background: yellow;
+          color: black;
+          padding: 6px;
+          font-weight: bold;
+        "
+        >Jump In
       </Button>
     </template>
   </LoginModal>
@@ -45,6 +58,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { useToast } from "primevue/usetoast";
+import Toast from "primevue/toast";
 import InputText from "primevue/inputtext";
 import Intro from "./NizaComponents/Intro.vue";
 import NavBar from "./NizaComponents/NavBar.vue";
@@ -67,13 +82,39 @@ export default defineComponent({
     Gallery,
     LoginModal,
     InputText,
+    Toast,
   },
   setup() {
+    const toast = useToast();
+
+    const showSuccess = () => {
+      toast.add({
+        severity: "success",
+        summary: "Success",
+        detail: "Successfully Logged In",
+        life: 3000,
+      });
+    };
+    const showError = () => {
+      toast.add({
+        severity: "error",
+        summary: "Error",
+        detail: "Error Logging In Username Or Password May Be Incorrect",
+        life: 3000,
+      });
+    };
+    const loginToSite = () => {
+      //success or error state on actual login through database
+      showSuccess();
+      showError();
+      console.log(userLogin.value);
+      console.log("logged in");
+    };
     const loginState = ref(false);
-    const userLogin = {
+    const userLogin = ref({
       username: "",
       password: "",
-    };
+    });
     const goToSection = (section: string) => {
       const sectionId = document.getElementById(section);
       if (sectionId) {
@@ -85,6 +126,8 @@ export default defineComponent({
       if (wizardId) wizardId.scrollIntoView();
     };
     return {
+      showSuccess,
+      loginToSite,
       loginState,
       userLogin,
       goToSection,
