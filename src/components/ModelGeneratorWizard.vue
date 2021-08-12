@@ -273,7 +273,6 @@ export default defineComponent({
   display: grid;
   grid-template-columns: repeat(18, minmax(0, 1fr));
   @apply md:m-8 m-4
-  p-3
   bg-big3dBlack
   select-none;
 }
