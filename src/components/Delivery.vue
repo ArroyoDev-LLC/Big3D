@@ -83,7 +83,7 @@
       </div>
       <div v-if="!isMobile()" class="col-span-1 bg-gray-800 relative">
         <text>WHAT'S INCLUDED</text>
-        <div class="text-xs sm:text-base">
+        <div class="pb-16 max-h-60 overflow-auto">
           <ul
             v-show="deliveryOption === 'DIY Route'"
             class="list-disc text-white px-6"
@@ -94,7 +94,7 @@
           </ul>
           <ul
             v-show="deliveryOption === 'Finished KIT'"
-            class="list-disc text-white px-4 sm:px-6"
+            class="list-disc text-white px-6"
           >
             <li>full set of 3D puzzle pieces</li>
             <li>full set of pre-cut and labeled stick to join them together</li>
@@ -111,6 +111,7 @@
             icon="pi pi-arrow-right"
             iconPos="right"
             @click="toCheckout"
+            :disabled="!deliveryOption"
           />
         </div>
       </div>
