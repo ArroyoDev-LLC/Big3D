@@ -34,7 +34,10 @@
         {{ currentStep.label }}
       </div>
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
-        {{ currentStep.label }}
+        <Delivery
+          class="w-full h-full m-3"
+          @toCheckout="setStep(activeStep + 1)"
+        />
       </div>
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
         {{ currentStep.label }}
@@ -58,6 +61,7 @@
 import { computed, defineComponent, reactive, ref } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
+import Delivery from "@/components/Delivery.vue";
 
 enum WizardSteps {
   UPLOAD,
@@ -76,7 +80,7 @@ interface StepT {
 
 export default defineComponent({
   name: "ModelGeneratorWizard",
-  components: { NextStepButton, ModelUploader },
+  components: { NextStepButton, ModelUploader, Delivery },
   props: {},
   setup() {
     const steps = reactive<StepT[]>([
