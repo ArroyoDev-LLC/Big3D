@@ -24,23 +24,9 @@
               name="longest-dimension-input"
               step="0.01"
               type="number"
+              placeholder="in mm"
               @focus="$event.target.select()"
             />
-            <select
-              id="unit-selector"
-              v-model="longestDimensionUnit"
-              :disabled="isLoading"
-              class="col-span-2 bg-white p-4 text-black"
-              name="unit-selector"
-            >
-              <option
-                v-for="(unit, index) in unitOptions"
-                :key="`${unit}-${index}`"
-                :value="unit"
-              >
-                {{ unit }}
-              </option>
-            </select>
           </div>
         </div>
         <ModelUploader
@@ -69,10 +55,13 @@
       <!------------ Dimensions Step ----------->
       <!-- ---------------------------------- -->
       <div
-        v-show="currentStep.name === WizardSteps.DIMENSIONS"
+        v-if="currentStep.name === WizardSteps.DIMENSIONS"
         class="p-4 md:p-8 h-full w-full"
       >
-        <DimensionsView :title="currentStep.title" />
+        <DimensionsView
+          :title="currentStep.title"
+          :selected-longest-dimension="longestDimension"
+        />
       </div>
 
       <!-- ---------------------------------- -->
