@@ -36,5 +36,6 @@ export default {
 
 html {
   scroll-behavior: smooth;
+  padding: 0px;
 }
 </style>

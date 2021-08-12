@@ -1,5 +1,5 @@
 <template>
-  <NavBar @tabClick="goToSection" />
+  <NavBar class="mb-1" @tabClick="goToSection" />
   <Intro id="home" class="mb-5" />
   <Story id="story" />
   <Samples id="samples" />
