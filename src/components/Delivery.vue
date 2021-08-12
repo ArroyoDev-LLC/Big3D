@@ -107,14 +107,8 @@
             <li>shipping cost included</li>
           </ul>
         </div>
-        <div class="absolute bottom-2 left-0 right-0">
-          <Button
-            label="Checkout"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            @click="toCheckout"
-            :disabled="!deliveryOption"
-          />
+        <div class="absolute bottom-2 w-full">
+          <NextStepButton @click="toCheckout" class="w-full" />
         </div>
       </div>
     </span>
@@ -146,12 +140,7 @@
     </div>
     <template #footer>
       <div class="w-full flex justify-center mt-2">
-        <Button
-          label="Checkout"
-          icon="pi pi-arrow-right"
-          iconPos="right"
-          @click="toCheckout"
-        />
+        <NextStepButton @click="toCheckout" />
       </div>
     </template>
   </Dialog>
@@ -160,11 +149,11 @@
 import { defineComponent, ref } from "vue";
 import RadioButton from "primevue/radiobutton";
 import Dialog from "primevue/dialog";
-import Button from "primevue/button";
+import NextStepButton from "@/components/NextStepButton.vue";
 
 export default defineComponent({
   name: "Delivery",
-  components: { RadioButton, Dialog, Button },
+  components: { RadioButton, Dialog, NextStepButton },
   props: {
     numConnectors: {
       type: Number,
@@ -188,7 +177,9 @@ export default defineComponent({
     };
     const toCheckout = () => {
       display.value = false;
-      emit("toCheckout", deliveryOption.value);
+      if (deliveryOption.value) {
+        emit("toCheckout", deliveryOption.value);
+      }
     };
     const display = ref(false);
     return {
