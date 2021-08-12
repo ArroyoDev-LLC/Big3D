@@ -5,37 +5,42 @@
     </div>
     <div class="flex pt-4 pb-4">
       <InputText
-        style="width: 23.5%; margin-right: 1rem"
+        class="w-1/2 md: 1/4"
+        style="margin-right: 1rem"
         placeholder="first name"
       />
-      <InputText style="width: 23.5%" placeholder="last name" />
+      <InputText class="w-1/2 md: 1/4" placeholder="last name" />
       <Checkbox />
     </div>
-    <div class="flex justify-between">
-      <div class="flex flex-col w-1/2 mr-4">
+    <div class="flex justify-between flex-col md:flex-row">
+      <div class="flex flex-col w-full md:w-1/2 mr-4">
         <div class="text-yellow bg-big3dBlack mb-2">Billing address</div>
         <InputText placeholder="street" />
         <div class="flex pb-2 pt-2">
-          <InputText style="width: 33.33%" placeholder="zip" />
-          <InputText style="width: 33.33%" placeholder="state" />
-          <InputText style="width: 33.33%" placeholder="city" />
+          <InputText class="w-full md:w-1/3" placeholder="zip" />
+          <InputText class="w-full md:w-1/3" placeholder="state" />
+          <InputText class="w-full md:w-1/3" placeholder="city" />
         </div>
         <InputText placeholder="email" />
       </div>
 
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full md:w-1/2">
         <div class="text-yellow bg-big3dBlack mb-2">Shipping address</div>
         <InputText placeholder="street" />
         <div class="flex pb-2 pt-2">
-          <InputText style="width: 33.33%" placeholder="zip" />
-          <InputText style="width: 33.33%" placeholder="state" />
-          <InputText style="width: 33.33%" placeholder="city" />
+          <InputText class="w-full md:w-1/3" placeholder="zip" />
+          <InputText class="w-full md:w-1/3" placeholder="state" />
+          <InputText class="w-full md:w-1/3" placeholder="city" />
         </div>
         <InputText placeholder="email" />
       </div>
     </div>
-    <div class="text-3xl font-black">Past Order</div>
-    <Skeleton shape="card" class="h-14" />
+    <div class="text-3xl font-black">Past Orders</div>
+    <div class="flex justify-evenly items-center flex-col md:flex-row">
+      <Skeleton shape="square" style="height: 400px; width: 300px" />
+      <Skeleton shape="square" style="height: 400px; width: 300px" />
+      <Skeleton shape="square" style="height: 400px; width: 300px" />
+    </div>
   </div>
 </template>
 
