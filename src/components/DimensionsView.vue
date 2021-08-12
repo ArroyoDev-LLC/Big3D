@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-12 gap-4 h-full">
     <AdvancedDimensionsForm
-      v-if="!isAdvancedFormActive"
+      v-if="isAdvancedFormActive"
       class="col-span-12 md:col-span-7"
       :advanced-dimensions-form-data="advancedDimensionsFormData"
       @formUpdate="handleAdvancedFormUpdate"
