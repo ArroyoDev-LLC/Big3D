@@ -3,8 +3,8 @@
     class="flex"
     :class="isMobile() ? 'bg-big3dBlack justify-between mb-5' : ''"
   >
-    <span><img src="big3dlogo.png" /></span>
-    <div class="flex flex-col sm:flex-row" v-if="!isMobile()">
+    <div class="flex items-center overflow-x-auto" v-if="!isMobile()">
+      <img src="big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
       <div @click="tabClick('home')" class="cursor-pointer">Home</div>
       <div @click="tabClick('story')" class="cursor-pointer">Story+</div>
       <div @click="tabClick('samples')" class="cursor-pointer">Samples+</div>

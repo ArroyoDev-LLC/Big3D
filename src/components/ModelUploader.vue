@@ -7,7 +7,6 @@
         class="m-uploader__input"
         name="m-uploader"
         type="file"
-        :disabled="isLoading"
         @change="handleFileChange($event.target.files)"
       />
 
