@@ -1,5 +1,5 @@
 <template>
-  <div class="text-left text-xl md:text-3xl flex justify-between">
+  <div class="text-left text-base md:text-3xl flex justify-between">
     {{ title }}
 
     <div>
@@ -15,12 +15,12 @@
   </div>
 
   <div class="grid grid-cols-6 gap-4 text-left mt-6">
-    <div class="col-span-4 p-3 border-t-4 border-big3dGray border-dotted">
-      <span class="text-xl"> Square Wood Dowels </span>
+    <div class="wood-option">
+      <span class="text-sm"> Square Wood Dowels </span>
       <div
         v-for="(value, index) in woodValues"
         :key="`${value}-${index}`"
-        class="w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+        class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
       >
         <input
           :id="`wood-dimension-${index}`"
@@ -36,16 +36,13 @@
       </div>
     </div>
 
-    <img
-      class="h-24 col-span-2 justify-self-end"
-      src="images/square-wood-dowel.png"
-    />
-    <div class="col-span-4 p-3 border-t-4 border-big3dGray border-dotted">
-      <span class="text-xl"> Round PVC Tubing (Coming Soon) </span>
+    <img class="wood-option-img" src="images/square-wood-dowel.png" />
+    <div class="pvc-option">
+      <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
       <div
         v-for="(value, index) in pvcValues"
         :key="`${value}-${index}`"
-        class="w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+        class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
       >
         <input
           :id="`pvc-dimension-${index}`"
@@ -59,10 +56,7 @@
         </label>
       </div>
     </div>
-    <img
-      class="h-24 col-span-2 justify-self-end"
-      src="images/round-pvc-tubing.png"
-    />
+    <img class="pvc-option-img" src="images/round-pvc-tubing.png" />
   </div>
 </template>
 
@@ -131,5 +125,15 @@ input[type="radio"] {
 
 input[type="radio"]:checked {
   border: 5px solid theme("colors.yellow");
+}
+
+.wood-option,
+.pvc-option {
+  @apply col-span-6 md:col-span-4 p-1 md:p-3 border-t-4 border-big3dGray border-dotted;
+}
+
+.wood-option-img,
+.pvc-option-img {
+  @apply h-24 col-span-6 md:col-span-2 justify-self-center md:justify-self-end;
 }
 </style>
