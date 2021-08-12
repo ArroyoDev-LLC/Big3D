@@ -1,11 +1,19 @@
 <template>
   <div class="grid grid-cols-12 gap-4 h-full">
-    <div class="col-span-7 grid grid-cols-7 grid-rows-3 m-6">
+    <div
+      class="
+        col-span-12
+        md:col-span-7
+        grid grid-cols-7 grid-rows-2 gap-3
+        md:grid-rows-3
+        m-6
+      "
+    >
       <span class="col-span-7 text-left text-xl md:text-3xl">
         {{ title }}
       </span>
       <div
-        class="col-span-5 self-center text-left text-yellow text-xl md:text-3xl"
+        class="col-span-5 self-center text-left text-yellow text-lg md:text-3xl"
       >
         What will the longest dimension be for this model?
       </div>
@@ -22,7 +30,7 @@
       </div>
     </div>
 
-    <div class="col-span-5 grid grid-rows-5">
+    <div class="col-span-12 md:col-span-5 grid grid-rows-5">
       <div class="row-span-1 text-xl md:text-2xl">APPROXIMATE SIZE</div>
       <div
         class="row-span-4 border border-white relative"
