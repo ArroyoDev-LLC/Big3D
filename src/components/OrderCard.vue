@@ -23,6 +23,6 @@ export default {
 
 <style scoped>
 .order-card {
-  @apply w-80 bg-big3dBlack flex flex-col items-center;
+  @apply w-80 bg-big3dBlack flex flex-col items-center m-4;
 }
 </style>

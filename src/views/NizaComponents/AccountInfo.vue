@@ -35,7 +35,7 @@
         <InputText placeholder="email" />
       </div>
     </div>
-    <div class="text-3xl font-black">Past Orders</div>
+    <div class="text-3xl font-black p-4">Past Orders</div>
     <div class="flex justify-evenly items-center flex-col md:flex-row">
       <OrderCard />
       <OrderCard />
