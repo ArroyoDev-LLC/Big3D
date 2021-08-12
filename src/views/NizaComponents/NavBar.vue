@@ -13,6 +13,7 @@
       <div @click="tabClick('printing')" class="cursor-pointer">Printing</div>
       <div @click="tabClick('purchase')" class="cursor-pointer">Purchase</div>
       <div
+        v-if="!isUserLoggedIn"
         @click="
           tabClick('login');
           $emit('login');
@@ -20,6 +21,13 @@
         class="bg-yellow cursor-pointer"
       >
         Login
+      </div>
+      <div
+        v-else
+        class="rounded-xl shadow-lg flex justify-center items-center"
+        style="border: 1px solid black; height: 5rem"
+      >
+        Triston
       </div>
     </div>
     <span
@@ -40,6 +48,12 @@ import Menu from "primevue/menu";
 export default defineComponent({
   name: "NavBar",
   components: { Menu },
+  props: {
+    isUserLoggedIn: {
+      type: Boolean,
+      required: true,
+    },
+  },
   setup(props, { emit }) {
     const tabClick = (section: string) => {
       emit("tabClick", section);
