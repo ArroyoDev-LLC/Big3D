@@ -37,23 +37,24 @@
     </div>
     <div class="text-3xl font-black">Past Orders</div>
     <div class="flex justify-evenly items-center flex-col md:flex-row">
-      <Skeleton shape="square" style="height: 400px; width: 300px" />
-      <Skeleton shape="square" style="height: 400px; width: 300px" />
-      <Skeleton shape="square" style="height: 400px; width: 300px" />
+      <OrderCard />
+      <OrderCard />
+      <OrderCard />
+      <OrderCard />
     </div>
   </div>
 </template>
 
 <script>
 import InputText from "primevue/inputtext";
-
-import Skeleton from "primevue/skeleton";
+import OrderCard from "@/components/OrderCard.vue";
 
 export default {
   name: "AccountInfo",
   components: {
     InputText,
-    Skeleton,
+
+    OrderCard,
   },
 };
 </script>
