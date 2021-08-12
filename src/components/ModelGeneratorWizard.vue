@@ -82,17 +82,14 @@
       <!------------ Delivery Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
-        <Delivery
-          class="w-full h-full m-3"
-          @toCheckout="setStep(activeStep + 1)"
-        />
+        <Delivery class="w-full h-full m-3" @toCheckout="toCheckout" />
       </div>
 
       <!-- ---------------------------------- -->
       <!------------ Checkout Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-        {{ currentStep.label }}
+        <DeliveryPaymentView :isDIY="isDIY" />
       </div>
     </div>
 
@@ -115,7 +112,8 @@ import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
 import ConnectorView from "@/components/ConnectorView.vue";
 import DimensionsView from "@/components/DimensionsView.vue";
-import Delivery from "@/components/Delivery.vue";
+import Delivery, { DeliveryOptions } from "@/components/Delivery.vue";
+import DeliveryPaymentView from "@/components/DeliveryPaymentView.vue";
 
 enum WizardSteps {
   UPLOAD,
@@ -140,6 +138,7 @@ export default defineComponent({
     DimensionsView,
     ConnectorView,
     Delivery,
+    DeliveryPaymentView
   },
   props: {},
   setup() {
@@ -211,6 +210,11 @@ export default defineComponent({
       await new Promise((r) => setTimeout(r, 5000));
       isLoading.value = false;
     };
+    const toCheckout = (deliveryOption: DeliveryOptions) => {
+      isDIY.value = deliveryOption === DeliveryOptions.DIY;
+      setStep(activeStep.value + 1);
+    };
+    const isDIY = ref(false);
 
     const longestDimension = ref<number>(0);
     const unitOptions = ref(["ft", "in", "m", "mm", "cm"]);
@@ -262,6 +266,8 @@ export default defineComponent({
       disableStep,
       handleModelUpload,
       handleConnectorInput,
+      toCheckout,
+      isDIY,
     };
   },
 });
