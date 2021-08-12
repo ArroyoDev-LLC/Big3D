@@ -57,7 +57,7 @@ import NextStepButton from "@/components/NextStepButton.vue";
 export default defineComponent({
   name: "ForgotPassword",
   components: { InputText, NextStepButton },
-  setup() {
+  setup(props, { emit }) {
     const email = ref("");
     const onEmailReset = ref(false);
     const code = ref("");
@@ -66,6 +66,9 @@ export default defineComponent({
     const sendResetEmail = () => {
       onEmailReset.value = true;
     };
+    const submit = () => {
+      emit("submit");
+    };
     return {
       email,
       onEmailReset,
@@ -73,6 +76,7 @@ export default defineComponent({
       pass,
       confirm,
       sendResetEmail,
+      submit,
     };
   },
 });

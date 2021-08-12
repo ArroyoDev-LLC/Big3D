@@ -21,7 +21,10 @@
       @createAccount="hasAuth = true"
       @forgot="page = 'forgotPassword'"
     />
-    <ForgotPassword v-if="page === 'forgotPassword'" />
+    <ForgotPassword
+      v-if="page === 'forgotPassword'"
+      @submit="page = 'delivery'"
+    />
     <PaymentDetails v-if="page === 'payment'" />
     <div
       class="absolute -bottom-5 right-2"
