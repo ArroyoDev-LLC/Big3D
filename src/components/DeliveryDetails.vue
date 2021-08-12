@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isAuthed" class="flex flex-col">
+  <div v-if="!hasAuth" class="flex flex-col">
     <div class="px-2 sm:px-0 sm:w-full mb-2">
       <InputText
         class="w-full"
@@ -14,21 +14,29 @@
         label="Login"
         :showIcon="false"
         class="mb-2 sm:mb-0 sm:mr-2"
+        @click="login"
       />
-      <NextStepButton label="Create Account" :showIcon="false" />
+      <NextStepButton
+        label="Create Account"
+        :showIcon="false"
+        @click="createAccount"
+      />
     </div>
-    <div class="text-yellow cursor-pointer text-left">
+    <div class="text-yellow cursor-pointer text-left" @click="forgot">
       <text>forgot password?</text>
     </div>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 ml-2" v-else>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 gap-5 overflow-scroll h-96 pt-1 mx-2"
+    v-else
+  >
     <div class="col-span-1">
-      <div class="flex mb-2">
-        <div class="mr-2">
-          <InputText placeholder="First Name" />
+      <div class="flex flex-col sm:flex-row mb-2">
+        <div class="mb-2 sm:mb-0 sm:mr-2">
+          <InputText placeholder="First Name" class="w-full" />
         </div>
         <div>
-          <InputText placeholder="Last Name" />
+          <InputText placeholder="Last Name" class="w-full" />
         </div>
       </div>
       <div class="text-left text-yellow font-bold mb-2">
@@ -53,8 +61,8 @@
         <InputText placeholder="Email" class="w-full" />
       </div>
     </div>
-    <div class="col-span-1 mr-1">
-      <div class="flex items-center mb-2">
+    <div class="col-span-1" v-if="isDIY">
+      <div class="flex items-center" :class="showShipping ? 'mb-16' : 'mb-2'">
         <div class="mr-2">
           <ToggleButton
             v-model="showShipping"
@@ -66,7 +74,7 @@
           <text>shipping address is the same as billing</text>
         </div>
       </div>
-      <div v-if="!showShipping">
+      <div v-if="!showShipping" class="mb-16 sm:mb-0">
         <div class="text-left text-yellow font-bold mb-2">
           <text>Shipping Address</text>
         </div>
@@ -102,17 +110,37 @@ export default defineComponent({
   props: {
     isAuthed: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     isShippingSame: {
       type: Boolean,
       default: false,
     },
+    isDIY: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const showShipping = ref(props.isShippingSame);
+    const hasAuth = ref(props.isAuthed);
+    const login = () => {
+      hasAuth.value = true;
+      emit("login");
+    };
+    const createAccount = () => {
+      hasAuth.value = true;
+      emit("createAccount");
+    };
+    const forgot = () => {
+      emit("forgot");
+    };
     return {
       showShipping,
+      hasAuth,
+      login,
+      createAccount,
+      forgot,
     };
   },
 });
