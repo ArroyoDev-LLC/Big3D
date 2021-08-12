@@ -17,6 +17,7 @@
           name="dynamic-longest-dimension-input"
           step="0.5"
           type="number"
+          placeholder="in mm"
         />
       </div>
     </div>
