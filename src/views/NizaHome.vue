@@ -9,6 +9,7 @@
   <Purchase id="purchasing" />
   <ModelGeneratorWizard id="generator-wizard" />
   <Login />
+  <Footer />
 </template>
 
 <script lang="ts">
@@ -20,16 +21,18 @@ import Samples from "./NizaComponents/Samples.vue";
 import Printing from "./NizaComponents/Printing.vue";
 import ModelGeneratorWizard from "@/components/ModelGeneratorWizard.vue";
 import Gallery from "@/views/Gallery.vue";
+import Footer from "@/components/Footer.vue";
 export default defineComponent({
   name: "NizaHome",
   components: {
+    Footer,
     ModelGeneratorWizard,
     NavBar,
     Intro,
     Story,
     Samples,
     Printing,
-    Gallery
+    Gallery,
   },
   setup() {
     const goToSection = (section: string) => {
