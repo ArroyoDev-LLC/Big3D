@@ -269,7 +269,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .wizard {
-  height: 30rem;
+  min-height: 30rem;
   display: grid;
   grid-template-columns: repeat(18, minmax(0, 1fr));
   @apply md:m-8 m-4
@@ -283,7 +283,8 @@ export default defineComponent({
   relative
   inline-block
   bg-yellow
-  cursor-pointer;
+  cursor-pointer
+  h-full;
 }
 
 .wizard__step div {
@@ -297,5 +298,33 @@ export default defineComponent({
   grid-column: span 13 / span 13;
   @apply text-white
   flex justify-center items-center;
+}
+
+@media (max-width: 640px) {
+  .wizard {
+    min-height: 50rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(18, minmax(0, 1fr));
+  }
+
+  .wizard__step {
+    @apply row-span-1 py-2;
+    display: initial;
+    position: initial;
+  }
+
+  .wizard__step div {
+    position: initial;
+    @apply text-lg font-bold whitespace-nowrap;
+    -moz-transform: translateX(0%) translateY(0%) rotate(0deg);
+    -webkit-transform: translateX(0%) translateY(0%) rotate(0deg);
+    transform: translateX(0%) translateY(0%) rotate(0deg);
+  }
+
+  .wizard__current {
+    grid-column: span 1 / span 1;
+    grid-row: span 13 / span 13;
+  }
 }
 </style>
