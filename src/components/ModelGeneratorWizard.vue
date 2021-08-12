@@ -92,7 +92,7 @@
       <!------------ Checkout Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-        {{ currentStep.label }}
+        <DeliveryPaymentView />
       </div>
     </div>
 
@@ -116,6 +116,7 @@ import NextStepButton from "@/components/NextStepButton.vue";
 import ConnectorView from "@/components/ConnectorView.vue";
 import DimensionsView from "@/components/DimensionsView.vue";
 import Delivery from "@/components/Delivery.vue";
+import DeliveryPaymentView from "@/components/DeliveryPaymentView.vue";
 
 enum WizardSteps {
   UPLOAD,
@@ -140,6 +141,7 @@ export default defineComponent({
     DimensionsView,
     ConnectorView,
     Delivery,
+    DeliveryPaymentView
   },
   props: {},
   setup() {
