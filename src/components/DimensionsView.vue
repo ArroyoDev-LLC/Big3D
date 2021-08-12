@@ -10,12 +10,11 @@
       <div class="col-span-2">
         <input
           id="dynamic-longest-dimension-input"
-          type="number"
           v-model="dynamicLongestDimension"
-          :disabled="isLoading"
           class="w-full text-black p-4"
           name="dynamic-longest-dimension-input"
           step="0.01"
+          type="number"
         />
       </div>
     </div>
@@ -24,10 +23,20 @@
       <div class="row-span-1 text-xl md:text-2xl">APPROXIMATE SIZE</div>
       <div class="row-span-4 border border-white relative">
         <div class="human-scale-container absolute bottom-0 left-0">
-          <img :src="humanScaleSrc" alt="human-scale" />
+          <img
+            ref="humanScaleRef"
+            :src="humanScaleSrc"
+            alt="human-scale"
+            @load="handleHumanScaleLoad"
+          />
         </div>
         <div class="model-scale-container absolute bottom-0 right-0">
-          <img :src="modelScaleSrc" alt="model-scale" />
+          <img
+            ref="modelScaleRef"
+            :src="modelScaleSrc"
+            alt="model-scale"
+            @load="handleModelScaleLoad"
+          />
         </div>
       </div>
     </div>
@@ -35,7 +44,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
+
+export interface ScaleInfoT {
+  width: number;
+  height: number;
+  src: string;
+}
 
 export default defineComponent({
   name: "DimensionsView",
@@ -59,19 +74,44 @@ export default defineComponent({
     },
   },
 
-  // setup function
-  setup() {
+  setup(props) {
     const dynamicLongestDimension = ref<number>(1);
+    const humanScaleRef = ref(null);
+    const modelScaleRef = ref(null);
 
-    function handleHumanScaleLoad() {
-      console.log(this);
-    }
+    const humanScaleInfo = reactive<ScaleInfoT>({
+      height: 0,
+      width: 0,
+      src: props.humanScaleSrc as string,
+    });
 
-    const handleModelScaleLoad = (ev) => {
-      console.log(ev);
+    const modelScaleInfo = reactive<ScaleInfoT>({
+      height: 0,
+      width: 0,
+      src: props.modelScaleSrc as string,
+    });
+
+    const handleHumanScaleLoad = (event: Event) => {
+      const img = event.target as HTMLImageElement;
+      if (img) {
+        humanScaleInfo.width = img.clientWidth;
+        humanScaleInfo.height = img.clientHeight;
+      }
+      console.log(humanScaleInfo);
+    };
+
+    const handleModelScaleLoad = (event: Event) => {
+      const img = event.target as HTMLImageElement;
+      if (img) {
+        modelScaleInfo.width = img.clientWidth;
+        modelScaleInfo.height = img.clientHeight;
+      }
+      console.log(modelScaleInfo);
     };
 
     return {
+      humanScaleRef,
+      modelScaleRef,
       dynamicLongestDimension,
       handleHumanScaleLoad,
       handleModelScaleLoad,
