@@ -3,11 +3,11 @@
   <Intro id="home" class="mb-5" />
   <Story id="story" />
   <Samples id="samples" />
-  <Gallery id="gallery" />
   <Pricing id="pricing" />
   <Printing id="printing" />
   <Purchase id="purchasing" />
   <ModelGeneratorWizard id="generator-wizard" />
+  <Gallery id="gallery" />
   <Login />
   <Footer />
 </template>
