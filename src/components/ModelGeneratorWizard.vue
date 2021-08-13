@@ -1,4 +1,10 @@
 <template>
+  <div class="text-left ml-10 text-lg">
+    <text>Purchase</text>
+  </div>
+  <div class="text-left ml-10 text-4xl font-bold">
+    <text>GO BIG!!!</text>
+  </div>
   <div class="wizard">
     <div :class="`order-${activeStep + 1}`" class="wizard__current">
       <!-- ---------------------------------- -->
@@ -138,7 +144,7 @@ export default defineComponent({
     DimensionsView,
     ConnectorView,
     Delivery,
-    DeliveryPaymentView
+    DeliveryPaymentView,
   },
   props: {},
   setup() {
