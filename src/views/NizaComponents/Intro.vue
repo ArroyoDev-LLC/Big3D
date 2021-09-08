@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col sm:flex-row justify-evenly">
+  <div class="flex flex-col sm:flex-row justify-evenly w-full bg-gray-100">
     <div class="intro-left-container px-4 sm:p-0">
-      <text class="font-bold text-4xl text-big3dBlack"> Stop wondering. </text>
+      <text class="font-bold text-6xl text-big3dBlack"> Stop wondering. </text>
 
-      <text class="font-bold text-4xl pb-2 text-big3dBlack"> Think big </text>
+      <text class="font-bold text-6xl pb-2 text-big3dBlack"> Think big </text>
 
       <text>
         Time for big toys! Generate full-size 3D model any form <br />
@@ -12,8 +12,8 @@
       <GoBigButton class="my-5 ml-10 sm:ml-0" />
     </div>
 
-    <div>
-      <img src="Frame 1.png" />
+    <div> 
+      <img src="Frame 1.png" /> 
     </div>
   </div>
 </template>

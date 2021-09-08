@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2">
+  <div class="grid grid-cols-1 sm:grid-cols-2 px-20">
     <div class="left-container ml-3 sm:ml-8 col-span-1">
       <text class="text-base pb-3">PROJECTS</text>
 

@@ -1,14 +1,20 @@
 <template>
-  <div class="text-left ml-10 text-lg">
-    <text>Purchase</text>
+  <div class="text-left ml-10 text-lg pb-2 pt-8">
+    <text>ORDER</text>
   </div>
-  <div class="text-left ml-10 text-4xl font-bold">
-    <text>GO BIG!!!</text>
+  <div class="text-left ml-10 text-4xl font-bold text-big3dBlack pb-4">
+    <text>It's time... <span class="bg-yellow">let's go BIG!</span></text>
+  </div>
+  <div class="text-left ml-10 text-lg pb-1">
+    <text>
+      Creating a GIANT Low poly 3D model frame has never been so easy. It all starts here with uploading a Low Poly 3D model. <br>
+      (Hint, the smaller the number of vertices, the better.)
+    </text>
   </div>
   <div class="wizard">
     <div :class="`order-${activeStep + 1}`" class="wizard__current">
       <!-- ---------------------------------- -->
-      <!------------ Upload Step --------------->
+      <!------------ Upload Step ---------------> 
       <!-- ---------------------------------- -->
       <div
         v-show="currentStep.name === WizardSteps.UPLOAD"

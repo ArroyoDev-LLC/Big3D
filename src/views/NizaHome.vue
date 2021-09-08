@@ -52,7 +52,7 @@
         @click="loginToSite"
         class="shadow-md"
         style="
-          background: yellow;
+          background: yellow; 
           color: black;
           padding: 6px;
           font-weight: bold;
@@ -62,7 +62,7 @@
     </template>
   </LoginModal>
   <Gallery id="gallery" />
-  <Pyramid id="samples" />
+  <Pyramid id="samples" /> 
   <Login />
   <Footer />
 </template>
@@ -82,6 +82,7 @@ import Gallery from "@/views/Gallery.vue";
 import LoginModal from "../components/LoginModal.vue";
 import Footer from "@/components/Footer.vue";
 import Pyramid from "@/views/NizaComponents/Pyramid.vue";
+//import Privacy from "@/components/Privacy.vue";
 export default defineComponent({
   name: "NizaHome",
   components: {
@@ -97,6 +98,7 @@ export default defineComponent({
     LoginModal,
     InputText,
     Toast,
+    //Privacy,
   },
   setup() {
     const toast = useToast();

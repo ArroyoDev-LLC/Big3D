@@ -2,8 +2,8 @@
   <div class="grid grid-cols-1 gap-4 sm:gap-0 sm:grid-cols-2">
     <div class="col-span-1 text-left flex justify-center items-center">
       <div class="px-4 sm:px-0 sm:w-1/2">
-        <div class="text-lg">Gallery</div>
-        <div class="text-4xl font-bold">Our fans featured big prints</div>
+        <div class="text-lg text-big3dBlack pb-2">Gallery</div>
+        <div class="text-4xl font-bold text-big3dBlack pb-4">Our fans <br> featured <span class="bg-yellow">big prints</span></div>
         <div>
           We love the things that are being created out there and want to share
           it with you. Here are some examples of cool stuff being created with
