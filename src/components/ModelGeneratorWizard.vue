@@ -26,7 +26,7 @@
               id="longest-dimension-input"
               v-model="longestDimension"
               :disabled="isLoading"
-              class="col-span-4 text-black p-4"
+              class="col-span-4 text-white p-4 bg-big3dBlack border-b-2"
               name="longest-dimension-input"
               step="0.01"
               type="number"
@@ -280,6 +280,12 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .wizard {
   min-height: 30rem;
   display: grid;
