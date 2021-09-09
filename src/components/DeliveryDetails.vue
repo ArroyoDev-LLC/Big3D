@@ -25,7 +25,7 @@
       <NextStepButton
         class="mb-2 sm:mb-0 sm:ml-2"
         label="Skip to checkout"
-        @click="test"
+        @click="skipToCheckout"
       />
     </div>
     <div class="text-yellow cursor-pointer text-left" @click="forgot">
@@ -141,10 +141,16 @@ export default defineComponent({
     const forgot = () => {
       emit("forgot");
     };
+    const skipToCheckout = () => {
+      hasAuth.value = true;
+
+      emit("skip");
+    };
 
     return {
       showShipping,
       hasAuth,
+      skipToCheckout,
       login,
       createAccount,
       forgot,

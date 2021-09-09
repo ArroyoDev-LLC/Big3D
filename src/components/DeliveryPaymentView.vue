@@ -20,6 +20,7 @@
       @login="hasAuth = true"
       @createAccount="hasAuth = true"
       @forgot="page = 'forgotPassword'"
+      @skip="hasAuth = true"
     />
     <ForgotPassword
       v-if="page === 'forgotPassword'"

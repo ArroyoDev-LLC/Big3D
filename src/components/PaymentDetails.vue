@@ -16,15 +16,15 @@
       <text class="text-lg">Order Summary</text>
       <div class="flex flex-col">
         <div class="flex flex-row justify-between">
-          <text>Taxes </text>
+          <text>Taxes</text>
           <text class="text-yellow">{{ convertToDollars(taxes) }}</text>
         </div>
         <div class="flex flex-row justify-between">
-          <text>Payment Fee </text>
+          <text>Payment Fee</text>
           <text class="text-yellow">{{ convertToDollars(fee) }}</text>
         </div>
         <div class="flex flex-row justify-between">
-          <text>Total </text>
+          <text>Total</text>
           <text class="text-yellow">{{ calculateTotal() }}</text>
         </div>
       </div>
