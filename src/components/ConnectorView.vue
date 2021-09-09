@@ -28,7 +28,7 @@
           type="radio"
           v-model="currentSelection"
           :value="`wood:${value}`"
-          :checked="index === 0"
+          :checked="index === null"
         />
         <label class="col-span-5" :for="`wood-dimension-${index}`">
           {{ value }}
