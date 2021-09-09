@@ -110,14 +110,23 @@
       <!------------ Delivery Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
-        <Delivery class="w-full h-full m-3" @toCheckout="toCheckout" />
+        <Delivery
+          :num-connectors="connectorInfo.connectors"
+          :num-edges="connectorInfo.edges"
+          class="w-full h-full m-3"
+          @toCheckout="toCheckout"
+        />
       </div>
 
       <!-- ---------------------------------- -->
       <!------------ Checkout Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-        <DeliveryPaymentView :connectorType="connectorType.type" :connectorInfo="connectorInfo" :isDIY="isDIY" />
+        <DeliveryPaymentView
+          :connectorType="connectorType.type"
+          :connectorInfo="connectorInfo"
+          :isDIY="isDIY"
+        />
       </div>
     </div>
 
@@ -166,7 +175,7 @@ export default defineComponent({
     DimensionsView,
     ConnectorView,
     Delivery,
-    DeliveryPaymentView
+    DeliveryPaymentView,
   },
   props: {},
   setup() {
@@ -175,32 +184,32 @@ export default defineComponent({
         name: WizardSteps.UPLOAD,
         isDisabled: false,
         label: "Upload Model",
-        title: "Upload Low Poly 3D model here (.blend or .stl)"
+        title: "Upload Low Poly 3D model here (.blend or .stl)",
       },
       {
         name: WizardSteps.DIMENSIONS,
         isDisabled: false,
         label: "Enter Dimensions",
-        title: "Confirm Dimensions"
+        title: "Confirm Dimensions",
       },
       {
         name: WizardSteps.CONNECTORS,
         isDisabled: false,
         label: "Choose Connectors",
-        title: "Choose type of Connectors"
+        title: "Choose type of Connectors",
       },
       {
         name: WizardSteps.DELIVERY,
         isDisabled: false,
         label: "Choose Delivery",
-        title: "Delivery Details"
+        title: "Delivery Details",
       },
       {
         name: WizardSteps.CHECKOUT,
         isDisabled: false,
         label: "Checkout",
-        title: "Checkout"
-      }
+        title: "Checkout",
+      },
     ]);
 
     const activeStep = ref<number>(0);
@@ -213,7 +222,7 @@ export default defineComponent({
     const isLoading = ref<boolean>(false);
     const disabledClasses = computed(() => ({
       "cursor-not-allowed": isLoading.value,
-      "opacity-30": isLoading.value
+      "opacity-30": isLoading.value,
     }));
 
     /**
@@ -242,6 +251,7 @@ export default defineComponent({
       isDIY.value = deliveryOption === DeliveryOptions.DIY;
       setStep(activeStep.value + 1);
     };
+
     const isDIY = ref(false);
 
     const longestDimension = ref<number>(0);
@@ -268,13 +278,14 @@ export default defineComponent({
      */
     const connectorInfo = reactive({
       connectors: 20,
-      edges: 0
+      edges: 0,
     });
     const connectorType = reactive({
-      type: ""
+      type: "",
     });
 
-    const handleConnectorInput = (selection: string) => connectorType.type = selection;
+    const handleConnectorInput = (selection: string) =>
+      (connectorType.type = selection);
     return {
       connectorType,
       WizardSteps,
@@ -298,9 +309,9 @@ export default defineComponent({
       handleModelUpload,
       handleConnectorInput,
       toCheckout,
-      isDIY
+      isDIY,
     };
-  }
+  },
 });
 </script>
 

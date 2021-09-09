@@ -160,6 +160,7 @@ export default defineComponent({
   name: "Delivery",
   components: { RadioButton, Dialog, NextStepButton },
   props: {
+
     numConnectors: {
       type: Number,
       default: 0,

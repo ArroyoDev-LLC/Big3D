@@ -21,6 +21,12 @@
         :showIcon="false"
         @click="createAccount"
       />
+
+      <NextStepButton
+        class="mb-2 sm:mb-0 sm:ml-2"
+        label="Skip to checkout"
+        @click="test"
+      />
     </div>
     <div class="text-yellow cursor-pointer text-left" @click="forgot">
       <text>forgot password?</text>
@@ -110,16 +116,16 @@ export default defineComponent({
   props: {
     isAuthed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isShippingSame: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isDIY: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup(props, { emit }) {
     const showShipping = ref(props.isShippingSame);
@@ -135,13 +141,14 @@ export default defineComponent({
     const forgot = () => {
       emit("forgot");
     };
+
     return {
       showShipping,
       hasAuth,
       login,
       createAccount,
-      forgot
+      forgot,
     };
-  }
+  },
 });
 </script>
