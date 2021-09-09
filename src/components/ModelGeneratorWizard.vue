@@ -117,7 +117,7 @@
       <!------------ Checkout Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-        <DeliveryPaymentView :isDIY="isDIY" />
+        <DeliveryPaymentView :connectorType="connectorType.type" :connectorInfo="connectorInfo" :isDIY="isDIY" />
       </div>
     </div>
 
@@ -166,7 +166,7 @@ export default defineComponent({
     DimensionsView,
     ConnectorView,
     Delivery,
-    DeliveryPaymentView,
+    DeliveryPaymentView
   },
   props: {},
   setup() {
@@ -175,32 +175,32 @@ export default defineComponent({
         name: WizardSteps.UPLOAD,
         isDisabled: false,
         label: "Upload Model",
-        title: "Upload Low Poly 3D model here (.blend or .stl)",
+        title: "Upload Low Poly 3D model here (.blend or .stl)"
       },
       {
         name: WizardSteps.DIMENSIONS,
         isDisabled: false,
         label: "Enter Dimensions",
-        title: "Confirm Dimensions",
+        title: "Confirm Dimensions"
       },
       {
         name: WizardSteps.CONNECTORS,
         isDisabled: false,
         label: "Choose Connectors",
-        title: "Choose type of Connectors",
+        title: "Choose type of Connectors"
       },
       {
         name: WizardSteps.DELIVERY,
         isDisabled: false,
         label: "Choose Delivery",
-        title: "Delivery Details",
+        title: "Delivery Details"
       },
       {
         name: WizardSteps.CHECKOUT,
         isDisabled: false,
         label: "Checkout",
-        title: "Checkout",
-      },
+        title: "Checkout"
+      }
     ]);
 
     const activeStep = ref<number>(0);
@@ -213,7 +213,7 @@ export default defineComponent({
     const isLoading = ref<boolean>(false);
     const disabledClasses = computed(() => ({
       "cursor-not-allowed": isLoading.value,
-      "opacity-30": isLoading.value,
+      "opacity-30": isLoading.value
     }));
 
     /**
@@ -267,13 +267,16 @@ export default defineComponent({
      * handle state for connector step
      */
     const connectorInfo = reactive({
-      connectors: 0,
-      edges: 0,
+      connectors: 20,
+      edges: 0
+    });
+    const connectorType = reactive({
+      type: ""
     });
 
-    const handleConnectorInput = (selection: string) => console.log(selection);
-
+    const handleConnectorInput = (selection: string) => connectorType.type = selection;
     return {
+      connectorType,
       WizardSteps,
       steps,
       activeStep,
@@ -295,9 +298,9 @@ export default defineComponent({
       handleModelUpload,
       handleConnectorInput,
       toCheckout,
-      isDIY,
+      isDIY
     };
-  },
+  }
 });
 </script>
 

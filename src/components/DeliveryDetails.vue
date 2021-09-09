@@ -110,16 +110,16 @@ export default defineComponent({
   props: {
     isAuthed: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isShippingSame: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isDIY: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup(props, { emit }) {
     const showShipping = ref(props.isShippingSame);
@@ -140,8 +140,8 @@ export default defineComponent({
       hasAuth,
       login,
       createAccount,
-      forgot,
+      forgot
     };
-  },
+  }
 });
 </script>
