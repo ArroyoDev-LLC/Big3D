@@ -1,10 +1,32 @@
 <template>
-  <div class="text-left ml-10 text-lg">
-    <text>Purchase</text>
+  <div class="flex justify-between">
+    <div class="flex flex-col text-left ml-10">
+      <div class="text-lg">
+        <text>Order</text>
+      </div>
+      <div class="text-4xl font-bold">
+        <text>It's time... lets go BIG!</text>
+      </div>
+      <text
+        >Ordering has never been so easy. Upload your model image and follow the
+        order steps.
+      </text>
+    </div>
+
+    <div class="flex flex-col mr-10 text-right">
+      <div class="text-lg">
+        <text>Try</text>
+      </div>
+      <div class="text-4xl font-bold">
+        <text>Wanna practice first?</text>
+      </div>
+      <text
+        >Want to try to print a sample first? Try this model on your own first
+        then come back and upload your big idea.
+      </text>
+    </div>
   </div>
-  <div class="text-left ml-10 text-4xl font-bold">
-    <text>GO BIG!!!</text>
-  </div>
+
   <div class="wizard">
     <div :class="`order-${activeStep + 1}`" class="wizard__current">
       <!-- ---------------------------------- -->
