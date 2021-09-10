@@ -90,6 +90,16 @@
           :title="currentStep.title"
           :selected-longest-dimension="longestDimension"
         />
+        <div class="flex justify-end p-4">
+          <NextStepButton
+            v-if="nextStep && modelFile"
+            :class="disabledClasses"
+            :disabled="isLoading"
+            :label="nextStep.label"
+            class="self-end absolute"
+            @click="setStep(activeStep + 1)"
+          />
+        </div>
       </div>
 
       <!-- ---------------------------------- -->
@@ -104,6 +114,16 @@
           :title="currentStep.title"
           @radioChange="handleConnectorInput"
         />
+        <div class="flex justify-end p-4">
+          <NextStepButton
+            v-if="nextStep && modelFile"
+            :class="disabledClasses"
+            :disabled="isLoading"
+            :label="nextStep.label"
+            class="self-end absolute"
+            @click="setStep(activeStep + 1)"
+          />
+        </div>
       </div>
 
       <!-- ---------------------------------- -->
@@ -137,7 +157,7 @@
       :key="`${step.name}-${index}`"
       :class="`order-${getStepOrder(step.name)}`"
       class="wizard__step"
-      @click="setStep(step.name)"
+      @click="step.isDisabled ? null : setStep(step.name)"
     >
       <div>{{ step.label }}</div>
     </div>
@@ -145,7 +165,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
+import {
+  computed,
+  defineComponent,
+  provide,
+  reactive,
+  ref,
+  watchEffect,
+} from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
 import ConnectorView from "@/components/ConnectorView.vue";
@@ -192,25 +219,25 @@ export default defineComponent({
       },
       {
         name: WizardSteps.DIMENSIONS,
-        isDisabled: false,
+        isDisabled: true,
         label: "Enter Dimensions",
         title: "Confirm Dimensions",
       },
       {
         name: WizardSteps.CONNECTORS,
-        isDisabled: false,
+        isDisabled: true,
         label: "Choose Connectors",
         title: "Choose type of Connectors",
       },
       {
         name: WizardSteps.DELIVERY,
-        isDisabled: false,
+        isDisabled: true,
         label: "Choose Delivery",
         title: "Delivery Details",
       },
       {
         name: WizardSteps.CHECKOUT,
-        isDisabled: false,
+        isDisabled: true,
         label: "Checkout",
         title: "Checkout",
       },
@@ -237,7 +264,7 @@ export default defineComponent({
     const enableStep = (step: number) => (steps[step].isDisabled = false);
     const disableStep = (step: number) => (steps[step].isDisabled = true);
 
-    const getStepOrder = (step: WizardSteps) => step + 1;
+    const getStepOrder = (step: WizardSteps) => step;
 
     /**
      * handle state for file upload step

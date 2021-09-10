@@ -35,6 +35,7 @@
 import { defineComponent, ref } from "vue";
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
 import CheckoutButton from "@/components/CheckoutButton.vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "PaymentDetails",
@@ -65,22 +66,24 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const store = useStore();
+
     const lineItems = ref([]);
-    if (props.connectorType == "wood:3/4” (19.05 mm)") {
+    if (store.state.connector.dimension == "3/4” (19.05 mm)") {
       lineItems.value = [
         {
           price: "price_1JXWQOLEeW8HHB6IuWJB3xLs",
           quantity: props.connectorInfo.connectors,
         },
       ];
-    } else if (props.connectorType == "wood:1/2” (12.7 mm)") {
+    } else if (store.state.connector.dimension == "1/2” (12.7 mm)") {
       lineItems.value = [
         {
           price: "price_1JXoTBLEeW8HHB6IsLewxkc3",
           quantity: props.connectorInfo.connectors,
         },
       ];
-    } else if (props.connectorType == "wood:1/4” (6.35 mm)") {
+    } else if (store.state.connector.dimension == "1/4” (6.35 mm)") {
       lineItems.value = [
         {
           price: "price_1JXWQOLEeW8HHB6IuWJB3xLs",

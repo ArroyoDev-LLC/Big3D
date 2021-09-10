@@ -62,7 +62,6 @@
 <script lang="ts">
 import { defineComponent, PropType, ref, watchEffect, reactive } from "vue";
 
-
 export default defineComponent({
   name: "ConnectorView",
   components: {},
@@ -82,7 +81,6 @@ export default defineComponent({
 
   // setup function
   setup(props, { emit }) {
-
     const currentSelection = ref("");
 
     const woodValues = ref([
