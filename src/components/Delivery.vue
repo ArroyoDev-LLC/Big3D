@@ -45,7 +45,7 @@
               formatToDollar(numConnectors * connectorPrice)
             }}</text>
             <text class="text-yellow"
-              >({{ connectorPrice }} per connector)</text
+              >(${{ connectorPrice }} per connector)</text
             >
           </div>
         </div>
@@ -73,7 +73,7 @@
             <text class="font-bold">{{
               formatToDollar(numConnectors * 2.5)
             }}</text>
-            <text class="text-yellow">(2.50 per connector)</text>
+            <text class="text-yellow">($2.50 per connector)</text>
           </div>
         </div>
         <div class="col-span-1" v-if="isMobile() && deliveryOption">
