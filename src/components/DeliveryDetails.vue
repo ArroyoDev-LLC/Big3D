@@ -32,10 +32,7 @@
       <text>forgot password?</text>
     </div>
   </div>
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 gap-5 overflow-scroll h-80 pt-1 mx-2"
-    v-else
-  >
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 h-80 pt-1 mx-2" v-else>
     <div class="col-span-1">
       <div class="flex flex-col sm:flex-row mb-2">
         <div class="mb-2 sm:mb-0 sm:mr-2">
