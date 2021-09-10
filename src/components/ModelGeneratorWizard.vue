@@ -111,6 +111,7 @@
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
         <Delivery
+          :connectorType="connectorType.type"
           :num-connectors="connectorInfo.connectors"
           :num-edges="connectorInfo.edges"
           class="w-full h-full m-3"
@@ -151,6 +152,7 @@ import ConnectorView from "@/components/ConnectorView.vue";
 import DimensionsView from "@/components/DimensionsView.vue";
 import Delivery, { DeliveryOptions } from "@/components/Delivery.vue";
 import DeliveryPaymentView from "@/components/DeliveryPaymentView.vue";
+import { useStore } from "vuex";
 
 enum WizardSteps {
   UPLOAD,
@@ -179,6 +181,8 @@ export default defineComponent({
   },
   props: {},
   setup() {
+    const store = useStore();
+
     const steps = reactive<StepT[]>([
       {
         name: WizardSteps.UPLOAD,
@@ -280,12 +284,25 @@ export default defineComponent({
       connectors: 20,
       edges: 0,
     });
-    const connectorType = reactive({
+    let connectorType = reactive({
       type: "",
     });
 
-    const handleConnectorInput = (selection: string) =>
-      (connectorType.type = selection);
+    const handleConnectorInput = (selection: string) => {
+      const [type, dimension] = selection.split(":");
+      store.commit("changeConnector", { type, dimension });
+      console.log(selection.split(":"));
+      console.log(store.state.connector);
+
+      if (store.state.connector.dimension === "3/4” (19.05 mm)") {
+        store.commit("changeConnectorPrice", 1.0);
+      } else if (store.state.connector.dimension === "1/2” (12.7 mm)") {
+        store.commit("changeConnectorPrice", 0.5);
+      } else if (store.state.connector.dimension === "1/4” (6.35 mm)") {
+        store.commit("changeConnectorPrice", 0.25);
+      } else console.log("delivery loaded but no value set");
+    };
+
     return {
       connectorType,
       WizardSteps,

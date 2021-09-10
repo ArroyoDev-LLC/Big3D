@@ -42,9 +42,11 @@
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{
-              formatToDollar(numConnectors * 0.52)
+              formatToDollar(numConnectors * connectorPrice)
             }}</text>
-            <text class="text-yellow">(.52 per connector)</text>
+            <text class="text-yellow"
+              >({{ connectorPrice }} per connector)</text
+            >
           </div>
         </div>
         <div
@@ -146,10 +148,11 @@
   </Dialog>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
 import RadioButton from "primevue/radiobutton";
 import Dialog from "primevue/dialog";
 import NextStepButton from "@/components/NextStepButton.vue";
+import { useStore } from "vuex";
 
 export enum DeliveryOptions {
   DIY = "DIY Route",
@@ -160,7 +163,9 @@ export default defineComponent({
   name: "Delivery",
   components: { RadioButton, Dialog, NextStepButton },
   props: {
-
+    connectorType: {
+      type: String,
+    },
     numConnectors: {
       type: Number,
       default: 0,
@@ -171,6 +176,10 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const store = useStore();
+    const connectorPrice = computed(() => {
+      return store.state.connectorPrice;
+    });
     const deliveryOption = ref();
     const formatToDollar = (dollarAmount: number) => {
       return dollarAmount.toLocaleString("en-US", {
@@ -189,6 +198,7 @@ export default defineComponent({
     };
     const display = ref(false);
     return {
+      connectorPrice,
       deliveryOption,
       formatToDollar,
       isMobile,
