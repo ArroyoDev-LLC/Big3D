@@ -90,7 +90,7 @@
           :title="currentStep.title"
           :selected-longest-dimension="longestDimension"
         />
-        <div class="flex justify-end p-4">
+        <div class="flex justify-end md:p-4">
           <NextStepButton
             v-if="nextStep && modelFile"
             :class="disabledClasses"
@@ -114,7 +114,7 @@
           :title="currentStep.title"
           @radioChange="handleConnectorInput"
         />
-        <div class="flex justify-end p-4">
+        <div class="flex justify-end mt-20 md:p-4">
           <NextStepButton
             v-if="nextStep && modelFile"
             :class="disabledClasses"

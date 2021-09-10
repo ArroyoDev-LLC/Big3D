@@ -23,7 +23,7 @@
       />
 
       <NextStepButton
-        class="mb-2 sm:mb-0 sm:ml-2"
+        class="mb-2 mt-2 md:mt-0 sm:mb-0 sm:ml-2"
         label="Skip to checkout"
         @click="skipToCheckout"
       />
@@ -32,7 +32,19 @@
       <text>forgot password?</text>
     </div>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 h-80 pt-1 mx-2" v-else>
+  <div
+    class="
+      grid grid-cols-1
+      sm:grid-cols-2
+      gap-5
+      overflow-scroll
+      md:overflow-hidden
+      h-80
+      pt-1
+      mx-2
+    "
+    v-else
+  >
     <div class="col-span-1">
       <div class="flex flex-col sm:flex-row mb-2">
         <div class="mb-2 sm:mb-0 sm:mr-2">
