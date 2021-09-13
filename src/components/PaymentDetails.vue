@@ -67,30 +67,50 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-
     const lineItems = ref([]);
-    if (store.state.connector.dimension == "3/4” (19.05 mm)") {
+
+    if (store.state.deliveryOption === "KIT") {
+      if (store.state.connector.dimension == "3/4” (19.05 mm)") {
+        lineItems.value = [
+          {
+            price: "price_1JZFpULEeW8HHB6IbLxWuk67",
+            quantity: props.connectorInfo.connectors,
+          },
+          {
+            price: "price_1JZFv0LEeW8HHB6Ij1g5Nul8",
+            quantity: props.connectorInfo.connectors,
+          },
+        ];
+      } else if (store.state.connector.dimension == "1/2” (12.7 mm)") {
+        lineItems.value = [
+          {
+            price: "price_1JZFnsLEeW8HHB6I0jDVJiZX",
+            quantity: props.connectorInfo.connectors,
+          },
+          {
+            price: "price_1JZFv0LEeW8HHB6Ij1g5Nul8",
+            quantity: props.connectorInfo.connectors,
+          },
+        ];
+      } else if (store.state.connector.dimension == "1/4” (6.35 mm)") {
+        lineItems.value = [
+          {
+            price: "prod_KCCtLjhsgvLQTr",
+            quantity: props.connectorInfo.connectors,
+          },
+          {
+            price: "price_1JZFv0LEeW8HHB6Ij1g5Nul8",
+            quantity: props.connectorInfo.connectors,
+          },
+        ];
+      } else null;
+    } else
       lineItems.value = [
         {
-          price: "price_1JXWQOLEeW8HHB6IuWJB3xLs",
+          price: "price_1JZFv0LEeW8HHB6Ij1g5Nul8",
           quantity: props.connectorInfo.connectors,
         },
       ];
-    } else if (store.state.connector.dimension == "1/2” (12.7 mm)") {
-      lineItems.value = [
-        {
-          price: "price_1JXoTBLEeW8HHB6IsLewxkc3",
-          quantity: props.connectorInfo.connectors,
-        },
-      ];
-    } else if (store.state.connector.dimension == "1/4” (6.35 mm)") {
-      lineItems.value = [
-        {
-          price: "price_1JXWQOLEeW8HHB6IuWJB3xLs",
-          quantity: props.connectorInfo.connectors,
-        },
-      ];
-    } else null
 
     const taxes = ref(0);
     const fee = ref(0);

@@ -165,14 +165,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  provide,
-  reactive,
-  ref,
-  watchEffect,
-} from "vue";
+import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import ModelUploader from "@/components/ModelUploader.vue";
 import NextStepButton from "@/components/NextStepButton.vue";
 import ConnectorView from "@/components/ConnectorView.vue";
@@ -322,11 +315,11 @@ export default defineComponent({
       console.log(store.state.connector);
 
       if (store.state.connector.dimension === "3/4” (19.05 mm)") {
-        store.commit("changeConnectorPrice", 1.0);
+        store.commit("changeConnectorPrice", 2);
       } else if (store.state.connector.dimension === "1/2” (12.7 mm)") {
-        store.commit("changeConnectorPrice", 0.5);
+        store.commit("changeConnectorPrice", 1.5);
       } else if (store.state.connector.dimension === "1/4” (6.35 mm)") {
-        store.commit("changeConnectorPrice", 0.25);
+        store.commit("changeConnectorPrice", 1);
       } else null;
     };
 

@@ -42,11 +42,9 @@
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{
-              formatToDollar(numConnectors * connectorPrice)
+              formatToDollar(numConnectors * 0.5)
             }}</text>
-            <text class="text-yellow"
-              >(${{ connectorPrice }} per connector)</text
-            >
+            <text class="text-yellow">(${{ 0.5 }} per connector)</text>
           </div>
         </div>
         <div
@@ -71,9 +69,11 @@
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{
-              formatToDollar(numConnectors * 2.5)
+              formatToDollar(
+                numConnectors * connectorPrice + numConnectors * 0.5
+              )
             }}</text>
-            <text class="text-yellow">($2.50 per connector)</text>
+            <text class="text-yellow">(${{ connectorPrice + 0.5 }})</text>
           </div>
         </div>
         <div class="col-span-1" v-if="isMobile() && deliveryOption">
@@ -93,7 +93,7 @@
             class="list-disc text-white px-6"
           >
             <li>zip file of pre supported .stl files</li>
-            <li>full cutsheet listing stick lenghts to cut</li>
+            <li>full cutsheet listing stick lengths to cut</li>
             <li>simple instruction guide for assembly</li>
           </ul>
           <ul
@@ -194,6 +194,8 @@ export default defineComponent({
       display.value = false;
       if (deliveryOption.value) {
         emit("toCheckout", deliveryOption.value);
+        store.commit("changeDeliveryOption", deliveryOption.value);
+        console.log(deliveryOption.value);
       }
     };
     const display = ref(false);

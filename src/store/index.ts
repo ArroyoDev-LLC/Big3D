@@ -4,6 +4,7 @@ export default createStore({
   state: {
     connector: { type: "", dimension: "" },
     connectorPrice: 0,
+    deliveryOption: "",
   },
   mutations: {
     changeConnector(state, updatedConnector) {
@@ -13,6 +14,9 @@ export default createStore({
 
     changeConnectorPrice(state, updatedPrice) {
       state.connectorPrice = updatedPrice;
+    },
+    changeDeliveryOption(state, updatedDeliveryOption) {
+      state.deliveryOption = updatedDeliveryOption;
     },
   },
   actions: {},
