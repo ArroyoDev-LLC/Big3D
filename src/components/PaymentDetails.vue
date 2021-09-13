@@ -90,7 +90,7 @@ export default defineComponent({
           quantity: props.connectorInfo.connectors,
         },
       ];
-    } else console.log("please select an item");
+    } else null
 
     const taxes = ref(0);
     const fee = ref(0);

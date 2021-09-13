@@ -327,7 +327,7 @@ export default defineComponent({
         store.commit("changeConnectorPrice", 0.5);
       } else if (store.state.connector.dimension === "1/4” (6.35 mm)") {
         store.commit("changeConnectorPrice", 0.25);
-      } else console.log("delivery loaded but no value set");
+      } else null;
     };
 
     return {
