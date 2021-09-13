@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2">
+  <div class="md:flex md:justify-evenly grid grid-cols-1 sm:grid-cols-2">
     <div class="left-container ml-3 sm:ml-8 col-span-1">
       <text class="text-base pb-3">PROJECTS</text>
 
@@ -28,8 +28,8 @@
 
       <text class="font-black text-big3dBlack"
         >Here are a few examples of some really fun <br />
-        projects built with us:</text
-      >
+        projects built with us:
+      </text>
     </div>
     <div class="flex col-span-1">
       <div class="flex flex-evenly pt-20 flex-col">
@@ -47,6 +47,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
 export default defineComponent({
   name: "Story",
   setup() {

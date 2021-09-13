@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col sm:flex-row justify-evenly">
+  <div class="flex flex-col sm:flex-row justify-between">
     <div class="intro-left-container px-4 sm:p-0">
-      <text class="font-bold text-4xl text-big3dBlack"> Stop wondering. </text>
+      <text class="font-bold text-4xl text-big3dBlack"> Stop wondering.</text>
 
-      <text class="font-bold text-4xl pb-2 text-big3dBlack"> Think big </text>
+      <text class="font-bold text-4xl pb-2 text-big3dBlack"> Think big</text>
 
       <text>
         Time for big toys! Generate full-size 3D model any form <br />
@@ -32,7 +32,8 @@ export default defineComponent({
 .intro-header {
   @apply font-black text-6xl text-yellow;
 }
+
 .intro-left-container {
-  @apply flex flex-col text-left justify-center;
+  @apply flex flex-col text-left justify-center ml-64;
 }
 </style>

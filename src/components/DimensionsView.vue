@@ -29,7 +29,7 @@
         <input
           id="dynamic-longest-dimension-input"
           v-model="dynamicLongestDimension"
-          class="w-full text-black p-4"
+          class="w-full text-white p-4 bg-big3dBlack border-b-2"
           name="dynamic-longest-dimension-input"
           type="number"
           placeholder="in mm"
@@ -256,4 +256,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>

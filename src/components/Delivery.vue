@@ -48,7 +48,7 @@
           </div>
         </div>
         <div
-          :class="deliveryOption ===  DeliveryOptions.DIY ? 'opacity-40' : ''"
+          :class="deliveryOption === DeliveryOptions.DIY ? 'opacity-40' : ''"
           class="
             row-span-1
             border-b border-dashed border-opacity-30
@@ -83,9 +83,9 @@
           </div>
         </div>
       </div>
-      <div v-if="!isMobile()" class="col-span-1 bg-gray-800 relative">
+      <div v-if="!isMobile()" class="col-span-1 bg-gray-1000 p-10 h-full">
         <text>WHAT'S INCLUDED</text>
-        <div class="pb-16 max-h-60 overflow-auto">
+        <div class="pb-16 pt-4 max-h-60 overflow-hidden">
           <ul
             v-show="deliveryOption === DeliveryOptions.DIY"
             class="list-disc text-white px-6"
@@ -96,7 +96,7 @@
           </ul>
           <ul
             v-show="deliveryOption === DeliveryOptions.KIT"
-            class="list-disc text-white px-6"
+            class="list-disc text-white px-6 overflow-h"
           >
             <li>full set of 3D puzzle pieces</li>
             <li>full set of pre-cut and labeled stick to join them together</li>
@@ -107,8 +107,8 @@
             <li>shipping cost included</li>
           </ul>
         </div>
-        <div class="absolute bottom-2 w-full">
-          <NextStepButton @click="toCheckout" class="w-full" />
+        <div class="bottom-2 w-full justify-center flex">
+          <NextStepButton @click="toCheckout" class="w-1/2" />
         </div>
       </div>
     </span>
@@ -122,7 +122,7 @@
     <div class="pt-4">
       <ul v-if="deliveryOption === DeliveryOptions.DIY" class="list-disc px-6">
         <li>zip file of pre supported .stl files</li>
-        <li>full cutsheet listing stick lenghts to cut</li>
+        <li>full cutsheet listing stick lengths to cut</li>
         <li>simple instruction guide for assembly</li>
       </ul>
       <ul

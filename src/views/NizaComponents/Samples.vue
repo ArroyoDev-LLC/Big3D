@@ -1,5 +1,5 @@
 <template>
-  <div name="parent container" class="mb-5">
+  <div name="parent container" class="mb-5 p-10">
     <div name="text-container-top" class="text-left flex flex-col ml-10">
       <text>PRICING</text>
       <text class="text-2xl text-left font-bold">What does it cost?</text>
@@ -10,7 +10,7 @@
       class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2"
     >
       <!--      diy container start-->
-      <div name="DIY" class="bg-big3dBlack p-4 text-left relative col-span-1">
+      <div name="DIY" class="bg-big3dBlack p-4 m-2 text-left relative col-span-1">
         <div name="top">
           <div class="flex justify-between pb-2">
             <text class="font-black text-white text-2xl">DIY route</text>
@@ -86,12 +86,12 @@
       </div>
       <!--diy container end-->
       <!--      build container start-->
-      <div name="Build" class="bg-big3dBlack p-4 text-left relative col-span-1">
+      <div name="Build" class="bg-big3dBlack p-4 m-2 text-left relative col-span-1">
         <div name="topB">
           <div class="flex justify-between pb-2">
             <text class="font-black text-white text-2xl"
-              >Finished frame route</text
-            >
+              >Finished frame route
+            </text>
             <text class="text-white font-bold">$1000.00-$3000.00</text>
           </div>
 
