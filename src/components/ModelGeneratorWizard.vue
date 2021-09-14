@@ -7,8 +7,8 @@
   </div>
   <div class="text-left ml-10 text-lg pb-1">
     <text>
-      Creating a GIANT Low poly 3D model frame has never been so easy. It all starts here with uploading a Low Poly 3D model. <br>
-      (Hint, the smaller the number of vertices, the better.)
+      Ordering has never been so easy. Upload your model image and <br />
+      follow the order steps.
     </text>
   </div>
   <div class="wizard">
@@ -20,14 +20,14 @@
         v-show="currentStep.name === WizardSteps.UPLOAD"
         class="p-4 md:p-8 flex flex-col items-center h-full w-full"
       >
-        <div class="text-lg md:text-3xl text-left w-full">
+        <div class="text-lg md:text-3xl text-left w-full pb-4">
           {{ currentStep.title }}
         </div>
         <div class="grid grid-cols-6 m-6 z-10">
           <div class="col-span-4 text-left text-yellow text-xl md:text-3xl">
             What will the longest dimension be for this model?
           </div>
-          <div class="grid grid-cols-6 gap-4 items-center col-span-2">
+          <div class="grid grid-cols-8 gap-6 items-center col-span-2">
             <input
               id="longest-dimension-input"
               v-model="longestDimension"
