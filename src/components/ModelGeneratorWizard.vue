@@ -5,7 +5,7 @@
         <text>Order</text>
       </div>
       <div class="text-4xl font-bold">
-        <text>It's time... lets go BIG!</text>
+        <text>It's time... <Span class="bg-yellow">lets go BIG!</Span></text>
       </div>
       <text
         >Ordering has never been so easy. Upload your model image and follow the

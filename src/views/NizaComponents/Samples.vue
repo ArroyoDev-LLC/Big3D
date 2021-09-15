@@ -2,7 +2,7 @@
   <div name="parent container" class="mb-5 p-10">
     <div name="text-container-top" class="text-left flex flex-col ml-10">
       <text>PRICING</text>
-      <text class="text-2xl text-left font-bold">What does it cost?</text>
+      <text class="text-2xl text-left font-bold">What does it <Span class="bg-yellow">cost?</Span></text>
     </div>
     <!--    route container start-->
     <div

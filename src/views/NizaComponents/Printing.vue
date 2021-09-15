@@ -3,7 +3,9 @@
     <div class="flex flex-col lg:justify-center col-span-1">
       <text class="text-base">OUR COLLABORATORS</text>
       <br />
-      <text class="text-2xl font-black text-black">Big printing partners</text>
+      <text class="text-2xl font-black text-black"
+        >Big printing <Span class="bg-yellow">partners</Span></text
+      >
 
       <div class="p-2">
         <text
