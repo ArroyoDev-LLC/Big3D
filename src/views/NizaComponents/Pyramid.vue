@@ -9,17 +9,18 @@
 
       <p>
         Want to try to print a sample first? Try
-        <a href="#print" class="text-blue-600">this model</a> on your <br />
+        <a
+          href="https://app.zenhub.com/files/333636351/a756bcf2-d187-4a82-b62d-a760eab590d4/download"
+          class="text-blue-600"
+        >
+          this model
+        </a>
+        on your <br />
         own first then come back and upload your big idea.
       </p>
     </div>
     <div>
       <img src="pyramid.png" class="max-w-sm sm:max-w-2xl" />
-      <a
-        class="text-blue-600 underline"
-        href="https://app.zenhub.com/files/333636351/a756bcf2-d187-4a82-b62d-a760eab590d4/download"
-        >https://app.zenhub.com/files/333636351/a756bcf2-d187-4a82-b62d-a760eab590d4/download</a
-      >
     </div>
   </div>
 </template>
