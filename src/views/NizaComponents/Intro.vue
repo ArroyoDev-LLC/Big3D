@@ -34,6 +34,6 @@ export default defineComponent({
 }
 
 .intro-left-container {
-  @apply flex flex-col text-left justify-center ml-64;
+  @apply flex flex-col text-left justify-center xl:ml-64;
 }
 </style>

@@ -3,7 +3,9 @@
     <div class="col-span-1 text-left flex justify-center items-center">
       <div class="px-4 sm:px-0 sm:w-1/2">
         <div class="text-lg">Gallery</div>
-        <div class="text-4xl font-bold">Our fans featured big prints</div>
+        <div class="text-4xl font-bold">
+          Our fans featured <span class="bg-yellow">big prints</span>
+        </div>
         <div>
           We love the things that are being created out there and want to share
           it with you. Here are some examples of cool stuff being created with
@@ -35,7 +37,6 @@ export default defineComponent({
         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png",
         "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg",
         "https://assets.fireside.fm/file/fireside-images/podcasts/images/b/bc7f1faf-8aad-4135-bb12-83a8af679756/cover.jpg",
-
       ],
     ]);
     return {
