@@ -21,13 +21,28 @@
         :showIcon="false"
         @click="createAccount"
       />
+
+      <NextStepButton
+        class="mb-2 mt-2 md:mt-0 sm:mb-0 sm:ml-2"
+        label="Skip to checkout"
+        @click="skipToCheckout"
+      />
     </div>
     <div class="text-yellow cursor-pointer text-left" @click="forgot">
       <text>forgot password?</text>
     </div>
   </div>
   <div
-    class="grid grid-cols-1 sm:grid-cols-2 gap-5 overflow-scroll h-80 pt-1 mx-2"
+    class="
+      grid grid-cols-1
+      sm:grid-cols-2
+      gap-5
+      overflow-scroll
+      md:overflow-hidden
+      h-80
+      pt-1
+      mx-2
+    "
     v-else
   >
     <div class="col-span-1">
@@ -135,9 +150,16 @@ export default defineComponent({
     const forgot = () => {
       emit("forgot");
     };
+    const skipToCheckout = () => {
+      hasAuth.value = true;
+
+      emit("skip");
+    };
+
     return {
       showShipping,
       hasAuth,
+      skipToCheckout,
       login,
       createAccount,
       forgot,

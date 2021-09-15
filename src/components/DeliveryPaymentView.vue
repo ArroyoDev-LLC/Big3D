@@ -20,12 +20,17 @@
       @login="hasAuth = true"
       @createAccount="hasAuth = true"
       @forgot="page = 'forgotPassword'"
+      @skip="hasAuth = true"
     />
     <ForgotPassword
       v-if="page === 'forgotPassword'"
       @submit="page = 'delivery'"
     />
-    <PaymentDetails v-if="page === 'payment'" />
+    <PaymentDetails
+      :connectorType="connectorType"
+      :connectorInfo="connectorInfo"
+      v-if="page === 'payment'"
+    />
     <div
       class="absolute -bottom-16 sm:-bottom-5 right-2"
       v-if="page === 'delivery' && hasAuth"
@@ -50,6 +55,13 @@ export default defineComponent({
     PaymentDetails,
   },
   props: {
+    connectorType: {
+      type: String,
+      default: "",
+    },
+    connectorInfo: {
+      type: Object,
+    },
     isAuthed: {
       type: Boolean,
       default: false,
@@ -59,12 +71,13 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const page = ref("delivery");
     const hasAuth = ref(props.isAuthed);
     const goToPayment = () => {
       page.value = "payment";
     };
+
     return {
       page,
       goToPayment,

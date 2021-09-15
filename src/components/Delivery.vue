@@ -42,9 +42,9 @@
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{
-              formatToDollar(numConnectors * 0.52)
+              formatToDollar(numConnectors * 0.5)
             }}</text>
-            <text class="text-yellow">(.52 per connector)</text>
+            <text class="text-yellow">(${{ 0.5 }} per connector)</text>
           </div>
         </div>
         <div
@@ -69,9 +69,11 @@
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{
-              formatToDollar(numConnectors * 2.5)
+              formatToDollar(
+                numConnectors * connectorPrice + numConnectors * 0.5
+              )
             }}</text>
-            <text class="text-yellow">(2.50 per connector)</text>
+            <text class="text-yellow">(${{ connectorPrice + 0.5 }})</text>
           </div>
         </div>
         <div class="col-span-1" v-if="isMobile() && deliveryOption">
@@ -91,7 +93,7 @@
             class="list-disc text-white px-6"
           >
             <li>zip file of pre supported .stl files</li>
-            <li>full cutsheet listing stick lenghts to cut</li>
+            <li>full cutsheet listing stick lengths to cut</li>
             <li>simple instruction guide for assembly</li>
           </ul>
           <ul
@@ -146,10 +148,11 @@
   </Dialog>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
 import RadioButton from "primevue/radiobutton";
 import Dialog from "primevue/dialog";
 import NextStepButton from "@/components/NextStepButton.vue";
+import { useStore } from "vuex";
 
 export enum DeliveryOptions {
   DIY = "DIY Route",
@@ -160,6 +163,9 @@ export default defineComponent({
   name: "Delivery",
   components: { RadioButton, Dialog, NextStepButton },
   props: {
+    connectorType: {
+      type: String,
+    },
     numConnectors: {
       type: Number,
       default: 0,
@@ -170,6 +176,10 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const store = useStore();
+    const connectorPrice = computed(() => {
+      return store.state.connectorPrice;
+    });
     const deliveryOption = ref();
     const formatToDollar = (dollarAmount: number) => {
       return dollarAmount.toLocaleString("en-US", {
@@ -184,10 +194,13 @@ export default defineComponent({
       display.value = false;
       if (deliveryOption.value) {
         emit("toCheckout", deliveryOption.value);
+        store.commit("changeDeliveryOption", deliveryOption.value);
+        console.log(deliveryOption.value);
       }
     };
     const display = ref(false);
     return {
+      connectorPrice,
       deliveryOption,
       formatToDollar,
       isMobile,

@@ -90,6 +90,16 @@
           :title="currentStep.title"
           :selected-longest-dimension="longestDimension"
         />
+        <div class="flex justify-end md:p-4">
+          <NextStepButton
+            v-if="nextStep && modelFile"
+            :class="disabledClasses"
+            :disabled="isLoading"
+            :label="nextStep.label"
+            class="self-end absolute"
+            @click="setStep(activeStep + 1)"
+          />
+        </div>
       </div>
 
       <!-- ---------------------------------- -->
@@ -104,20 +114,40 @@
           :title="currentStep.title"
           @radioChange="handleConnectorInput"
         />
+        <div class="flex justify-end mt-20 md:p-4">
+          <NextStepButton
+            v-if="nextStep && modelFile"
+            :class="disabledClasses"
+            :disabled="isLoading"
+            :label="nextStep.label"
+            class="self-end absolute"
+            @click="setStep(activeStep + 1)"
+          />
+        </div>
       </div>
 
       <!-- ---------------------------------- -->
       <!------------ Delivery Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.DELIVERY">
-        <Delivery class="w-full h-full m-3" @toCheckout="toCheckout" />
+        <Delivery
+          :connectorType="connectorType.type"
+          :num-connectors="connectorInfo.connectors"
+          :num-edges="connectorInfo.edges"
+          class="w-full h-full m-3"
+          @toCheckout="toCheckout"
+        />
       </div>
 
       <!-- ---------------------------------- -->
       <!------------ Checkout Step ------------->
       <!-- ---------------------------------- -->
       <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-        <DeliveryPaymentView :isDIY="isDIY" />
+        <DeliveryPaymentView
+          :connectorType="connectorType.type"
+          :connectorInfo="connectorInfo"
+          :isDIY="isDIY"
+        />
       </div>
     </div>
 
@@ -127,7 +157,7 @@
       :key="`${step.name}-${index}`"
       :class="`order-${getStepOrder(step.name)}`"
       class="wizard__step"
-      @click="setStep(step.name)"
+      @click="step.isDisabled ? null : setStep(step.name)"
     >
       <div>{{ step.label }}</div>
     </div>
@@ -142,6 +172,7 @@ import ConnectorView from "@/components/ConnectorView.vue";
 import DimensionsView from "@/components/DimensionsView.vue";
 import Delivery, { DeliveryOptions } from "@/components/Delivery.vue";
 import DeliveryPaymentView from "@/components/DeliveryPaymentView.vue";
+import { useStore } from "vuex";
 
 enum WizardSteps {
   UPLOAD,
@@ -170,6 +201,8 @@ export default defineComponent({
   },
   props: {},
   setup() {
+    const store = useStore();
+
     const steps = reactive<StepT[]>([
       {
         name: WizardSteps.UPLOAD,
@@ -179,25 +212,25 @@ export default defineComponent({
       },
       {
         name: WizardSteps.DIMENSIONS,
-        isDisabled: false,
+        isDisabled: true,
         label: "Enter Dimensions",
         title: "Confirm Dimensions",
       },
       {
         name: WizardSteps.CONNECTORS,
-        isDisabled: false,
+        isDisabled: true,
         label: "Choose Connectors",
         title: "Choose type of Connectors",
       },
       {
         name: WizardSteps.DELIVERY,
-        isDisabled: false,
+        isDisabled: true,
         label: "Choose Delivery",
         title: "Delivery Details",
       },
       {
         name: WizardSteps.CHECKOUT,
-        isDisabled: false,
+        isDisabled: true,
         label: "Checkout",
         title: "Checkout",
       },
@@ -224,7 +257,7 @@ export default defineComponent({
     const enableStep = (step: number) => (steps[step].isDisabled = false);
     const disableStep = (step: number) => (steps[step].isDisabled = true);
 
-    const getStepOrder = (step: WizardSteps) => step + 1;
+    const getStepOrder = (step: WizardSteps) => step;
 
     /**
      * handle state for file upload step
@@ -242,6 +275,7 @@ export default defineComponent({
       isDIY.value = deliveryOption === DeliveryOptions.DIY;
       setStep(activeStep.value + 1);
     };
+
     const isDIY = ref(false);
 
     const longestDimension = ref<number>(0);
@@ -267,13 +301,30 @@ export default defineComponent({
      * handle state for connector step
      */
     const connectorInfo = reactive({
-      connectors: 0,
+      connectors: 20,
       edges: 0,
     });
+    let connectorType = reactive({
+      type: "",
+    });
 
-    const handleConnectorInput = (selection: string) => console.log(selection);
+    const handleConnectorInput = (selection: string) => {
+      const [type, dimension] = selection.split(":");
+      store.commit("changeConnector", { type, dimension });
+      console.log(selection.split(":"));
+      console.log(store.state.connector);
+
+      if (store.state.connector.dimension === "3/4” (19.05 mm)") {
+        store.commit("changeConnectorPrice", 2);
+      } else if (store.state.connector.dimension === "1/2” (12.7 mm)") {
+        store.commit("changeConnectorPrice", 1.5);
+      } else if (store.state.connector.dimension === "1/4” (6.35 mm)") {
+        store.commit("changeConnectorPrice", 1);
+      } else null;
+    };
 
     return {
+      connectorType,
       WizardSteps,
       steps,
       activeStep,

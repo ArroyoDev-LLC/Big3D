@@ -38,7 +38,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "NextStepButton",
+  name: "CheckoutButton",
   components: {  },
 
   props: {

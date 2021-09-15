@@ -7,24 +7,29 @@
 
       <text>
         Time for big toys! Generate full-size 3D model any form <br />
-        you wantand get constructor model of your dreams
+        you want and get constructor model of your dreams
       </text>
       <GoBigButton class="my-5 ml-10 sm:ml-0" />
+
+
     </div>
 
     <div>
       <img src="Frame 1.png" />
     </div>
+
   </div>
 </template>
 
 <script lang="ts">
+
 import { defineComponent } from "vue";
 import GoBigButton from "@/components/GoBigButton.vue";
 
 export default defineComponent({
   name: "Intro",
-  components: { GoBigButton },
+  components: { GoBigButton }
+
 });
 </script>
 

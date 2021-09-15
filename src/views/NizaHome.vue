@@ -46,7 +46,7 @@
           padding: 6px;
           margin-right: auto;
         "
-        >Forgot Password
+      >Forgot Password
       </Button>
       <Button
         @click="loginToSite"
@@ -57,7 +57,7 @@
           padding: 6px;
           font-weight: bold;
         "
-        >Jump In
+      >Jump In
       </Button>
     </template>
   </LoginModal>
@@ -82,6 +82,7 @@ import Gallery from "@/views/Gallery.vue";
 import LoginModal from "../components/LoginModal.vue";
 import Footer from "@/components/Footer.vue";
 import Pyramid from "@/views/NizaComponents/Pyramid.vue";
+
 export default defineComponent({
   name: "NizaHome",
   components: {
@@ -96,7 +97,7 @@ export default defineComponent({
     Pyramid,
     LoginModal,
     InputText,
-    Toast,
+    Toast
   },
   setup() {
     const toast = useToast();
@@ -106,7 +107,7 @@ export default defineComponent({
         severity: "success",
         summary: "Success",
         detail: "Successfully Logged In",
-        life: 3000,
+        life: 3000
       });
     };
     const showError = () => {
@@ -114,7 +115,7 @@ export default defineComponent({
         severity: "error",
         summary: "Error",
         detail: "Error Logging In Username Or Password May Be Incorrect",
-        life: 3000,
+        life: 3000
       });
     };
     const loginToSite = () => {
@@ -131,7 +132,7 @@ export default defineComponent({
     const loginClickedSate = ref(false);
     const userLoginInfo = ref({
       username: "",
-      password: "",
+      password: ""
     });
     const goToSection = (section: string) => {
       console.log(section);
@@ -151,8 +152,8 @@ export default defineComponent({
       loginClickedSate,
       userLoginInfo,
       goToSection,
-      jumpToWizard,
+      jumpToWizard
     };
-  },
+  }
 });
 </script>
