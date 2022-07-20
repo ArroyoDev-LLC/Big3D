@@ -1,70 +1,74 @@
 <template>
-  <NavBar
-    class="mb-1"
-    @tabClick="goToSection"
-    @login="() => (loginClickedSate = !loginClickedSate)"
-    :isUserLoggedIn="userLoggedIn"
-  />
-  <Toast />
-  <Intro id="home" class="mb-5" />
-  <Story id="story" />
-  <Samples id="pricing" />
-  <Printing id="printing" />
-  <div id="generator-wizard">
-    <ModelGeneratorWizard />
-  </div>
-  <LoginModal
-    v-if="!userLoggedIn"
-    v-show="loginClickedSate"
-    @close="() => (loginClickedSate = !loginClickedSate)"
-  >
-    <template #header>Login</template>
-    <template #body>
-      <div class="flex flex-col md:flex-row justify-evenly">
-        <div>
-          <InputText
-            type="text"
-            placeholder="Username"
-            v-model="userLoginInfo.username"
-          />
+  <div class="relative">
+    <div class="sticky top-0 bg-white z-50">
+      <NavBar
+        class="mb-1"
+        @tabClick="goToSection"
+        @login="() => (loginClickedSate = !loginClickedSate)"
+        :isUserLoggedIn="userLoggedIn"
+      />
+    </div>
+    <Toast />
+    <Intro id="home" class="mb-5" />
+    <Story id="story" />
+    <Samples id="pricing" />
+    <Printing id="printing" />
+    <div id="generator-wizard">
+      <ModelGeneratorWizard />
+    </div>
+    <LoginModal
+      v-if="!userLoggedIn"
+      v-show="loginClickedSate"
+      @close="() => (loginClickedSate = !loginClickedSate)"
+    >
+      <template #header>Login</template>
+      <template #body>
+        <div class="flex flex-col md:flex-row justify-evenly">
+          <div>
+            <InputText
+              type="text"
+              placeholder="Username"
+              v-model="userLoginInfo.username"
+            />
+          </div>
+          <div class="m-6 md:m-0">
+            <InputText
+              type="text"
+              placeholder="Password"
+              v-model="userLoginInfo.password"
+            />
+          </div>
         </div>
-        <div class="m-6 md:m-0">
-          <InputText
-            type="text"
-            placeholder="Password"
-            v-model="userLoginInfo.password"
-          />
-        </div>
-      </div>
-    </template>
-    <template #footer>
-      <Button
-        class="shadow-md"
-        style="
+      </template>
+      <template #footer>
+        <Button
+          class="shadow-md"
+          style="
           background: black;
           color: white;
           padding: 6px;
           margin-right: auto;
         "
-      >Forgot Password
-      </Button>
-      <Button
-        @click="loginToSite"
-        class="shadow-md"
-        style="
+        >Forgot Password
+        </Button>
+        <Button
+          @click="loginToSite"
+          class="shadow-md"
+          style="
           background: yellow;
           color: black;
           padding: 6px;
           font-weight: bold;
         "
-      >Jump In
-      </Button>
-    </template>
-  </LoginModal>
-  <Gallery id="gallery" />
-  <Pyramid id="samples" />
-  <Login />
-  <Footer />
+        >Jump In
+        </Button>
+      </template>
+    </LoginModal>
+    <Gallery id="gallery" />
+    <Pyramid id="samples" />
+    <Login />
+    <Footer />
+  </div>
 </template>
 
 <script lang="ts">
@@ -156,4 +160,5 @@ export default defineComponent({
     };
   }
 });
+
 </script>

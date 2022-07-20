@@ -2,13 +2,13 @@
   <span class="flex" :class="sm ? 'bg-big3dBlack justify-between mb-5' : ''">
     <img src="big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
     <div class="flex items-center overflow-x-auto" v-if="!sm">
-      <div @click="tabClick('home')" class="cursor-pointer">Home</div>
-      <div @click="tabClick('story')" class="cursor-pointer">Story+</div>
-      <div @click="tabClick('samples')" class="cursor-pointer">Samples+</div>
-      <div @click="tabClick('gallery')" class="cursor-pointer">Gallery</div>
-      <div @click="tabClick('pricing')" class="cursor-pointer">Pricing</div>
-      <div @click="tabClick('printing')" class="cursor-pointer">Printing</div>
-      <div @click="tabClick('generator-wizard')" class="cursor-pointer">
+      <div @click="tabClick('home')" class="nav-item link link-underline link-underline-black">Home</div>
+      <div @click="tabClick('story')" class="nav-item link link-underline link-underline-black">Story+</div>
+      <div @click="tabClick('samples')" class="nav-item link link-underline link-underline-black">Samples+</div>
+      <div @click="tabClick('gallery')" class="nav-item link link-underline link-underline-black">Gallery</div>
+      <div @click="tabClick('pricing')" class="nav-item link link-underline link-underline-black">Pricing</div>
+      <div @click="tabClick('printing')" class="nav-item link link-underline link-underline-black">Printing</div>
+      <div @click="tabClick('generator-wizard')" class="nav-item link link-underline link-underline-black">
         Purchase
       </div>
       <div
@@ -17,7 +17,7 @@
           tabClick('login');
           $emit('login');
         "
-        class="bg-yellow cursor-pointer"
+        class="login-button"
       >
         Login
       </div>
@@ -134,14 +134,37 @@ export default defineComponent({
     };
   },
 });
+
 </script>
 
 <style scoped>
-.nav-container {
-  @apply flex justify-evenly;
+.login-button {
+  @apply bg-yellow text-xl hover:bg-gold hover:scale-105 hover:shadow-lg transform-gpu transition duration-300 ease-in-out cursor-pointer;
 }
 
 div:nth-child(n) {
-  @apply p-6 w-full h-full;
+  @apply p-2 lg:p-4 w-full h-full;
+}
+
+.nav-item {
+  @apply cursor-pointer text-xl;
+}
+
+.link-underline {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+  background-size: 0 3px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .5s ease-in-out;
+}
+
+.link-underline-black {
+  background-image: linear-gradient(transparent, transparent), linear-gradient(#000, #000)
+}
+
+.link-underline:hover {
+  background-size: 100% 3px;
+  background-position: 0 100%
 }
 </style>
