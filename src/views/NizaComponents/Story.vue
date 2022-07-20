@@ -1,25 +1,25 @@
 <template>
-  <div class="md:flex md:justify-evenly grid grid-cols-1 sm:grid-cols-2">
-    <div class="left-container ml-3 sm:ml-8 col-span-1">
-      <text class="text-base pb-3">PROJECTS</text>
+  <div class="md:flex grid grid-cols-1 sm:grid-cols-2 ml-3 sm:ml-8">
+    <div class="left-container col-span-1">
+      <text class="text-lg pb-3">PROJECTS</text>
 
-      <text class="text-3xl font-bold pb-4 text-big3dBlack">
+      <text class="text-5xl font-bold text-big3dBlack z-0">
         Sometimes you just <br />
         need to
-        <span
-          class="bg-yellow font-bold cursor-pointer px-1"
-          @click="goToWizard"
-          >go big</span
-        >
       </text>
+        <span
+          class="mb-4 text-5xl font-bold w-44 bg-yellow font-bold cursor-pointer px-1 hover:scale-125 transform transition duration-450 ease-in-out z-10"
+          @click="goToWizard"
+          >Go Big</span
+        >
 
-      <text class="text-sm pb-3">
+      <text class="text-base pb-3">
         Our original inspration was a personal quest to build a lifesize <br />
         Tesla Cybertruck for all the fans who may need to wait a little <br />
         longer to pull that beast into their garage.
       </text>
 
-      <text class="pb-3 text-sm">
+      <text class="pb-3 text-base">
         But in the process of building the model, we stumbled <br />
         on an even better idea the ability to build ANYTHING at all kinds of
         <br />
@@ -66,6 +66,9 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .left-container {
-  @apply flex flex-col text-left justify-center;
+  @apply flex flex-col text-left justify-center sm:w-7/12;
+}
+img {
+  @apply hover:scale-105 transform transition duration-500 ease-in-out;
 }
 </style>
