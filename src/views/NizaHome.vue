@@ -9,10 +9,10 @@
       />
     </div>
     <Toast />
-    <Intro id="home" class="mb-5" />
+    <Intro id="home" class="mb-5 -mt-1" />
     <Story id="story" />
     <Samples id="pricing" />
-    <Printing id="printing" />
+<!--    <Printing id="printing" />-->
     <div id="generator-wizard">
       <ModelGeneratorWizard />
     </div>
@@ -23,16 +23,20 @@
     >
       <template #header>Login</template>
       <template #body>
-        <div class="flex flex-col md:flex-row justify-evenly">
-          <div>
+        <div class="flex flex-col">
+          <div class="w-full sm:my-3 text-left">
+            <text>Username</text>
             <InputText
+              class="w-full"
               type="text"
               placeholder="Username"
               v-model="userLoginInfo.username"
             />
           </div>
-          <div class="m-6 md:m-0">
+          <div class="w-full sm:my-3 text-left">
+            <text>Password</text>
             <InputText
+              class="w-full"
               type="text"
               placeholder="Password"
               v-model="userLoginInfo.password"
@@ -42,7 +46,7 @@
       </template>
       <template #footer>
         <Button
-          class="shadow-md"
+          class="shadow-md transform hover:scale-105 hover:shadow-lg transition transition-duration-500"
           style="
           background: black;
           color: white;
@@ -53,9 +57,8 @@
         </Button>
         <Button
           @click="loginToSite"
-          class="shadow-md"
+          class="shadow-md bg-yellow hover:bg-gold transform hover:scale-105 hover:shadow-lg transition transition-duration-500"
           style="
-          background: yellow;
           color: black;
           padding: 6px;
           font-weight: bold;
@@ -80,7 +83,6 @@ import Intro from "./NizaComponents/Intro.vue";
 import NavBar from "./NizaComponents/NavBar.vue";
 import Story from "./NizaComponents/Story.vue";
 import Samples from "./NizaComponents/Samples.vue";
-import Printing from "./NizaComponents/Printing.vue";
 import ModelGeneratorWizard from "@/components/ModelGeneratorWizard.vue";
 import Gallery from "@/views/Gallery.vue";
 import LoginModal from "../components/LoginModal.vue";
@@ -96,7 +98,6 @@ export default defineComponent({
     Intro,
     Story,
     Samples,
-    Printing,
     Gallery,
     Pyramid,
     LoginModal,

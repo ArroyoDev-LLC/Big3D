@@ -4,25 +4,12 @@
       <div class="text-lg">
         <text>Order</text>
       </div>
-      <div class="text-4xl font-bold">
+      <div class="text-5xl font-bold">
         <text>It's time... <Span class="bg-yellow">lets go BIG!</Span></text>
       </div>
-      <text
+      <text class="text-lg"
         >Ordering has never been so easy. Upload your model image and follow the
         order steps.
-      </text>
-    </div>
-
-    <div class="flex flex-col mr-10 text-right">
-      <div class="text-lg">
-        <text>Try</text>
-      </div>
-      <div class="text-4xl font-bold">
-        <text>Wanna practice first?</text>
-      </div>
-      <text
-        >Want to try to print a sample first? Try this model on your own first
-        then come back and upload your big idea.
       </text>
     </div>
   </div>
@@ -364,12 +351,19 @@ input::-webkit-inner-spin-button {
   display: grid;
   grid-template-columns: repeat(18, minmax(0, 1fr));
   @apply md:m-8 m-4
+    shadow-xl
   bg-big3dBlack
   select-none;
 }
 
 .wizard__step {
   @apply col-span-1
+    border-b-2
+    sm:border-b-0
+    border-r-0
+    sm:border-r-2
+    border-black
+  sm:hover:bg-gold
   relative
   inline-block
   bg-yellow

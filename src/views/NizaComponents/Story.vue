@@ -13,25 +13,25 @@
           >Go Big</span
         >
 
-      <text class="text-base pb-3">
-        Our original inspration was a personal quest to build a lifesize <br />
+      <text class="text-lg pb-3">
+        Our original inspiration was a personal quest to build a lifesize <br />
         Tesla Cybertruck for all the fans who may need to wait a little <br />
         longer to pull that beast into their garage.
       </text>
 
-      <text class="pb-3 text-base">
+      <text class="pb-3 text-lg">
         But in the process of building the model, we stumbled <br />
         on an even better idea the ability to build ANYTHING at all kinds of
         <br />
         scales.
       </text>
 
-      <text class="font-black text-big3dBlack"
+      <text class="font-black text-big3dBlack text-lg"
         >Here are a few examples of some really fun <br />
         projects built with us:
       </text>
     </div>
-    <div class="flex col-span-1">
+    <div class="flex col-span-1 w-full justify-center">
       <div class="flex flex-evenly pt-20 flex-col">
         <img src="Group 51.png" />
         <img src="Group 1607.png" />
@@ -66,7 +66,7 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .left-container {
-  @apply flex flex-col text-left justify-center sm:w-7/12;
+  @apply flex flex-col text-left justify-center w-full;
 }
 img {
   @apply hover:scale-105 transform transition duration-500 ease-in-out;

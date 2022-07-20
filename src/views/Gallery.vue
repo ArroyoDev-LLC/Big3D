@@ -1,12 +1,12 @@
 <template>
   <div class="grid grid-cols-1 gap-4 sm:gap-0 sm:grid-cols-2">
     <div class="col-span-1 text-left flex justify-center items-center">
-      <div class="px-4 sm:px-0 sm:w-1/2">
+      <div class="ml-8">
         <div class="text-lg">Gallery</div>
-        <div class="text-4xl font-bold">
+        <div class="text-5xl font-bold">
           Our fans featured <span class="bg-yellow">big prints</span>
         </div>
-        <div>
+        <div class="text-lg">
           We love the things that are being created out there and want to share
           it with you. Here are some examples of cool stuff being created with
           big3D

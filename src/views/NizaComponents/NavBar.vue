@@ -7,7 +7,6 @@
       <div @click="tabClick('samples')" class="nav-item link link-underline link-underline-black">Samples+</div>
       <div @click="tabClick('gallery')" class="nav-item link link-underline link-underline-black">Gallery</div>
       <div @click="tabClick('pricing')" class="nav-item link link-underline link-underline-black">Pricing</div>
-      <div @click="tabClick('printing')" class="nav-item link link-underline link-underline-black">Printing</div>
       <div @click="tabClick('generator-wizard')" class="nav-item link link-underline link-underline-black">
         Purchase
       </div>
@@ -96,12 +95,6 @@ export default defineComponent({
         },
       },
       {
-        label: "Printing",
-        command: () => {
-          tabClick("printing");
-        },
-      },
-      {
         label: "Purchase",
         command: () => {
           tabClick("generator-wizard");
@@ -111,6 +104,7 @@ export default defineComponent({
         label: "Login",
         command: () => {
           tabClick("login");
+          emit("login");
         },
       },
       {

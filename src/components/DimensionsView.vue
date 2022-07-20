@@ -67,9 +67,15 @@
     <button
       @click="isAdvancedFormActive = !isAdvancedFormActive"
       class="underline cursor-pointer"
+      v-if="isAdvancedFormActive === false"
     >
       Advanced
     </button>
+    <button
+      @click="isAdvancedFormActive = !isAdvancedFormActive"
+      class="underline cursor-pointer"
+      v-else
+    >Show Less</button>
   </div>
 </template>
 

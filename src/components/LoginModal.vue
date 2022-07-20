@@ -69,6 +69,6 @@ export default defineComponent({
 }
 
 .modal__body {
-  @apply p-4 flex-grow overflow-y-auto;
+  @apply p-3 flex-grow overflow-y-auto;
 }
 </style>

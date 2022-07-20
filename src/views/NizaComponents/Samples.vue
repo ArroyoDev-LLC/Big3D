@@ -50,7 +50,7 @@
             class="flex flex-col text-left overflow-hidden drawer"
             :class="diy1text ? 'h-40' : 'h-1'"
           >
-            <ul class="list-disc text-white pl-4">
+            <ul class="list-disc text-white ml-5">
               <li>¢50 per .STL joint generated</li>
             </ul>
           </div>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="drawer overflow-hidden" :class="diy2text ? 'h-48' : 'h-1'">
-              <ul class="list-disc text-white pl-4">
+              <ul class="list-disc text-white ml-5">
                 <li>zip file of pre supported .stl files</li>
                 <li>full cutsheet listing stick lenghts to cut</li>
                 <li>simple instruction guide for assembly</li>
@@ -130,7 +130,7 @@
             class="flex flex-col text-left overflow-hidden drawer"
             :class="build1text ? 'h-40' : 'h-2'"
           >
-            <ul v-if="build1text" class="list-disc text-white pl-4">
+            <ul v-if="build1text" class="list-disc text-white ml-5">
               <li>¢50 per .STL joint generated</li>
               <li>¢20 to ¢70 per. ft of stick material</li>
               <li>$2.20 to $4.00 each joint</li>
