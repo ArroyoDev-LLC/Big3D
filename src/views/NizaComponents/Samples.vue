@@ -4,191 +4,107 @@
       <text>PRICING</text>
       <text class="text-5xl text-left font-bold text-black">What does it <Span class="bg-yellow">cost?</Span></text>
     </div>
-    <!--    route container start-->
     <div
       name="routes-container "
       class="sm:p-2 grid grid-cols-1 sm:grid-cols-2 gap-2"
     >
-      <!--      diy container start-->
       <div class="col-span-1">
-        <div name="DIY" class="bg-big3dBlack p-4 m-2 text-left relative">
-          <div name="top">
+        <DetailsCard
+          class="m-2"
+          :title="diyData.title"
+          :img="diyData.img"
+          :details="diyData.details">
+          <template #title>
             <div class="flex justify-between pb-2">
-              <text class="font-black text-white text-2xl">DIY route</text>
-              <text class="text-white font-bold">$500.00-$1500.00</text>
+              <text class="font-black text-white text-2xl">{{ diyData.title }}</text>
+              <text class="text-white font-bold">{{ diyData.cost }}</text>
             </div>
-
-            <img src="Group 58.png" class="w-full" />
-            <div class="max-w-xl py-3">
+          </template>
+          <template #details>
+            <div class="py-3">
               <text class="font-bold text-white"
-              >Choose this option if you have your own 3D printer and ready to
-                print and build your own models by yourself.
+              >{{ diyData.details }}
               </text>
             </div>
             <hr />
-
-            <div
-              class="
-              flex
-              justify-between
-              cursor-pointer
-              border-dotted border-b border-opacity-40
-              py-1
-            "
-              @click="() => (diy1text = !diy1text)"
-            >
-              <text class="text-white text-lg font-bold">What's in plan?</text>
-
-              <button class="text-yellow text-xl font-bold">
-                {{ diy1text ? "x" : "+" }}
-              </button>
-            </div>
-          </div>
-
-          <div
-            name="pricing details"
-            class="flex flex-col text-left overflow-hidden drawer"
-            :class="diy1text ? 'h-40' : 'h-1'"
-          >
-            <ul class="list-disc text-white ml-5">
-              <li>¢50 per .STL joint generated</li>
-            </ul>
-          </div>
-          <hr />
-          <div name="included" class="flex flex-col text-left">
-            <div
-              class="
-              flex
-              justify-between
-              cursor-pointer
-              border-dotted border-b border-opacity-40
-              py-1
-            "
-              @click="() => (diy2text = !diy2text)"
-            >
-              <text class="text-white text-lg font-bold">What's included?</text>
-              <button class="text-yellow text-xl font-bold">
-                {{ diy2text ? "x" : "+" }}
-              </button>
-            </div>
-
-            <div class="drawer overflow-hidden" :class="diy2text ? 'h-48' : 'h-1'">
-              <ul class="list-disc text-white ml-5">
-                <li>zip file of pre supported .stl files</li>
-                <li>full cutsheet listing stick lenghts to cut</li>
-                <li>simple instruction guide for assembly</li>
-              </ul>
-            </div>
-          </div>
-
-          <div name="bottom">
+            <Drawer title="What's in plan?" :defaultState="true">
+              <template #content>
+                <ul v-for="(item, index) in diyData.plan" :key="index" class="text-white ml-5 list-disc">
+                  <li>{{ item }}</li>
+                </ul>
+              </template>
+            </Drawer>
+            <hr />
+            <Drawer title="What's included?" :defaultState="true">
+              <template #content>
+                <ul v-for="(item, index) in diyData.included" :key="index" class="text-white ml-5 list-disc">
+                  <li>{{ item }}</li>
+                </ul>
+              </template>
+            </Drawer>
+          </template>
+          <template #footer>
             <div class="flex items-center justify-center">
               <GoBigButton />
             </div>
-          </div>
-        </div>
+          </template>
+        </DetailsCard>
       </div>
-      <!--diy container end-->
-      <!--      build container start-->
       <div class="col-span-1">
-        <div name="Build" class="bg-big3dBlack p-4 m-2 text-left relative">
-          <div name="topB">
+        <DetailsCard
+          class="m-2"
+          :title="buildData.title"
+          :img="buildData.img"
+          :details="buildData.details">
+          <template #title>
             <div class="flex justify-between pb-2">
-              <text class="font-black text-white text-2xl"
-              >Finished frame route
-              </text>
-              <text class="text-white font-bold">$1000.00-$3000.00</text>
+              <text class="font-black text-white text-2xl">{{ buildData.title }}</text>
+              <text class="text-white font-bold">{{ buildData.cost }}</text>
             </div>
-
-            <img src="Group 59.png" class="w-full" />
-            <div class="max-w-xl py-3">
-              <text class="font-bold text-white">
-                Choose this option if you want to receive a complete
-                ready-to-assemble kit from us.
+          </template>
+          <template #details>
+            <div class="py-3">
+              <text class="font-bold text-white"
+              >{{ buildData.details }}
               </text>
             </div>
             <hr />
-            <div
-              class="
-              flex
-              justify-between
-              cursor-pointer
-              border-dotted border-b border-opacity-40
-              py-1
-            "
-              @click="() => (build1text = !build1text)"
-            >
-              <text class="text-white text-lg font-bold">What's in plan?</text>
-              <button class="text-yellow text-xl font-bold">
-                {{ build1text ? "x" : "+" }}
-              </button>
-            </div>
-          </div>
-
-          <div
-            name="pricing details b"
-            class="flex flex-col text-left overflow-hidden drawer"
-            :class="build1text ? 'h-40' : 'h-2'"
-          >
-            <ul v-if="build1text" class="list-disc text-white ml-5">
-              <li>¢50 per .STL joint generated</li>
-              <li>¢20 to ¢70 per. ft of stick material</li>
-              <li>$2.20 to $4.00 each joint</li>
-            </ul>
-          </div>
-          <hr />
-          <div
-            name="includedb"
-            class="flex flex-col text-left justify-between"
-          >
-            <div
-              class="
-              flex
-              justify-between
-              cursor-pointer
-              border-dotted border-b border-opacity-40
-              py-1
-            "
-              @click="() => (build2text = !build2text)"
-            >
-              <text class="text-white text-lg font-bold">What's included?</text>
-              <button class="text-yellow text-xl font-bold">
-                {{ build2text ? "x" : "+" }}
-              </button>
-            </div>
-            <div class="overflow-hidden drawer" :class="build2text ? 'h-64 sm:h-48' : 'h-1'">
-              <ul class="list-disc text-white pl-5">
-                <li>full set of 3D puzzle pieces</li>
-                <li>full set of pre-cut and labeled stick to join them together</li>
-                <li>custom instruction sheet</li>
-                <li>zip file of pre supported .stl files</li>
-                <li>full cutsheet listing stick lengths to cut</li>
-                <li>simple instruction guide for assembly</li>
-                <li>shipping cost ofc;)</li>
-              </ul>
-            </div>
-          </div>
-
-          <div name="bottom">
+            <Drawer title="What's in plan?" :defaultState="true">
+              <template #content>
+                <ul v-for="(item, index) in buildData.plan" :key="index" class="text-white ml-5 list-disc">
+                  <li>{{ item }}</li>
+                </ul>
+              </template>
+            </Drawer>
+            <hr />
+            <Drawer title="What's included?" :defaultState="true">
+              <template #content>
+                <ul v-for="(item, index) in buildData.included" :key="index" class="text-white ml-5 list-disc">
+                  <li>{{ item }}</li>
+                </ul>
+              </template>
+            </Drawer>
+          </template>
+          <template #footer>
             <div class="flex items-center justify-center">
               <GoBigButton />
             </div>
-          </div>
-        </div>
+          </template>
+        </DetailsCard>
       </div>
-      <!--      build container end-->
     </div>
   </div>
-  <!--    routes container end-->
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import GoBigButton from "@/components/GoBigButton.vue";
+import DetailsCard from "@/components/DetailsCard.vue";
+import Drawer from "@/components/Drawer.vue";
 
 export default defineComponent({
   name: "Samples",
-  components: { GoBigButton },
+  components: { GoBigButton, DetailsCard, Drawer },
   data() {
     return {
       build1text: true,
@@ -198,7 +114,26 @@ export default defineComponent({
     };
   },
   setup() {
-    return {};
+    const diyData = {
+      title: "DIY Route",
+      img: "Group 58.png",
+      cost: "$500.00-$1500.00",
+      details: "Choose this option if you have your own 3D printer and ready to print and build your own models by yourself.",
+      plan: ["¢50 per .STL joint generated"],
+      included: ["zip file of pre supported .stl files", "full cutsheet listing stick lengths to cut", "simple instruction guide for assembly"]
+    };
+    const buildData = {
+      title: "Finished Frame Route",
+      img: "Group 59.png",
+      cost: "$1000.00-$3000.00",
+      details: "Choose this option if you want to receive a complete ready-to-assemble kit from us.",
+      plan: ["¢50 per .STL joint generated", "¢20 to ¢70 per. ft of stick material", "$2.20 to $4.00 each joint"],
+      included: ["full set of 3D puzzle pieces", "full set of pre-cut and labeled stick to join them together", "custom instruction sheet", "zip file of pre supported .stl files", "full cutsheet listing stick lengths to cut", "simple instruction guide for assembly", "shipping cost ofc;)"]
+    };
+    return {
+      diyData,
+      buildData
+    };
   }
 });
 </script>
