@@ -3,16 +3,18 @@ import { defineComponent, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Toast from 'primevue/toast'
 import InputText from 'primevue/inputtext'
-import Samples from '@/views/old/Samples.vue'
 import Intro from '@/views/old/Intro.vue'
 import NavBar from '@/views/old/NavBar.vue'
 import Story from '@/views/old/Story.vue'
+import Samples from '@/views/old/Samples.vue'
+import ModelGeneratorWizard from '@/components/ModelGeneratorWizard.vue'
 import Gallery from '@/views/Gallery.vue'
 import Pyramid from '@/views/old/Pyramid.vue'
 
 export default defineComponent({
-  name: 'OldHome',
+  name: 'Home',
   components: {
+    ModelGeneratorWizard,
     NavBar,
     Intro,
     Story,

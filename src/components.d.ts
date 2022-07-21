@@ -7,10 +7,29 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AdvancedDimensionsForm: typeof import('./components/AdvancedDimensionsForm.vue')['default']
+    CheckoutButton: typeof import('./components/CheckoutButton.vue')['default']
+    ComponentStartupTemplate: typeof import('./components/ComponentStartupTemplate.vue')['default']
+    ConnectorView: typeof import('./components/ConnectorView.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
+    Delivery: typeof import('./components/Delivery.vue')['default']
+    DeliveryDetails: typeof import('./components/DeliveryDetails.vue')['default']
+    DeliveryPaymentView: typeof import('./components/DeliveryPaymentView.vue')['default']
+    DimensionsView: typeof import('./components/DimensionsView.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    ForgotPassword: typeof import('./components/ForgotPassword.vue')['default']
+    Gallery: typeof import('./components/Gallery.vue')['default']
+    GoBigButton: typeof import('./components/GoBigButton.vue')['default']
+    LoginModal: typeof import('./components/LoginModal.vue')['default']
+    Modal: typeof import('./components/Modal.vue')['default']
+    ModelGeneratorWizard: typeof import('./components/ModelGeneratorWizard.vue')['default']
+    ModelUploader: typeof import('./components/ModelUploader.vue')['default']
+    NextStepButton: typeof import('./components/NextStepButton.vue')['default']
+    OrderCard: typeof import('./components/OrderCard.vue')['default']
+    PaymentDetails: typeof import('./components/PaymentDetails.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Spinner: typeof import('./components/Spinner.vue')['default']
   }
 }

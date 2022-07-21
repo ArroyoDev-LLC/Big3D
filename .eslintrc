@@ -1,3 +1,33 @@
 {
-  "extends": "@antfu"
+  "extends": ["@antfu", "prettier"],
+  "rules": {
+    "no-console": ["off"]
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "extends": ["@antfu", "prettier"],
+      "rules": {
+        "vue/script-setup-uses-vars": "error",
+        "vue/no-reserved-component-names": "off",
+        // needed for script setup
+        // see: https://github.com/vuejs/eslint-plugin-vue/issues/1577
+        "import/first": "off",
+        // see: https://github.com/prettier/eslint-config-prettier#vuehtml-self-closing
+        "vue/html-self-closing": [
+          "error",
+          {
+            "html": {
+              "void": "any"
+            }
+          }
+        ],
+        "no-console": ["off"],
+        "promise/param-names": "off",
+        "no-unused-expressions": "warn",
+        "@typescript-eslint/consistent-type-imports": "off",
+        "@typescript-eslint/no-use-before-define": "warn"
+      }
+    }
+  ]
 }
