@@ -44,7 +44,7 @@ export default defineComponent({
               <text class="text-white font-bold">$500.00-$1500.00</text>
             </div>
 
-            <img src="/Group 58.png" class="w-full" />
+            <img src="/group-58.png" class="w-full" />
             <div class="max-w-xl py-3">
               <text class="font-bold text-white"
                 >Choose this option if you have your own 3D printer and ready to
@@ -117,7 +117,7 @@ export default defineComponent({
               <text class="text-white font-bold">$1000.00-$3000.00</text>
             </div>
 
-            <img src="/Group 59.png" class="w-full" />
+            <img src="/group-59.png" class="w-full" />
             <div class="max-w-xl py-3">
               <text class="font-bold text-white">
                 Choose this option if you want to receive a complete

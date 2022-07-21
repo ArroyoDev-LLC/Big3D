@@ -5,7 +5,7 @@ import GoBigButton from '@/components/GoBigButton.vue'
 <template>
   <div class="flex flex-col sm:flex-row justify-between relative">
     <div class="w-full sm:h-160 sm:overflow-hidden image-container z-0">
-      <img src="/Frame 1.png" class="w-full" />
+      <img src="/frame-1.png" class="w-full" />
     </div>
     <div
       class="intro-left-container px-4 sm:p-0 sm:absolute sm:bottom-0 z-40 mt-5 sm:mt-0"

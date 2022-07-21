@@ -52,13 +52,13 @@ export default defineComponent({
     </div>
     <div class="flex col-span-1 w-full justify-center">
       <div class="flex flex-evenly pt-20 flex-col">
-        <img src="/Group 51.png" />
-        <img src="/Group 1607.png" />
+        <img src="/group-51.png" />
+        <img src="/group-1607.png" />
       </div>
 
       <div class="flex flex-evenly pt-20 flex-col">
-        <img src="/Group 15.png" />
-        <img src="/Group 52.png" />
+        <img src="/group-15.png" />
+        <img src="/group-52.png" />
       </div>
     </div>
   </div>
