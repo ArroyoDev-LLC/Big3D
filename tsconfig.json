@@ -22,8 +22,10 @@
       "vite-plugin-vue-layouts/client"
     ],
     "paths": {
-      "~/*": ["src/*"]
-    }
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
+    },
+    "jsxFactory": "VueJSX"
   },
   "exclude": ["dist", "node_modules", "cypress"]
 }

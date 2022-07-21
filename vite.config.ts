@@ -20,18 +20,19 @@ export default defineConfig({
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
-    },
+      '@/': `${path.resolve(__dirname, 'src')}/`
+    }
   },
 
   plugins: [
     Vue({
       include: [/\.vue$/, /\.md$/],
-      reactivityTransform: true,
+      reactivityTransform: true
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
-      extensions: ['vue', 'md'],
+      extensions: ['vue', 'md']
     }),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -45,14 +46,11 @@ export default defineConfig({
         'vue-i18n',
         'vue/macros',
         '@vueuse/head',
-        '@vueuse/core',
+        '@vueuse/core'
       ],
       dts: 'src/auto-imports.d.ts',
-      dirs: [
-        'src/composables',
-        'src/store',
-      ],
-      vueTemplate: true,
+      dirs: ['src/composables', 'src/store'],
+      vueTemplate: true
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -61,7 +59,7 @@ export default defineConfig({
       extensions: ['vue', 'md'],
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: 'src/components.d.ts',
+      dts: 'src/components.d.ts'
     }),
 
     // https://github.com/antfu/unocss
@@ -80,10 +78,10 @@ export default defineConfig({
           matcher: (link: string) => /^https?:\/\//.test(link),
           attrs: {
             target: '_blank',
-            rel: 'noopener',
-          },
+            rel: 'noopener'
+          }
         })
-      },
+      }
     }),
 
     // https://github.com/antfu/vite-plugin-pwa
@@ -98,33 +96,33 @@ export default defineConfig({
           {
             src: '/pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/png'
+          },
+          {
+            src: '/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           },
           {
             src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-        ],
-      },
+            purpose: 'any maskable'
+          }
+        ]
+      }
     }),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
-      include: [path.resolve(__dirname, 'locales/**')],
+      include: [path.resolve(__dirname, 'locales/**')]
     }),
 
     // https://github.com/antfu/vite-plugin-inspect
     // Visit http://localhost:3333/__inspect/ to see the inspector
-    Inspect(),
+    Inspect()
   ],
 
   // https://github.com/vitest-dev/vitest
@@ -132,19 +130,21 @@ export default defineConfig({
     include: ['test/**/*.test.ts'],
     environment: 'jsdom',
     deps: {
-      inline: ['@vue', '@vueuse', 'vue-demi'],
-    },
+      inline: ['@vue', '@vueuse', 'vue-demi']
+    }
   },
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
-    onFinished() { generateSitemap() },
+    onFinished() {
+      generateSitemap()
+    }
   },
 
   ssr: {
     // TODO: workaround until they support native ESM
-    noExternal: ['workbox-window', /vue-i18n/],
-  },
+    noExternal: ['workbox-window', /vue-i18n/]
+  }
 })
