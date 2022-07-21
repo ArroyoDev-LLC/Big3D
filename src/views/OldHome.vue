@@ -108,7 +108,7 @@ export default defineComponent({
       <template #body>
         <div class="flex flex-col">
           <div class="w-full sm:my-3 text-left">
-            <text>Username</text>
+            <text>Username test</text>
             <InputText
               v-model="userLoginInfo.username"
               class="w-full"
