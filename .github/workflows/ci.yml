@@ -39,8 +39,8 @@ jobs:
       - name: Install
         run: pnpm install
 
-      - name: Typecheck
-        run: pnpm run typecheck
+      # - name: Typecheck
+      #   run: pnpm run typecheck
 
   test:
     runs-on: ${{ matrix.os }}
