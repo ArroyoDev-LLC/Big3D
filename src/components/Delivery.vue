@@ -13,11 +13,11 @@
         >
           <text class="col-span-auto" v-if="!isMobile()">Choose Delivery</text>
           <text class="col-span-auto text-sm sm:text-lg"
-            ><span class="text-yellow">{{ numConnectors }}</span>
+          ><span class="text-yellow">{{ numConnectors }}</span>
             Connectors</text
           >
           <text class="col-span-auto text-sm sm:text-lg"
-            ><span class="text-yellow">{{ numEdges }}</span> Edges</text
+          ><span class="text-yellow">{{ numEdges }}</span> Edges</text
           >
         </div>
         <div
@@ -25,26 +25,29 @@
           class="
             row-span-1
             border-b border-dashed border-opacity-30
-            grid grid-cols-3
           "
         >
-          <div class="col-span-1">
+          <div class="flex items-center">
             <RadioButton
               name="deliveryOption"
               v-model="deliveryOption"
               value="DIY Route"
               id="diy"
             />
-            <label for="diy" class="ml-1 font-bold">DIY Route</label>
-          </div>
-          <div class="col-span-1 flex items-center justify-center">
+            <label for="diy" class="ml-1 font-bold flex items-center w-full justify-between">
+              <div>
+              DIY Route
+              </div>
+          <div class="flex">
             <img src="connectors.png" class="w-10 sm:w-20" />
           </div>
-          <div class="col-span-1 text-right flex flex-col">
+          <div class="text-right flex flex-col">
             <text class="font-bold">{{
-              formatToDollar(numConnectors * 0.5)
-            }}</text>
-            <text class="text-yellow">(${{ 0.5 }} per connector)</text>
+                formatToDollar(numConnectors * 0.5)
+              }}</text>
+            <text class="text-yellow">($.50 per connector)</text>
+          </div>
+            </label>
           </div>
         </div>
         <div
@@ -52,28 +55,29 @@
           class="
             row-span-1
             border-b border-dashed border-opacity-30
-            grid grid-cols-3
           "
         >
-          <div class="col-span-1">
+          <div class="flex items-center">
             <RadioButton
               name="deliveryOption"
               v-model="deliveryOption"
               value="Finished KIT"
               id="kit"
             />
-            <label for="kit" class="ml-1 font-bold">Finished KIT</label>
-          </div>
-          <div class="col-span-1 flex items-center justify-center">
-            <img src="parcel.png" class="w-10 sm:w-20" />
-          </div>
-          <div class="col-span-1 text-right flex flex-col">
-            <text class="font-bold">{{
-              formatToDollar(
-                numConnectors * connectorPrice + numConnectors * 0.5
-              )
-            }}</text>
-            <text class="text-yellow">(${{ connectorPrice + 0.5 }})</text>
+            <label for="kit" class="ml-1 font-bold flex items-center w-full justify-between">
+              <div>Finished KIT</div>
+              <div class="flex items-center justify-center">
+                <img src="parcel.png" class="w-10 sm:w-20" />
+              </div>
+            <div class="text-right flex flex-col" style="width:160px;">
+              <text class="font-bold">{{
+                  formatToDollar(
+                    numConnectors * connectorPrice + numConnectors * 0.5
+                  )
+              }}</text>
+              <text class="text-yellow">({{ formatToDollar(connectorPrice + 0.5) }})</text>
+            </div>
+            </label>
           </div>
         </div>
         <div class="col-span-1" v-if="isMobile() && deliveryOption">
@@ -210,4 +214,5 @@ export default defineComponent({
     };
   },
 });
+
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-big3dBlack text-white text-left p-4">
+  <div class="bg-big3dBlack text-white text-left p-4 shadow-xl">
     <slot name="header">
       <slot name="title">
         <div>{{ title }}</div>

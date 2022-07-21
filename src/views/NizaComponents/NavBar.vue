@@ -1,23 +1,18 @@
 <template>
-  <span class="flex" :class="sm ? 'bg-big3dBlack justify-between mb-5' : ''">
+  <span class="flex" :class="sm ? 'bg-big3dBlack justify-between' : ''">
     <img src="big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
     <div class="flex items-center overflow-x-auto" v-if="!sm">
-      <div @click="tabClick('home')" class="nav-item link link-underline link-underline-black">Home</div>
-      <div @click="tabClick('story')" class="nav-item link link-underline link-underline-black">Story+</div>
-      <div @click="tabClick('samples')" class="nav-item link link-underline link-underline-black">Samples+</div>
-      <div @click="tabClick('gallery')" class="nav-item link link-underline link-underline-black">Gallery</div>
-      <div @click="tabClick('pricing')" class="nav-item link link-underline link-underline-black">Pricing</div>
-      <div @click="tabClick('generator-wizard')" class="nav-item link link-underline link-underline-black">
-        Purchase
-      </div>
-      <div
-        v-if="!isUserLoggedIn"
-        @click="
+      <div v-for="(item, index) in menuItems" :key="index">
+        <div class="nav-item link-underline link-underline-black" v-if="item.label !== 'Login'" @click="item.command()">{{ item.label }}</div>
+        <div v-else>
+          <div
+            v-if="!isUserLoggedIn"
+            @click="
           tabClick('login');
           $emit('login');
         "
-        class="login-button"
-      >
+            class="login-button"
+          >
         Login
       </div>
       <div
@@ -28,6 +23,17 @@
       >
         Triston
       </div>
+        </div>
+      </div>
+      <!--      <div @click="tabClick('home')" class="nav-item link link-underline link-underline-black">Home</div>-->
+      <!--      <div @click="tabClick('story')" class="nav-item link link-underline link-underline-black">Story+</div>-->
+      <!--      <div @click="tabClick('samples')" class="nav-item link link-underline link-underline-black">Samples+</div>-->
+      <!--      <div @click="tabClick('gallery')" class="nav-item link link-underline link-underline-black">Gallery</div>-->
+      <!--      <div @click="tabClick('pricing')" class="nav-item link link-underline link-underline-black">Pricing</div>-->
+      <!--      <div @click="tabClick('generator-wizard')" class="nav-item link link-underline link-underline-black">-->
+      <!--        Purchase-->
+      <!--      </div>-->
+
     </div>
     <span
       v-if="sm"
@@ -107,12 +113,6 @@ export default defineComponent({
           emit("login");
         },
       },
-      {
-        label: "Account",
-        command: () => {
-          tabClick("account");
-        },
-      },
     ]);
     const menu = ref();
     const toggleMenu = (event: boolean) => {
@@ -129,6 +129,8 @@ export default defineComponent({
   },
 });
 
+
+
 </script>
 
 <style scoped>
@@ -137,7 +139,7 @@ export default defineComponent({
 }
 
 div:nth-child(n) {
-  @apply p-2 lg:p-4 w-full h-full;
+  @apply p-2 w-full h-full;
 }
 
 .nav-item {
