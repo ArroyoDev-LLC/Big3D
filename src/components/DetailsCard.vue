@@ -20,7 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="bg-big3dBlack text-white text-left p-4">
+  <div class="bg-black text-white text-left p-4">
     <slot name="header">
       <slot name="title">
         <div>{{ title }}</div>

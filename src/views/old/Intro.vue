@@ -13,13 +13,13 @@ import GoBigButton from '@/components/GoBigButton.vue'
       <text
         class="font-bold text-4xl sm:text-8xl text-big3dBlack sm:text-white"
       >
-        Stop wondering.</text
+        Stop Wondering.</text
       >
 
       <text
         class="font-bold text-4xl sm:text-7xl pb-2 text-big3dBlack sm:text-white"
       >
-        Think big</text
+        Think Big</text
       >
 
       <text class="sm:text-white sm:text-2xl">

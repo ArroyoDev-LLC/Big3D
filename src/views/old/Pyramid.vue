@@ -20,11 +20,11 @@ export default defineComponent({
     <div class="text-left sm:text-right sm:mr-8 sm:order-2 sm:w-1/2">
       <p class="text-xl pb-3">TRY</p>
 
-      <div class="font-bold text-5xl text-big3dBlack pb-7">
-        Wanna <span class="bg-yellow">practice first?</span>
+      <div class="font-bold text-5xl dark:text-white pb-7">
+        Wanna <span class="bg-yellow dark:text-gray-600">practice first?</span>
       </div>
 
-      <p class="text-lg">
+      <p class="text-lg dark:text-white">
         Want to try to print a sample first? Try
         <a
           href="https://app.zenhub.com/files/333636351/a756bcf2-d187-4a82-b62d-a760eab590d4/download"

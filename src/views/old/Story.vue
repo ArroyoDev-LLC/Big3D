@@ -27,7 +27,7 @@ export default defineComponent({
         need to
       </text>
       <span
-        class="mb-4 text-5xl font-bold w-44 bg-yellow font-bold cursor-pointer px-1 hover:scale-125 transform transition duration-450 ease-in-out z-10"
+        class="mb-4 text-5xl font-bold w-36 bg-yellow font-bold cursor-pointer px-1 hover:scale-125 transform transition duration-450 ease-in-out z-10"
         @click="goToWizard"
         >Go Big</span
       >
