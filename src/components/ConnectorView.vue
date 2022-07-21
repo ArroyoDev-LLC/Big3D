@@ -82,7 +82,7 @@ export default defineComponent({
       </div>
     </div>
 
-    <img class="wood-option-img" src="images/square-wood-dowel.png" />
+    <img class="wood-option-img" src="/images/square-wood-dowel.png" />
     <div class="pvc-option opacity-30">
       <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
       <div
@@ -101,7 +101,7 @@ export default defineComponent({
         </label>
       </div>
     </div>
-    <img class="pvc-option-img" src="images/round-pvc-tubing.png" />
+    <img class="pvc-option-img" src="/images/round-pvc-tubing.png" />
   </div>
 </template>
 
