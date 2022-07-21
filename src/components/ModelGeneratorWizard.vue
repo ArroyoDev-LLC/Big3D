@@ -188,13 +188,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="flex justify-between">
+  <div class="flex justify-between dark:text-white">
     <div class="flex flex-col text-left ml-10">
       <div class="text-lg">
         <text>Order</text>
       </div>
       <div class="text-5xl font-bold">
-        <text>It's time... <Span class="bg-yellow">lets go BIG!</Span></text>
+        <text
+          >It's time...
+          <Span class="bg-yellow dark:text-gray-500">lets go BIG!</Span></text
+        >
       </div>
       <text class="text-lg"
         >Ordering has never been so easy. Upload your model image and follow the

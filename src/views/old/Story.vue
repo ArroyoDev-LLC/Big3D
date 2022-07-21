@@ -18,11 +18,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="md:flex grid grid-cols-1 sm:grid-cols-2 ml-3 sm:ml-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 ml-3 sm:ml-8">
     <div class="left-container col-span-1">
-      <text class="text-lg pb-3">PROJECTS</text>
+      <text class="dark:text-white text-lg pb-3">PROJECTS</text>
 
-      <text class="text-5xl font-bold text-big3dBlack z-0">
+      <text class="text-5xl font-bold text-big3dBlack dark:text-white z-0">
         Sometimes you just <br />
         need to
       </text>
@@ -32,20 +32,20 @@ export default defineComponent({
         >Go Big</span
       >
 
-      <text class="text-lg pb-3">
+      <text class="text-lg pb-3 dark:text-white">
         Our original inspiration was a personal quest to build a lifesize <br />
         Tesla Cybertruck for all the fans who may need to wait a little <br />
         longer to pull that beast into their garage.
       </text>
 
-      <text class="pb-3 text-lg">
+      <text class="pb-3 text-lg dark:text-white">
         But in the process of building the model, we stumbled <br />
         on an even better idea the ability to build ANYTHING at all kinds of
         <br />
         scales.
       </text>
 
-      <text class="font-black text-big3dBlack text-lg"
+      <text class="font-black text-big3dBlack text-lg dark:text-white"
         >Here are a few examples of some really fun <br />
         projects built with us:
       </text>

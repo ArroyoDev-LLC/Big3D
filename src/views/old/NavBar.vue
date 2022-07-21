@@ -89,7 +89,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <span class="flex" :class="sm ? 'bg-big3dBlack justify-between mb-5' : ''">
+  <span class="flex" :class="sm ? 'justify-between mb-5' : ''">
     <img src="/big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
     <div v-if="!sm" class="flex items-center overflow-x-auto">
       <div
@@ -149,12 +149,21 @@ export default defineComponent({
         Triston
       </div>
     </div>
-    <span
-      v-if="sm"
-      class="bg-yellow flex items-center justify-center h-16 w-24"
-      @click="toggleMenu"
-    >
-      <img src="/icons/hamburgerMenu.svg" />
+    <span class="flex">
+      <button
+        class="icon-btn mx-2 !outline-none"
+        title="button.toggle_dark"
+        @click="toggleDark()"
+      >
+        <div i="carbon-sun dark:carbon-moon" />
+      </button>
+      <span
+        v-if="sm"
+        class="bg-yellow flex items-center justify-center h-16 w-24"
+        @click="toggleMenu"
+      >
+        <img src="/icons/hamburgerMenu.svg" />
+      </span>
     </span>
     <Menu ref="menu" :model="menuItems" :popup="true" />
   </span>
