@@ -25,6 +25,7 @@
         "no-console": ["off"],
         "promise/param-names": "off",
         "no-unused-expressions": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/no-use-before-define": "warn"
       }

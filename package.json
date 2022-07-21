@@ -7,7 +7,7 @@
   },
   "scripts": {
     "prepare": "is-ci || husky install",
-    "build": "vite-ssg build",
+    "build": "vite build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint \"**/*.{vue,json,ts?(x)}\"",
     "lint:fix": "nr lint --fix",
@@ -72,8 +72,6 @@
     "vite-plugin-pwa": "^0.12.3",
     "vite-plugin-vue-layouts": "^0.6.0",
     "vite-plugin-vue-markdown": "^0.20.1",
-    "vite-ssg": "^0.20.2",
-    "vite-ssg-sitemap": "^0.3.1",
     "vitest": "^0.18.0",
     "vue-tsc": "^0.38.5"
   },
