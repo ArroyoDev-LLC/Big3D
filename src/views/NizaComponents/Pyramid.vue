@@ -4,7 +4,7 @@
       <p class="text-xl pb-3">TRY</p>
 
       <div class="font-bold text-5xl text-big3dBlack pb-7">
-        Wanna <span class="bg-yellow">practice first?</span>
+        Wanna <span class="bg-yellow">Practice First?</span>
       </div>
 
       <p class="text-lg">

@@ -1,10 +1,6 @@
 <template>
   <slot name="header" :value="toggle">
-    <div class="flex
-              justify-between
-              cursor-pointer
-              border-dotted border-b border-opacity-40
-              py-1"
+    <div class="header"
          @click="toggle = !toggle">
       <slot name="title">
         <div class="text-white text-lg font-bold">
@@ -56,5 +52,8 @@ setup(props) {
 .drawer {
   @apply overflow-hidden;
   transition: all 0.2s;
+}
+.header {
+  @apply flex justify-between cursor-pointer border-dotted border-b border-opacity-40 py-1;
 }
 </style>

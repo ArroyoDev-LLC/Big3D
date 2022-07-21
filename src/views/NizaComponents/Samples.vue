@@ -2,7 +2,7 @@
   <div name="parent container" class="mb-5">
     <div name="text-container-top" class="text-lg text-left flex flex-col ml-3 sm:ml-8">
       <text>PRICING</text>
-      <text class="text-5xl text-left font-bold text-black">What does it <Span class="bg-yellow">cost?</Span></text>
+      <text class="text-5xl text-left font-bold text-black">What Does It <Span class="bg-yellow">Cost?</Span></text>
     </div>
     <div
       name="routes-container "
@@ -105,14 +105,6 @@ import Drawer from "@/components/Drawer.vue";
 export default defineComponent({
   name: "Samples",
   components: { GoBigButton, DetailsCard, Drawer },
-  data() {
-    return {
-      build1text: true,
-      build2text: true,
-      diy1text: true,
-      diy2text: true
-    };
-  },
   setup() {
     const diyData = {
       title: "DIY Route",
@@ -139,7 +131,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.drawer {
-  transition: all 0.2s;
-}
 </style>

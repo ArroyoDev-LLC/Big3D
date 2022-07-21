@@ -4,8 +4,8 @@
       <text class="text-lg pb-3">PROJECTS</text>
 
       <text class="text-5xl font-bold text-big3dBlack z-0">
-        Sometimes you just <br />
-        need to
+        Sometimes You Just <br />
+        Need To
       </text>
         <span
           class="mb-4 text-5xl font-bold w-44 bg-yellow font-bold cursor-pointer px-1 hover:scale-125 transform transition duration-450 ease-in-out z-10"
