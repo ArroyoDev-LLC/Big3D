@@ -92,7 +92,7 @@ export default defineComponent({
             <label for="diy" class="ml-1 font-bold">DIY Route</label>
           </div>
           <div class="col-span-1 flex items-center justify-center">
-            <img src="connectors.png" class="w-10 sm:w-20" />
+            <img src="/connectors.png" class="w-10 sm:w-20" />
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{
@@ -115,7 +115,7 @@ export default defineComponent({
             <label for="kit" class="ml-1 font-bold">Finished KIT</label>
           </div>
           <div class="col-span-1 flex items-center justify-center">
-            <img src="parcel.png" class="w-10 sm:w-20" />
+            <img src="/parcel.png" class="w-10 sm:w-20" />
           </div>
           <div class="col-span-1 text-right flex flex-col">
             <text class="font-bold">{{

@@ -24,7 +24,7 @@ export default {
     </div>
 
     <div class="justify-items-center">
-      <img src="pyramid.png" />
+      <img src="/pyramid.png" />
       <a
         href="https://app.zenhub.com/files/333636351/a756bcf2-d187-4a82-b62d-a760eab590d4/download"
         class="text-blue-600 text-2xl font-bold underline"

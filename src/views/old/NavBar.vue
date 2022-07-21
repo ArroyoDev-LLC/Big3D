@@ -90,7 +90,7 @@ export default defineComponent({
 
 <template>
   <span class="flex" :class="sm ? 'bg-big3dBlack justify-between mb-5' : ''">
-    <img src="big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
+    <img src="/big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
     <div v-if="!sm" class="flex items-center overflow-x-auto">
       <div
         class="nav-item link link-underline link-underline-black"

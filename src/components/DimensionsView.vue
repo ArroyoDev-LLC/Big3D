@@ -21,12 +21,12 @@ export default defineComponent({
     humanScaleSrc: {
       type: String,
       required: false,
-      default: 'images/human-for-scale.png'
+      default: '/images/human-for-scale.png'
     },
     modelScaleSrc: {
       type: String,
       required: false,
-      default: 'images/placeholder-model-for-scale.png'
+      default: '/images/placeholder-model-for-scale.png'
     },
     selectedLongestDimension: {
       type: Number,

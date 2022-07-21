@@ -37,7 +37,7 @@ export default defineComponent({
       </p>
     </div>
     <div class="sm:order-1 sm:w-1/2 flex justify-center ml-8">
-      <img src="pyramid.png" class="max-w-sm sm:max-w-2xl" />
+      <img src="/pyramid.png" class="max-w-sm sm:max-w-2xl" />
     </div>
   </div>
 </template>

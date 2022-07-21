@@ -23,13 +23,13 @@ export default {
 
     <div class="flex justify-evenly pt-20">
       <div class="flex flex-col">
-        <img class="p-3" src="Rectangle 38.png" />
-        <img class="p-3" src="Rectangle 39.png" />
+        <img class="p-3" src="/Rectangle 38.png" />
+        <img class="p-3" src="/Rectangle 39.png" />
       </div>
 
       <div class="flex flex-col">
-        <img class="p-3" src="Rectangle 40.png" />
-        <img class="p-3" src="Rectangle 41.png" />
+        <img class="p-3" src="/Rectangle 40.png" />
+        <img class="p-3" src="/Rectangle 41.png" />
       </div>
     </div>
   </div>

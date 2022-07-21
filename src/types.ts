@@ -1,3 +1,15 @@
-import { type ViteSSGContext } from 'vite-ssg'
+import type { App } from 'vue'
+import type { RouteRecordRaw, Router } from 'vue-router'
 
-export type UserModule = (ctx: ViteSSGContext) => void
+/**
+ * Extracted from vite-ssg
+ */
+export interface AppCtx<HasRouter extends boolean = true> {
+  app: App<Element>
+  router: HasRouter extends true ? Router : undefined
+  routes: HasRouter extends true ? RouteRecordRaw[] : undefined
+  initialState: Record<string, any>
+  isClient: boolean
+}
+
+export type UserModule = (ctx: AppCtx) => void
