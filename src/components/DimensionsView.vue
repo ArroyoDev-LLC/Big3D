@@ -204,7 +204,7 @@ export default defineComponent({
         <input
           id="dynamic-longest-dimension-input"
           v-model="dynamicLongestDimension"
-          class="w-full text-white p-4 bg-big3dBlack border-b-2"
+          class="w-full p-4 bg-big3dBlack border-b-2"
           name="dynamic-longest-dimension-input"
           type="number"
           placeholder="in mm"

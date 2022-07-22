@@ -7,6 +7,7 @@ import ConnectorView from '@/components/ConnectorView.vue'
 import DimensionsView from '@/components/DimensionsView.vue'
 import Delivery, { DeliveryOptions } from '@/components/Delivery.vue'
 import DeliveryPaymentView from '@/components/DeliveryPaymentView.vue'
+import Drawer from '@/components/Drawer.vue'
 
 enum WizardSteps {
   UPLOAD,
@@ -88,7 +89,10 @@ export default defineComponent({
      * helpers for manipulating steps
      */
     const getStep = (step: number) => steps[step]
-    const setStep = (step: number) => (activeStep.value = step)
+    const setStep = (step: number) => {
+      activeStep.value = step
+      console.log(activeStep.value)
+    }
     const enableStep = (step: number) => (steps[step].isDisabled = false)
     const disableStep = (step: number) => (steps[step].isDisabled = true)
 
@@ -205,140 +209,199 @@ export default defineComponent({
       </text>
     </div>
   </div>
-
-  <div class="wizard">
-    <div :class="`order-${activeStep + 1}`" class="wizard__current">
-      <!-- ---------------------------------- -->
-      <!------------ Upload Step --------------->
-      <!-- ---------------------------------- -->
-      <div
-        v-show="currentStep.name === WizardSteps.UPLOAD"
-        class="p-4 md:p-8 grid items-center h-full w-full"
-      >
-        <div class="text-lg md:text-3xl text-left w-full">
-          {{ currentStep.title }}
-        </div>
-        <div class="grid grid-cols-6 m-6 z-10">
-          <div class="col-span-4 text-left text-yellow text-xl md:text-3xl">
-            What will the longest dimension be for this model?
+  <div class="flex sm:flex-row flex-col wizard">
+    <div
+      class="step bg-black"
+      :class="
+        activeStep === 0
+          ? 'sm:h-180 sm:w-full bg-black'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+      "
+    >
+      <div v-if="activeStep === 0">
+        <div
+          v-show="currentStep.name === WizardSteps.UPLOAD"
+          class="p-4 md:p-8 grid items-center h-full w-full"
+        >
+          <div class="text-lg md:text-3xl text-left w-full">
+            {{ currentStep.title }}
           </div>
-          <div class="grid grid-cols-6 gap-4 items-center col-span-2">
-            <input
-              id="longest-dimension-input"
-              v-model="longestDimension"
+          <div class="grid grid-cols-6 m-6 z-10">
+            <div class="col-span-4 text-left text-yellow text-xl md:text-3xl">
+              What will the longest dimension be for this model?
+            </div>
+            <div class="grid grid-cols-6 gap-4 items-center col-span-2">
+              <input
+                id="longest-dimension-input"
+                v-model="longestDimension"
+                :disabled="isLoading"
+                class="col-span-4 p-4 bg-big3dBlack border-b-2"
+                name="longest-dimension-input"
+                step="0.01"
+                type="number"
+                placeholder="in mm"
+                @focus="$event.target.select()"
+              />
+            </div>
+          </div>
+          <ModelUploader
+            :class="
+              disabledClasses && { 'opacity-30': !isLongestDimensionValid }
+            "
+            :disabled="isLoading || !isLongestDimensionValid"
+            :error-message="null"
+            :handle-file-change="handleModelUpload"
+            :is-loading="isLoading"
+            :selected-model-name="isLoading ? modelFile.name : null"
+            accept=".stl,.blend"
+            bg-image-path="images/elephant-model.png"
+            class="w-full md:w-5/6 h-full m-3"
+            label="Drag’n’drop your model here"
+          />
+          <NextStepButton
+            v-if="nextStep && modelFile"
+            :class="disabledClasses"
+            :disabled="isLoading"
+            :label="nextStep.label"
+            class="self-end"
+            @click="setStep(activeStep + 1)"
+          />
+        </div>
+      </div>
+      <div
+        v-else
+        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
+        @click="activeStep = 0"
+      >
+        <span>Upload Model</span>
+      </div>
+    </div>
+    <div
+      class="step"
+      :class="
+        activeStep === 1
+          ? 'sm:h-180 sm:w-full bg-black'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+      "
+    >
+      <div v-if="activeStep === 1">
+        <div
+          v-if="currentStep.name === WizardSteps.DIMENSIONS"
+          class="p-4 md:p-8 h-full w-full"
+        >
+          <DimensionsView
+            :title="currentStep.title"
+            :selected-longest-dimension="longestDimension"
+          />
+          <div class="flex justify-end md:p-4">
+            <NextStepButton
+              v-if="nextStep && modelFile"
+              :class="disabledClasses"
               :disabled="isLoading"
-              class="col-span-4 text-white p-4 bg-big3dBlack border-b-2"
-              name="longest-dimension-input"
-              step="0.01"
-              type="number"
-              placeholder="in mm"
-              @focus="$event.target.select()"
+              :label="nextStep.label"
+              class="self-end absolute"
+              @click="setStep(activeStep + 1)"
             />
           </div>
         </div>
-        <ModelUploader
-          :class="disabledClasses && { 'opacity-30': !isLongestDimensionValid }"
-          :disabled="isLoading || !isLongestDimensionValid"
-          :error-message="null"
-          :handle-file-change="handleModelUpload"
-          :is-loading="isLoading"
-          :selected-model-name="isLoading ? modelFile.name : null"
-          accept=".stl,.blend"
-          bg-image-path="images/elephant-model.png"
-          class="w-full md:w-5/6 h-full m-3"
-          label="Drag’n’drop your model here"
-        />
-        <NextStepButton
-          v-if="nextStep && modelFile"
-          :class="disabledClasses"
-          :disabled="isLoading"
-          :label="nextStep.label"
-          class="self-end"
-          @click="setStep(activeStep + 1)"
-        />
       </div>
-
-      <!-- ---------------------------------- -->
-      <!------------ Dimensions Step ----------->
-      <!-- ---------------------------------- -->
       <div
-        v-if="currentStep.name === WizardSteps.DIMENSIONS"
-        class="p-4 md:p-8 h-full w-full"
+        v-else
+        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
+        @click="activeStep = 1"
       >
-        <DimensionsView
-          :title="currentStep.title"
-          :selected-longest-dimension="longestDimension"
-        />
-        <div class="flex justify-end md:p-4">
-          <NextStepButton
-            v-if="nextStep && modelFile"
-            :class="disabledClasses"
-            :disabled="isLoading"
-            :label="nextStep.label"
-            class="self-end absolute"
-            @click="setStep(activeStep + 1)"
-          />
-        </div>
-      </div>
-
-      <!-- ---------------------------------- -->
-      <!------------ Connectors Step ----------->
-      <!-- ---------------------------------- -->
-      <div
-        v-show="currentStep.name === WizardSteps.CONNECTORS"
-        class="p-4 md:p-8 h-full w-full"
-      >
-        <ConnectorView
-          :connector-info="connectorInfo"
-          :title="currentStep.title"
-          @radioChange="handleConnectorInput"
-        />
-        <div class="flex justify-end mt-20 md:p-4">
-          <NextStepButton
-            v-if="nextStep && modelFile"
-            :class="disabledClasses"
-            :disabled="isLoading"
-            :label="nextStep.label"
-            class="self-end absolute"
-            @click="setStep(activeStep + 1)"
-          />
-        </div>
-      </div>
-
-      <!-- ---------------------------------- -->
-      <!------------ Delivery Step ------------->
-      <!-- ---------------------------------- -->
-      <div v-show="currentStep.name === WizardSteps.DELIVERY">
-        <Delivery
-          :connector-type="connectorType.type"
-          :num-connectors="connectorInfo.connectors"
-          :num-edges="connectorInfo.edges"
-          class="w-full h-full m-3"
-          @toCheckout="toCheckout"
-        />
-      </div>
-
-      <!-- ---------------------------------- -->
-      <!------------ Checkout Step ------------->
-      <!-- ---------------------------------- -->
-      <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-        <DeliveryPaymentView
-          :connector-type="connectorType.type"
-          :connector-info="connectorInfo"
-          :is-d-i-y="isDIY"
-        />
+        <span>Enter Dimension</span>
       </div>
     </div>
-
-    <!-- generate steps selectors -->
     <div
-      v-for="(step, index) in steps"
-      :key="`${step.name}-${index}`"
-      :class="`order-${getStepOrder(step.name)}`"
-      class="wizard__step"
-      @click="step.isDisabled ? null : setStep(step.name)"
+      class="step"
+      :class="
+        activeStep === 2
+          ? 'sm:h-180 sm:w-full bg-black'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+      "
     >
-      <div>{{ step.label }}</div>
+      <div v-if="activeStep === 2">
+        <div
+          v-show="currentStep.name === WizardSteps.CONNECTORS"
+          class="p-4 md:p-8 h-full w-full"
+        >
+          <ConnectorView
+            :connector-info="connectorInfo"
+            :title="currentStep.title"
+            @radioChange="handleConnectorInput"
+          />
+          <div class="flex justify-end mt-20 md:p-4">
+            <NextStepButton
+              v-if="nextStep && modelFile"
+              :class="disabledClasses"
+              :disabled="isLoading"
+              :label="nextStep.label"
+              class="self-end absolute"
+              @click="setStep(activeStep + 1)"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        v-else
+        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
+        @click="activeStep = 2"
+      >
+        <span>Choose Connectors</span>
+      </div>
+    </div>
+    <div
+      class="step"
+      :class="
+        activeStep === 3
+          ? 'sm:h-180 sm:w-full bg-black'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+      "
+    >
+      <div v-if="activeStep === 3">
+        <div v-show="currentStep.name === WizardSteps.DELIVERY">
+          <Delivery
+            :connector-type="connectorType.type"
+            :num-connectors="connectorInfo.connectors"
+            :num-edges="connectorInfo.edges"
+            class="w-full h-full m-3"
+            @toCheckout="toCheckout"
+          />
+        </div>
+      </div>
+      <div
+        v-else
+        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
+        @click="activeStep = 3"
+      >
+        <span>Choose Delivery</span>
+      </div>
+    </div>
+    <div
+      class="step"
+      :class="
+        activeStep === 4
+          ? 'sm:h-180 sm:w-full bg-black'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+      "
+    >
+      <div v-if="activeStep === 4" class="py-16 sm:p-20">
+        <div v-show="currentStep.name === WizardSteps.CHECKOUT">
+          <DeliveryPaymentView
+            :connector-type="connectorType.type"
+            :connector-info="connectorInfo"
+            :is-d-i-y="isDIY"
+          />
+        </div>
+      </div>
+      <div
+        v-else
+        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
+        @click="activeStep = 4"
+      >
+        <span>Checkouts</span>
+      </div>
     </div>
   </div>
 </template>
@@ -350,23 +413,28 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.step {
+  @apply overflow-hidden sm:-mt-9;
+  transition: all 0.2s;
+}
+
 .wizard {
   min-height: 30rem;
   display: grid;
   grid-template-columns: repeat(18, minmax(0, 1fr));
   @apply md:m-8 m-4
-    shadow-xl
+  shadow-xl
   bg-big3dBlack
   select-none;
 }
 
 .wizard__step {
   @apply col-span-1
-    border-b-2
-    sm:border-b-0
-    border-r-0
-    sm:border-r-2
-    border-black
+  border-b-2
+  sm:border-b-0
+  border-r-0
+  sm:border-r-2
+  border-black
   sm:hover:bg-gold
   relative
   inline-block

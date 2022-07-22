@@ -16,7 +16,7 @@ useHead({
       rel: 'icon',
       type: 'image/svg+xml',
       href: computed(() =>
-        preferredDark.value ? '/big3dlogo.png' : '/big3dlogo.png'
+        preferredDark.value ? '/big3dFavicon.svg' : '/big3dFavicon.svg'
       )
     }
   ]
