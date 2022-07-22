@@ -96,9 +96,6 @@ export default defineComponent({
     <Story id="story" />
     <Samples id="pricing" />
     <!--    <Printing id="printing" /> -->
-    <div id="generator-wizard">
-      <ModelGeneratorWizard />
-    </div>
     <LoginModal
       v-if="!userLoggedIn"
       v-show="loginClickedSate"
@@ -147,7 +144,12 @@ export default defineComponent({
       </template>
     </LoginModal>
     <Gallery id="gallery" />
-    <Pyramid id="samples" />
+    <div id="samples" class="h-180 flex items-center">
+      <Pyramid />
+    </div>
+    <div id="generator-wizard">
+      <ModelGeneratorWizard />
+    </div>
     <Login />
     <Footer />
   </div>

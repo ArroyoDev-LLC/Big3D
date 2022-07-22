@@ -3,6 +3,7 @@ import { defineComponent } from 'vue'
 import GoBigButton from '@/components/GoBigButton.vue'
 import DetailsCard from '@/components/DetailsCard.vue'
 import Drawer from '@/components/Drawer.vue'
+
 export default defineComponent({
   name: 'Samples',
   components: { GoBigButton, DetailsCard, Drawer },
@@ -61,7 +62,7 @@ export default defineComponent({
   <div name="parent container" class="mb-5">
     <div
       name="text-container-top"
-      class="text-lg text-left flex flex-col ml-3 sm:ml-8 dark:text-white"
+      class="text-lg text-left flex flex-col ml-3 sm:ml-8 mb-4 dark:text-white"
     >
       <text>PRICING</text>
       <text class="text-5xl text-left font-bold text-black dark:text-white"
@@ -71,9 +72,12 @@ export default defineComponent({
     <!--    route container start -->
     <div
       name="routes-container "
-      class="sm:p-2 grid grid-cols-1 sm:grid-cols-2 gap-2"
+      class="sm:p-2 grid grid-cols-1 sm:grid-cols-2 gap-2 mx-2 sm:mx-4"
     >
       <div class="col-span-1">
+        <div class="text-left ml-2">
+          <text class="font-black text-3xl">{{ diyData.title }} </text>
+        </div>
         <DetailsCard
           class="m-2"
           :title="diyData.title"
@@ -82,15 +86,12 @@ export default defineComponent({
         >
           <template #title>
             <div class="flex justify-between pb-2">
-              <text class="font-black text-white text-2xl">{{
-                diyData.title
-              }}</text>
               <text class="text-white font-bold">{{ diyData.cost }}</text>
             </div>
           </template>
           <template #details>
             <div class="py-3">
-              <text class="font-bold text-white">{{ diyData.details }} </text>
+              <text class="font-bold text-white">{{ diyData.details }}</text>
             </div>
             <hr />
             <Drawer title="What's in plan?" :default-state="true">
@@ -125,6 +126,9 @@ export default defineComponent({
         </DetailsCard>
       </div>
       <div class="col-span-1">
+        <div class="text-left ml-2">
+          <text class="font-black text-3xl">{{ buildData.title }} </text>
+        </div>
         <DetailsCard
           class="m-2"
           :title="buildData.title"
@@ -133,15 +137,12 @@ export default defineComponent({
         >
           <template #title>
             <div class="flex justify-between pb-2">
-              <text class="font-black text-white text-2xl">{{
-                buildData.title
-              }}</text>
               <text class="text-white font-bold">{{ buildData.cost }}</text>
             </div>
           </template>
           <template #details>
             <div class="py-3">
-              <text class="font-bold text-white">{{ buildData.details }} </text>
+              <text class="font-bold text-white">{{ buildData.details }}</text>
             </div>
             <hr />
             <Drawer title="What's in plan?" :default-state="true">

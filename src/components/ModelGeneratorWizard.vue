@@ -192,7 +192,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="flex justify-between dark:text-white">
+  <div class="flex justify-between dark:text-white mb-12">
     <div class="flex flex-col text-left ml-10">
       <div class="text-lg">
         <text>Order</text>
