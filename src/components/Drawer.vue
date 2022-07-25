@@ -28,7 +28,7 @@ export default defineComponent({
       @click="toggle = !toggle"
     >
       <slot name="title">
-        <div class="text-white text-lg font-bold">
+        <div class="title">
           {{ title }}
         </div>
       </slot>
@@ -40,7 +40,9 @@ export default defineComponent({
     </div>
   </slot>
   <div class="drawer" :class="toggle ? 'h-64 sm:h-48' : 'h-1'">
-    <slot name="content" />
+    <slot name="content">
+      <div v-if="toggle">Content</div>
+    </slot>
   </div>
 </template>
 
@@ -48,5 +50,8 @@ export default defineComponent({
 .drawer {
   @apply overflow-hidden;
   transition: all 0.2s;
+}
+.title {
+  @apply text-white text-lg font-bold;
 }
 </style>

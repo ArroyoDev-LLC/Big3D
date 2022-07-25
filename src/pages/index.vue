@@ -151,7 +151,6 @@ export default defineComponent({
     <div id="generator-wizard">
       <ModelGeneratorWizard />
     </div>
-    <Login />
     <Footer />
   </div>
 </template>

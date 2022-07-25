@@ -37,7 +37,7 @@ export default defineComponent({
       </div>
     </div>
     <div>
-      <Carousel :circular="true" autoplay-interval="3000" :value="imageList">
+      <Carousel :circular="true" :autoplay-interval="3000" :value="imageList">
         <template #item="{ data }">
           <div class="flex items-center justify-center h-full">
             <img :src="data" />

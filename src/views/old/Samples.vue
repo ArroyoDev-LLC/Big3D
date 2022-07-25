@@ -66,7 +66,7 @@ export default defineComponent({
     >
       <text>PRICING</text>
       <text class="text-5xl text-left font-bold text-black dark:text-white"
-        >What does it <Span class="bg-yellow text-gray-600">cost?</Span></text
+        >What does it <span class="bg-yellow text-gray-600">cost?</span></text
       >
     </div>
     <!--    route container start -->

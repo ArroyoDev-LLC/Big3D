@@ -91,7 +91,6 @@ export default defineComponent({
     const getStep = (step: number) => steps[step]
     const setStep = (step: number) => {
       activeStep.value = step
-      console.log(activeStep.value)
     }
     const enableStep = (step: number) => (steps[step].isDisabled = false)
     const disableStep = (step: number) => (steps[step].isDisabled = true)
@@ -104,7 +103,6 @@ export default defineComponent({
      */
     const modelFile = ref<File | null>(null)
     const handleModelUpload = async (files: FileList) => {
-      console.log(files)
       modelFile.value = files[0]
       isLoading.value = true
       await new Promise((r) => setTimeout(r, 5000))
@@ -150,8 +148,6 @@ export default defineComponent({
     const handleConnectorInput = (selection: string) => {
       const [type, dimension] = selection.split(':')
       connectorStore.changeConnector({ type, dimension })
-      console.log(selection.split(':'))
-      console.log(connector.value)
 
       if (connector.value.dimension === '3/4” (19.05 mm)') {
         connectorStore.changeConnectorPrice(2)
@@ -200,7 +196,7 @@ export default defineComponent({
       <div class="text-5xl font-bold">
         <text
           >It's time...
-          <Span class="bg-yellow dark:text-gray-500">lets go BIG!</Span></text
+          <span class="bg-yellow dark:text-gray-500">lets go BIG!</span></text
         >
       </div>
       <text class="text-lg"
