@@ -248,7 +248,7 @@ export default defineComponent({
     </button>
     <button
       v-else
-      class="underline cursor-pointer"
+      class="underline cursor-pointer col-span-12 mb-2"
       @click="isAdvancedFormActive = !isAdvancedFormActive"
     >
       Show Less

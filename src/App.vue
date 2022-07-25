@@ -32,6 +32,7 @@ html {
   @apply subpixel-antialiased;
   height: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {

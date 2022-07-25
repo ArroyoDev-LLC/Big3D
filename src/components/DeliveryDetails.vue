@@ -55,35 +55,36 @@ export default defineComponent({
 
 <template>
   <div v-if="!hasAuth" class="flex flex-col">
-    <div class="px-2 sm:px-0 sm:w-full mb-2">
+    <div class="px-2 sm:px-0 sm:w-full mb-2 mx-1">
       <InputText
         class="w-full"
         placeholder="Email (for electronic delivery and download access)"
       />
     </div>
-    <div class="px-2 sm:px-0 sm:w-full">
+    <div class="px-2 sm:px-0 sm:w-full mx-1">
       <InputText class="w-full" placeholder="Password" />
     </div>
-    <div class="flex flex-col sm:flex-row m-2 sm:mx-0">
+    <div class="flex flex-col sm:flex-row sm:flex-wrap m-2 sm:mx-0">
       <NextStepButton
         label="Login"
         :show-icon="false"
-        class="mb-2 sm:mb-0 sm:mr-2"
+        class="m-1"
         @click="login"
       />
       <NextStepButton
+        class="m-1"
         label="Create Account"
         :show-icon="false"
         @click="createAccount"
       />
 
       <NextStepButton
-        class="mb-2 mt-2 md:mt-0 sm:mb-0 sm:ml-2"
+        class="m-1"
         label="Skip to checkout"
         @click="skipToCheckout"
       />
     </div>
-    <div class="text-yellow cursor-pointer text-left" @click="forgot">
+    <div class="text-yellow cursor-pointer text-left m-1" @click="forgot">
       <text>forgot password?</text>
     </div>
   </div>
@@ -106,16 +107,16 @@ export default defineComponent({
       <div class="mb-2">
         <InputText placeholder="Address" class="w-full" />
       </div>
-      <div class="grid grid-cols-3 gap-1 mb-2">
+      <div class="grid grid-cols-3 gap-1 my-2">
         <div class="col-span-1">
           <InputText placeholder="Zip" class="w-full" />
         </div>
         <div class="col-span-1">
           <InputText placeholder="Country" class="w-full" />
         </div>
-        <div class="col-span-1 grid grid-cols-2 gap-1">
-          <InputText placeholder="City" class="col-span-1" />
-          <InputText placeholder="State" class="col-span-1" />
+        <div class="col-span-1 flex">
+          <InputText placeholder="City" class="w-1/2 mx-1" />
+          <InputText placeholder="State" class="w-1/2 mx-1" />
         </div>
       </div>
       <div>

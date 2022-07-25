@@ -39,9 +39,11 @@ export default defineComponent({
 
 <style>
 .modal {
-  @apply flex flex-col rounded-md bg-white w-11/12 sm:w-2/3 md:w-1/2 h-1/3 md:h-1/4;
+  @apply flex flex-col rounded-md bg-white w-11/12 sm:w-2/3 md:w-1/2 h-1/3;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   overflow-x: auto;
+  animation: fade-in ease-in;
+  animation-duration: 0.5s;
 }
 
 .modal__backdrop {
@@ -70,5 +72,14 @@ export default defineComponent({
 
 .modal__body {
   @apply p-3 flex-grow overflow-y-auto;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
 }
 </style>

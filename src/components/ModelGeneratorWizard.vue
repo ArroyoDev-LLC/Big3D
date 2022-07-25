@@ -227,15 +227,17 @@ export default defineComponent({
             {{ currentStep.title }}
           </div>
           <div class="grid grid-cols-6 m-6 z-10">
-            <div class="col-span-4 text-left text-yellow text-xl md:text-3xl">
+            <div
+              class="col-span-6 sm:col-span-4 text-left text-yellow text-xl md:text-3xl"
+            >
               What will the longest dimension be for this model?
             </div>
-            <div class="grid grid-cols-6 gap-4 items-center col-span-2">
+            <div class="sm:grid sm:grid-cols-6 gap-4 items-center col-span-2">
               <input
                 id="longest-dimension-input"
                 v-model="longestDimension"
                 :disabled="isLoading"
-                class="col-span-4 p-4 bg-big3dBlack border-b-2"
+                class="sm:col-span-4 p-4 bg-big3dBlack border-b-2"
                 name="longest-dimension-input"
                 step="0.01"
                 type="number"
@@ -263,7 +265,7 @@ export default defineComponent({
             :class="disabledClasses"
             :disabled="isLoading"
             :label="nextStep.label"
-            class="self-end"
+            class="w-full m-3"
             @click="setStep(activeStep + 1)"
           />
         </div>
@@ -299,7 +301,7 @@ export default defineComponent({
               :class="disabledClasses"
               :disabled="isLoading"
               :label="nextStep.label"
-              class="self-end absolute"
+              class="self-end sm:absolute"
               @click="setStep(activeStep + 1)"
             />
           </div>

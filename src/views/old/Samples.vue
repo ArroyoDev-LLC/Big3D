@@ -9,7 +9,7 @@ export default defineComponent({
   components: { GoBigButton, DetailsCard, Drawer },
   setup() {
     const diyData = {
-      title: 'DIY Route',
+      title: 'Do It Yourself',
       img: 'group-58.png',
       cost: '$500.00-$1500.00',
       details:
@@ -22,7 +22,7 @@ export default defineComponent({
       ]
     }
     const buildData = {
-      title: 'Finished Frame Route',
+      title: 'Have Us Do It',
       img: 'group-59.png',
       cost: '$1000.00-$3000.00',
       details:

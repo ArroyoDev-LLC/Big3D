@@ -97,13 +97,14 @@ export default defineComponent({
     <Samples id="pricing" />
     <!--    <Printing id="printing" /> -->
     <LoginModal
-      v-if="!userLoggedIn"
-      v-show="loginClickedSate"
+      v-if="loginClickedSate"
       @close="() => (loginClickedSate = !loginClickedSate)"
     >
       <template #header>Login</template>
       <template #body>
-        <div class="flex flex-col">
+        <div
+          class="flex flex-col items-center h-full justify-center sm:text-2xl"
+        >
           <div class="w-full sm:my-3 text-left">
             <text>Username</text>
             <InputText
