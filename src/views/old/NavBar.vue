@@ -5,6 +5,11 @@ import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const sm = breakpoints.smaller('sm')
 
+interface NavItem {
+  title: string
+  command: Function
+}
+
 export default defineComponent({
   name: 'NavBar',
   components: { Menu },
@@ -14,7 +19,7 @@ export default defineComponent({
       required: true
     },
     navItems: {
-      type: Array<unknown>,
+      type: Array<NavItem>,
       default: []
     }
   },
@@ -97,30 +102,34 @@ export default defineComponent({
     <img src="/big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
     <div v-if="!sm" class="flex items-center overflow-x-auto">
       <div v-for="(item, index) in navItems" :key="index">
-        <div
-          v-if="item.label !== 'Login'"
-          class="nav-item link link-underline link-underline-black"
-          @click="item.command"
-        >
-          {{ item.label }}
-        </div>
-        <div v-else>
-          <div
-            v-if="!isUserLoggedIn"
-            class="login-button"
-            @click="item.command"
-          >
-            {{ item.label }}
-          </div>
-          <div
-            v-else
-            class="rounded-xl shadow-lg flex justify-center items-center"
-            style="border: 1px solid black; height: 5rem"
-            @click="$router.push('account')"
-          >
-            Triston
-          </div>
-        </div>
+        <slot name="nav-item" :item="item">
+          <slot :name="item.label">
+            <div
+              v-if="item.label !== 'Login'"
+              class="nav-item link link-underline link-underline-black"
+              @click="item.command"
+            >
+              {{ item.label }}
+            </div>
+            <div v-else>
+              <div
+                v-if="!isUserLoggedIn"
+                class="login-button"
+                @click="item.command"
+              >
+                {{ item.label }}
+              </div>
+              <div
+                v-else
+                class="rounded-xl shadow-lg flex justify-center items-center"
+                style="border: 1px solid black; height: 5rem"
+                @click="$router.push('account')"
+              >
+                Triston
+              </div>
+            </div>
+          </slot>
+        </slot>
       </div>
     </div>
     <span class="flex">

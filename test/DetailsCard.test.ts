@@ -17,4 +17,8 @@ describe('DetailsCard', () => {
     const wrapper = mount(DetailsCard, { props: { details } })
     expect(wrapper.get('.details').text()).toBe(details)
   })
+  it('doesnt render image when there is no image', () => {
+    const wrapper = mount(DetailsCard, { props: { image: undefined } })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })
