@@ -141,9 +141,6 @@ export default defineComponent({
       connectors: 20,
       edges: 0
     })
-    const connectorType = reactive({
-      type: ''
-    })
 
     const handleConnectorInput = (selection: string) => {
       const [type, dimension] = selection.split(':')
@@ -159,7 +156,6 @@ export default defineComponent({
     }
 
     return {
-      connectorType,
       WizardSteps,
       steps,
       activeStep,
@@ -360,7 +356,6 @@ export default defineComponent({
       <div v-if="activeStep === 3">
         <div v-show="currentStep.name === WizardSteps.DELIVERY">
           <Delivery
-            :connector-type="connectorType.type"
             :num-connectors="connectorInfo.connectors"
             :num-edges="connectorInfo.edges"
             class="w-full h-full m-3"
@@ -387,7 +382,6 @@ export default defineComponent({
       <div v-if="activeStep === 4" class="py-16 sm:p-20">
         <div v-show="currentStep.name === WizardSteps.CHECKOUT">
           <DeliveryPaymentView
-            :connector-type="connectorType.type"
             :connector-info="connectorInfo"
             :is-d-i-y="isDIY"
           />

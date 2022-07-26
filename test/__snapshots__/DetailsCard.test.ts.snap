@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`DetailsCard > should render 1`] = `
+"<div class=\\"bg-black text-white text-left p-4\\">
+  <div class=\\"title\\">Title</div>
+  <!--v-if-->
+  <div class=\\"details\\">Details</div>
+</div>"
+`;

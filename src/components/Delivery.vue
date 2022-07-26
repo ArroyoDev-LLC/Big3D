@@ -14,9 +14,6 @@ export default defineComponent({
   name: 'Delivery',
   components: { RadioButton, PVDialog, NextStepButton },
   props: {
-    connectorType: {
-      type: String
-    },
     numConnectors: {
       type: Number,
       default: 0

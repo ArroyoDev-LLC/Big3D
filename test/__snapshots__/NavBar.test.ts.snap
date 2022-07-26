@@ -1,0 +1,6 @@
+// Vitest Snapshot v1
+
+exports[`NavBar > should render a nav bar 1`] = `
+"<span class=\\"flex\\" data-v-36babc40=\\"\\"><img src=\\"/big3dlogo.png\\" class=\\"w-16 h-16 md:w-24 md:h-24\\" data-v-36babc40=\\"\\"><div class=\\"flex items-center overflow-x-auto\\" data-v-36babc40=\\"\\"><div class=\\"nav-item link link-underline link-underline-black\\" data-v-36babc40=\\"\\"> Home </div><div class=\\"nav-item link link-underline link-underline-black\\" data-v-36babc40=\\"\\"> Story+ </div><div class=\\"nav-item link link-underline link-underline-black\\" data-v-36babc40=\\"\\"> Samples+ </div><div class=\\"nav-item link link-underline link-underline-black\\" data-v-36babc40=\\"\\"> Gallery </div><div class=\\"nav-item link link-underline link-underline-black\\" data-v-36babc40=\\"\\"> Pricing </div><div class=\\"nav-item link link-underline link-underline-black\\" data-v-36babc40=\\"\\"> Purchase </div><div class=\\"login-button\\" data-v-36babc40=\\"\\"> Login </div></div><span class=\\"flex\\" data-v-36babc40=\\"\\"><button class=\\"icon-btn mx-2 !outline-none\\" title=\\"button.toggle_dark\\" data-v-36babc40=\\"\\"><div i=\\"carbon-sun dark:carbon-moon\\" data-v-36babc40=\\"\\"></div></button><!--v-if--></span>
+<!----></span>"
+`;

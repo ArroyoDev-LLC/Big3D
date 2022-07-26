@@ -68,6 +68,53 @@ export default defineComponent({
       const wizardId = document.getElementById('generator-wizard')
       if (wizardId) wizardId.scrollIntoView()
     }
+    const tabClick = (section: string) => {
+      emit('tabClick', section)
+    }
+    const menuItems = ref([
+      {
+        label: 'Home',
+        command: () => {
+          goToSection('home')
+        }
+      },
+      {
+        label: 'Story+',
+        command: () => {
+          goToSection('story')
+        }
+      },
+      {
+        label: 'Samples+',
+        command: () => {
+          goToSection('samples')
+        }
+      },
+      {
+        label: 'Gallery',
+        command: () => {
+          goToSection('gallery')
+        }
+      },
+      {
+        label: 'Pricing',
+        command: () => {
+          goToSection('pricing')
+        }
+      },
+      {
+        label: 'Purchase',
+        command: () => {
+          goToSection('generator-wizard')
+        }
+      },
+      {
+        label: 'Login',
+        command: () => {
+          loginClickedSate.value = !loginClickedSate.value
+        }
+      }
+    ])
     return {
       showSuccess,
       loginToSite,
@@ -75,7 +122,8 @@ export default defineComponent({
       loginClickedSate,
       userLoginInfo,
       goToSection,
-      jumpToWizard
+      jumpToWizard,
+      menuItems
     }
   }
 })
@@ -87,6 +135,7 @@ export default defineComponent({
       <NavBar
         class="mb-1"
         :is-user-logged-in="userLoggedIn"
+        :nav-items="menuItems"
         @tabClick="goToSection"
         @login="() => (loginClickedSate = !loginClickedSate)"
       />

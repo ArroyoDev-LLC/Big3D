@@ -22,7 +22,7 @@ export default defineComponent({
       ]
     }
     const buildData = {
-      title: 'Have Us Do It',
+      title: 'Do It For Me',
       img: 'group-59.png',
       cost: '$1000.00-$3000.00',
       details:

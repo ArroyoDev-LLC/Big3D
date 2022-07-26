@@ -79,7 +79,6 @@ export default defineComponent({
         humanScaleInfo.width = img.clientWidth
         humanScaleInfo.height = img.clientHeight
       }
-      console.log(humanScaleInfo)
     }
 
     const handleModelScaleLoad = (event: Event) => {
@@ -88,7 +87,6 @@ export default defineComponent({
         modelScaleInfo.width = img.clientWidth
         modelScaleInfo.height = img.clientHeight
       }
-      console.log(modelScaleInfo)
     }
 
     /**
@@ -135,7 +133,6 @@ export default defineComponent({
       let containerHeight = 0
       let containerWidth = 0
       if (scaleContainerRef.value) {
-        console.log(scaleContainerRef.value.clientHeight)
         containerWidth = scaleContainerRef.value.clientWidth
         containerHeight = scaleContainerRef.value.clientHeight
       }
@@ -149,7 +146,6 @@ export default defineComponent({
             containerHeight
           ).height * clamp(1676 / 10000, 0, 1)
         }px`
-        console.log(humanScaleRef.value.style.height)
       }
 
       if (modelScaleRef.value) {
@@ -161,7 +157,6 @@ export default defineComponent({
             containerHeight
           ).height * clamp(dynamicLongestDimension.value / 10000, 0, 1)
         }px`
-        console.log(modelScaleRef.value.style.height)
       }
     })
 

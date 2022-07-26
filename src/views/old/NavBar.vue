@@ -12,6 +12,10 @@ export default defineComponent({
     isUserLoggedIn: {
       type: Boolean,
       required: true
+    },
+    navItems: {
+      type: Array<unknown>,
+      default: []
     }
   },
   setup(props, { emit }) {
@@ -92,61 +96,31 @@ export default defineComponent({
   <span class="flex" :class="sm ? 'justify-between mb-5' : ''">
     <img src="/big3dlogo.png" class="w-16 h-16 md:w-24 md:h-24" />
     <div v-if="!sm" class="flex items-center overflow-x-auto">
-      <div
-        class="nav-item link link-underline link-underline-black"
-        @click="tabClick('home')"
-      >
-        Home
-      </div>
-      <div
-        class="nav-item link link-underline link-underline-black"
-        @click="tabClick('story')"
-      >
-        Story+
-      </div>
-      <div
-        class="nav-item link link-underline link-underline-black"
-        @click="tabClick('samples')"
-      >
-        Samples+
-      </div>
-      <div
-        class="nav-item link link-underline link-underline-black"
-        @click="tabClick('gallery')"
-      >
-        Gallery
-      </div>
-      <div
-        class="nav-item link link-underline link-underline-black"
-        @click="tabClick('pricing')"
-      >
-        Pricing
-      </div>
-      <div
-        class="nav-item link link-underline link-underline-black"
-        @click="tabClick('generator-wizard')"
-      >
-        Purchase
-      </div>
-      <div
-        v-if="!isUserLoggedIn"
-        class="login-button"
-        @click="
-          () => {
-            tabClick('login')
-            $emit('login')
-          }
-        "
-      >
-        Login
-      </div>
-      <div
-        v-else
-        class="rounded-xl shadow-lg flex justify-center items-center"
-        style="border: 1px solid black; height: 5rem"
-        @click="$router.push('account')"
-      >
-        Triston
+      <div v-for="(item, index) in navItems" :key="index">
+        <div
+          v-if="item.label !== 'Login'"
+          class="nav-item link link-underline link-underline-black"
+          @click="item.command"
+        >
+          {{ item.label }}
+        </div>
+        <div v-else>
+          <div
+            v-if="!isUserLoggedIn"
+            class="login-button"
+            @click="item.command"
+          >
+            {{ item.label }}
+          </div>
+          <div
+            v-else
+            class="rounded-xl shadow-lg flex justify-center items-center"
+            style="border: 1px solid black; height: 5rem"
+            @click="$router.push('account')"
+          >
+            Triston
+          </div>
+        </div>
       </div>
     </div>
     <span class="flex">
@@ -165,7 +139,7 @@ export default defineComponent({
         <img src="/icons/hamburgerMenu.svg" />
       </span>
     </span>
-    <Menu ref="menu" :model="menuItems" :popup="true" />
+    <Menu ref="menu" :model="navItems" :popup="true" />
   </span>
 </template>
 
@@ -175,7 +149,7 @@ export default defineComponent({
 }
 
 div:nth-child(n) {
-  @apply p-2 lg:p-4 w-full h-full;
+  @apply p-2 w-full h-full;
 }
 
 .nav-item {

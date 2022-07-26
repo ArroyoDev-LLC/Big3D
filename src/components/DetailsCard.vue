@@ -23,13 +23,13 @@ export default defineComponent({
   <div class="bg-black text-white text-left p-4">
     <slot name="header">
       <slot name="title">
-        <div>{{ title }}</div>
+        <div class="title">{{ title }}</div>
       </slot>
       <slot name="image">
         <img v-if="img" :src="img" class="w-full" />
       </slot>
       <slot name="details">
-        <div>{{ details }}</div>
+        <div class="details">{{ details }}</div>
       </slot>
     </slot>
     <slot name="body" />
