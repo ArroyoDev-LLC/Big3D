@@ -6,7 +6,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 const sm = breakpoints.smaller('sm')
 
 interface NavItem {
-  title: string
+  label: string
   command: Function
 }
 

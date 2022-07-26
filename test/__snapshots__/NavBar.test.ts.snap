@@ -1,6 +1,16 @@
 // Vitest Snapshot v1
 
+exports[`NavBar > render logged in 1`] = `
+"<span class=\\"flex\\" data-v-36babc40=\\"\\"><img src=\\"/big3dlogo.png\\" class=\\"w-16 h-16 md:w-24 md:h-24\\" data-v-36babc40=\\"\\"><div class=\\"flex items-center overflow-x-auto\\" data-v-36babc40=\\"\\"></div><span class=\\"flex\\" data-v-36babc40=\\"\\"><button class=\\"icon-btn mx-2 !outline-none\\" title=\\"button.toggle_dark\\" data-v-36babc40=\\"\\"><div i=\\"carbon-sun dark:carbon-moon\\" data-v-36babc40=\\"\\"></div></button><!--v-if--></span>
+<!----></span>"
+`;
+
 exports[`NavBar > should render a nav bar 1`] = `
+"<span class=\\"flex\\" data-v-36babc40=\\"\\"><img src=\\"/big3dlogo.png\\" class=\\"w-16 h-16 md:w-24 md:h-24\\" data-v-36babc40=\\"\\"><div class=\\"flex items-center overflow-x-auto\\" data-v-36babc40=\\"\\"></div><span class=\\"flex\\" data-v-36babc40=\\"\\"><button class=\\"icon-btn mx-2 !outline-none\\" title=\\"button.toggle_dark\\" data-v-36babc40=\\"\\"><div i=\\"carbon-sun dark:carbon-moon\\" data-v-36babc40=\\"\\"></div></button><!--v-if--></span>
+<!----></span>"
+`;
+
+exports[`NavBar > should render one item 1`] = `
 "<span class=\\"flex\\" data-v-36babc40=\\"\\"><img src=\\"/big3dlogo.png\\" class=\\"w-16 h-16 md:w-24 md:h-24\\" data-v-36babc40=\\"\\"><div class=\\"flex items-center overflow-x-auto\\" data-v-36babc40=\\"\\"></div><span class=\\"flex\\" data-v-36babc40=\\"\\"><button class=\\"icon-btn mx-2 !outline-none\\" title=\\"button.toggle_dark\\" data-v-36babc40=\\"\\"><div i=\\"carbon-sun dark:carbon-moon\\" data-v-36babc40=\\"\\"></div></button><!--v-if--></span>
 <!----></span>"
 `;

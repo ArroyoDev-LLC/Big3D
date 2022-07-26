@@ -7,4 +7,21 @@ describe('NavBar', () => {
     const wrapper = mount(NavBar)
     expect(wrapper.html()).toMatchSnapshot()
   })
+  it('should render one item', () => {
+    const wrapper = mount(NavBar, {
+      navItems: [
+        {
+          label: 'Item 1',
+          command: () => {
+            console.log('test')
+          }
+        }
+      ]
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('render logged in', () => {
+    const wrapper = mount(NavBar, { isUserLoggedIn: true })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })
