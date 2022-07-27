@@ -82,7 +82,7 @@ export default defineComponent({
           type="number"
           placeholder="in mm"
           @focus="$event.target.select()"
-          @change="$emit('dimensionSelect', longestDimension)"
+          @change="$emit('dimensionUpdate', longestDimension)"
         />
       </div>
     </div>
