@@ -12,6 +12,14 @@ export default defineComponent({
     radioGroup: {
       type: Array<RadioItem | string>,
       default: () => []
+    },
+    itemClasses: {
+      type: String,
+      default: ''
+    },
+    containerClasses: {
+      type: String,
+      default: ''
     }
   },
   setup(props, { emit }) {
@@ -32,17 +40,21 @@ export default defineComponent({
 
 <template>
   <div v-for="(item, index) in group" :key="index">
-    <input
-      :id="index"
-      v-model="selection"
-      type="radio"
-      @click="$emit('select', item.value)"
-    />
-    <label :for="index">
-      <slot :name="item.label ? item.label : item.value">
-        {{ item.label ? item.label : item.value }}
-      </slot>
-    </label>
+    <div :class="containerClasses">
+      <input
+        :id="index"
+        v-model="selection"
+        type="radio"
+        :value="item.value"
+        :checked="index === null"
+        @click="$emit('select', item.value)"
+      />
+      <label :class="itemClasses" :for="index">
+        <slot :name="item.label ? item.label : item.value">
+          {{ item.label ? item.label : item.value }}
+        </slot>
+      </label>
+    </div>
   </div>
 </template>
 

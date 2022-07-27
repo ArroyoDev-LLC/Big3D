@@ -26,9 +26,9 @@ export default defineComponent({
     const currentSelection = ref('')
 
     const woodValues = ref([
-      '3/4” (19.05 mm)',
-      '1/2” (12.7 mm)',
-      '1/4” (6.35 mm)'
+      { value: '3/4” (19.05 mm)' },
+      { value: '1/2” (12.7 mm)' },
+      { value: '1/4” (6.35 mm)' }
     ])
 
     const pvcValues = ref(['3/4” (19.05 mm)', '1/2” (12.7 mm)'])
@@ -72,26 +72,11 @@ export default defineComponent({
       <div class="grid grid-cols-6 gap-4 text-left mt-6">
         <div class="wood-option">
           <span class="text-sm"> Square Wood Dowels </span>
-          <div
-            v-for="(value, index) in woodValues"
-            :key="`${value}-${index}`"
-            class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
-          >
-            <input
-              :id="`wood-dimension-${index}`"
-              v-model="currentSelection"
-              class="col-span-1"
-              type="radio"
-              :value="`wood:${value}`"
-              :checked="index === null"
-            />
-            <label
-              class="col-span-5 cursor-pointer"
-              :for="`wood-dimension-${index}`"
-            >
-              {{ value }}
-            </label>
-          </div>
+          <RadioGroup
+            container-classes="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+            item-classes="col-span-5 cursor-pointer"
+            :radio-group="woodValues"
+          />
         </div>
 
         <img class="wood-option-img" src="/images/square-wood-dowel.png" />
