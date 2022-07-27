@@ -2,8 +2,6 @@
 import { storeToRefs } from 'pinia'
 import { computed, defineComponent, reactive, ref, watchEffect } from 'vue'
 import ModelUploadView from '@/components/ModelUploadView.vue'
-import ModelUploader from '@/components/ModelUploader.vue'
-import NextStepButton from '@/components/NextStepButton.vue'
 import ConnectorView from '@/components/ConnectorView.vue'
 import DimensionsView from '@/components/DimensionsView.vue'
 import Delivery, { DeliveryOptions } from '@/components/Delivery.vue'
@@ -28,8 +26,6 @@ interface StepT {
 export default defineComponent({
   name: 'ModelGeneratorWizard',
   components: {
-    NextStepButton,
-    ModelUploader,
     DimensionsView,
     ConnectorView,
     Delivery,
@@ -251,26 +247,12 @@ export default defineComponent({
       "
     >
       <div v-show="activeStep === 2">
-        <div
-          v-show="currentStep.name === WizardSteps.CONNECTORS"
-          class="p-4 md:p-8 h-full w-full"
-        >
-          <ConnectorView
-            :connector-info="connectorInfo"
-            :title="currentStep.title"
-            @radioChange="handleConnectorInput"
-          />
-          <div class="flex justify-end mt-20 md:p-4">
-            <NextStepButton
-              v-if="nextStep && modelFile"
-              :class="disabledClasses"
-              :disabled="isLoading"
-              :label="nextStep.label"
-              class="self-end absolute"
-              @click="setStep(activeStep + 1)"
-            />
-          </div>
-        </div>
+        <ConnectorView
+          :connector-info="connectorInfo"
+          :title="currentStep.title"
+          @radioChange="handleConnectorInput"
+          @nextStep="setStep(activeStep + 1)"
+        />
       </div>
       <div
         v-show="activeStep !== 2"
@@ -315,12 +297,10 @@ export default defineComponent({
       "
     >
       <div v-show="activeStep === 4" class="py-16 sm:p-20">
-        <div v-show="currentStep.name === WizardSteps.CHECKOUT">
-          <DeliveryPaymentView
-            :connector-info="connectorInfo"
-            :is-d-i-y="isDIY"
-          />
-        </div>
+        <DeliveryPaymentView
+          :connector-info="connectorInfo"
+          :is-d-i-y="isDIY"
+        />
       </div>
       <div
         v-show="activeStep !== 4"

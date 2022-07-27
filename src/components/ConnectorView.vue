@@ -1,10 +1,12 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent, ref, watchEffect } from 'vue'
+import NextStepButton from '@/components/NextStepButton.vue'
+import RadioGroup from '@/components/RadioGroup.vue'
 
 export default defineComponent({
   name: 'ConnectorView',
-  components: {},
+  components: { NextStepButton, RadioGroup },
   emits: ['radioChange'],
   props: {
     title: {
@@ -35,76 +37,92 @@ export default defineComponent({
       emit('radioChange', currentSelection.value)
     })
 
+    const changeSelection = (selection: string) => {
+      currentSelection.value = selection
+    }
+
     return {
       currentSelection,
       woodValues,
-      pvcValues
+      pvcValues,
+      changeSelection
     }
   }
 })
 </script>
 
 <template>
-  <div class="text-left text-base md:text-3xl flex justify-between">
-    {{ title }}
+  <div>
+    <div class="p-4 md:p-8 h-full w-full">
+      <div class="text-left text-base md:text-3xl flex justify-between">
+        {{ title }}
 
-    <div>
-      <span class="mx-2">
-        <span class="text-yellow">{{ connectorInfo.connectors }}</span>
-        Connectors
-      </span>
-      <span class="mx-2">
-        <span class="text-yellow">{{ connectorInfo.edges }}</span>
-        Edges
-      </span>
-    </div>
-  </div>
+        <div>
+          <span class="mx-2">
+            <span class="text-yellow">{{ connectorInfo.connectors }}</span>
+            Connectors
+          </span>
+          <span class="mx-2">
+            <span class="text-yellow">{{ connectorInfo.edges }}</span>
+            Edges
+          </span>
+        </div>
+      </div>
 
-  <div class="grid grid-cols-6 gap-4 text-left mt-6">
-    <div class="wood-option">
-      <span class="text-sm"> Square Wood Dowels </span>
-      <div
-        v-for="(value, index) in woodValues"
-        :key="`${value}-${index}`"
-        class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
-      >
-        <input
-          :id="`wood-dimension-${index}`"
-          v-model="currentSelection"
-          class="col-span-1"
-          type="radio"
-          :value="`wood:${value}`"
-          :checked="index === null"
+      <div class="grid grid-cols-6 gap-4 text-left mt-6">
+        <div class="wood-option">
+          <span class="text-sm"> Square Wood Dowels </span>
+          <div
+            v-for="(value, index) in woodValues"
+            :key="`${value}-${index}`"
+            class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+          >
+            <input
+              :id="`wood-dimension-${index}`"
+              v-model="currentSelection"
+              class="col-span-1"
+              type="radio"
+              :value="`wood:${value}`"
+              :checked="index === null"
+            />
+            <label
+              class="col-span-5 cursor-pointer"
+              :for="`wood-dimension-${index}`"
+            >
+              {{ value }}
+            </label>
+          </div>
+        </div>
+
+        <img class="wood-option-img" src="/images/square-wood-dowel.png" />
+        <div class="pvc-option opacity-30">
+          <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
+          <div
+            v-for="(value, index) in pvcValues"
+            :key="`${value}-${index}`"
+            class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+          >
+            <input
+              :id="`pvc-dimension-${index}`"
+              class="col-span-1"
+              type="radio"
+              disabled
+            />
+            <label class="col-span-5" :for="`pvc-dimension-${index}`">
+              {{ value }}
+            </label>
+          </div>
+        </div>
+        <img class="pvc-option-img" src="/images/round-pvc-tubing.png" />
+      </div>
+      <div class="flex justify-end mt-20 md:p-4">
+        <NextStepButton
+          label="Next Step"
+          class="self-end absolute"
+          @click="$emit('nextStep')"
         />
-        <label
-          class="col-span-5 cursor-pointer"
-          :for="`wood-dimension-${index}`"
-        >
-          {{ value }}
-        </label>
       </div>
     </div>
-
-    <img class="wood-option-img" src="/images/square-wood-dowel.png" />
-    <div class="pvc-option opacity-30">
-      <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
-      <div
-        v-for="(value, index) in pvcValues"
-        :key="`${value}-${index}`"
-        class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
-      >
-        <input
-          :id="`pvc-dimension-${index}`"
-          class="col-span-1"
-          type="radio"
-          disabled
-        />
-        <label class="col-span-5" :for="`pvc-dimension-${index}`">
-          {{ value }}
-        </label>
-      </div>
-    </div>
-    <img class="pvc-option-img" src="/images/round-pvc-tubing.png" />
   </div>
 </template>
 

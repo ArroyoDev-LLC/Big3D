@@ -252,7 +252,6 @@ export default defineComponent({
     </div>
     <div class="flex justify-end md:p-4">
       <NextStepButton
-        :disabled="isLoading"
         label="Next Step"
         class="self-end sm:absolute"
         @click="$emit('nextStep')"

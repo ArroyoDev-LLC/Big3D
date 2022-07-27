@@ -10,31 +10,39 @@ export default defineComponent({
   name: 'RadioGroup',
   props: {
     radioGroup: {
-      type: Array<RadioItem>,
+      type: Array<RadioItem | string>,
       default: () => []
     }
   },
   setup(props, { emit }) {
+    const group = ref(props.radioGroup)
+    const selection = ref('')
     const setValue = (value: string) => {
+      console.log(value)
       emit('select', value)
     }
     return {
-      setValue
+      setValue,
+      selection,
+      group
     }
   }
 })
 </script>
 
 <template>
-  <div v-for="(item, index) in radioGroup" :key="index">
-    <div @click="setValue(item.value)">
-      <input id="item.label" type="radio" />
-      <label for="item.label">
-        <slot :name="item.label ? item.label : item.value">
-          {{ item.label ? item.label : item.value }}
-        </slot>
-      </label>
-    </div>
+  <div v-for="(item, index) in group" :key="index">
+    <input
+      :id="index"
+      v-model="selection"
+      type="radio"
+      @click="$emit('select', item.value)"
+    />
+    <label :for="index">
+      <slot :name="item.label ? item.label : item.value">
+        {{ item.label ? item.label : item.value }}
+      </slot>
+    </label>
   </div>
 </template>
 
