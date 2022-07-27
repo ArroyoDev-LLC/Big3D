@@ -30,57 +30,6 @@ export default defineComponent({
     const isMobile = () => {
       return window.outerWidth < 376
     }
-    const menuItems = ref([
-      {
-        label: 'Home',
-        command: () => {
-          tabClick('home')
-        }
-      },
-      {
-        label: 'Story+',
-        command: () => {
-          tabClick('story')
-        }
-      },
-      {
-        label: 'Samples+',
-        command: () => {
-          tabClick('samples')
-        }
-      },
-      {
-        label: 'Gallery',
-        command: () => {
-          tabClick('gallery')
-        }
-      },
-      {
-        label: 'Pricing',
-        command: () => {
-          tabClick('pricing')
-        }
-      },
-      {
-        label: 'Purchase',
-        command: () => {
-          tabClick('generator-wizard')
-        }
-      },
-      {
-        label: 'Login',
-        command: () => {
-          tabClick('login')
-          emit('login')
-        }
-      },
-      {
-        label: 'Account',
-        command: () => {
-          tabClick('account')
-        }
-      }
-    ])
     const menu = ref()
     const toggleMenu = (event: boolean) => {
       menu.value.toggle(event)
@@ -88,7 +37,6 @@ export default defineComponent({
     return {
       tabClick,
       isMobile,
-      menuItems,
       toggleMenu,
       menu,
       sm

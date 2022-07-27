@@ -1,6 +1,7 @@
 <script lang="ts">
 import { storeToRefs } from 'pinia'
 import { computed, defineComponent, reactive, ref, watchEffect } from 'vue'
+import ModelUploadView from '@/components/ModelUploadView.vue'
 import ModelUploader from '@/components/ModelUploader.vue'
 import NextStepButton from '@/components/NextStepButton.vue'
 import ConnectorView from '@/components/ConnectorView.vue'
@@ -32,7 +33,8 @@ export default defineComponent({
     DimensionsView,
     ConnectorView,
     Delivery,
-    DeliveryPaymentView
+    DeliveryPaymentView,
+    ModelUploadView
   },
   props: {},
   setup() {
@@ -120,19 +122,9 @@ export default defineComponent({
     const longestDimensionUnit = ref('ft')
     const isLongestDimensionValid = computed(() => longestDimension.value > 0)
 
-    /**
-     * prevent user from entering dimensions
-     * greater than or less than specified value
-     */
-    watchEffect(() => {
-      const min = 0
-      const max = 10000
-      if (longestDimension.value < min) {
-        longestDimension.value = min
-      } else if (longestDimension.value > max) {
-        longestDimension.value = max
-      }
-    })
+    const setLongestDimension = (dimension: number) => {
+      longestDimension.value = dimension
+    }
 
     /**
      * handle state for connector step
@@ -167,8 +159,6 @@ export default defineComponent({
       connectorInfo,
       longestDimension,
       unitOptions,
-      longestDimensionUnit,
-      isLongestDimensionValid,
       getStepOrder,
       getStep,
       setStep,
@@ -177,7 +167,8 @@ export default defineComponent({
       handleModelUpload,
       handleConnectorInput,
       toCheckout,
-      isDIY
+      isDIY,
+      setLongestDimension
     }
   }
 })
@@ -201,69 +192,26 @@ export default defineComponent({
       </text>
     </div>
   </div>
-  <div class="flex sm:flex-row flex-col wizard">
+  <div
+    class="flex sm:flex-row flex-col wizard border-10 border-ridge border-amber rounded-lg"
+  >
     <div
       class="step bg-black"
       :class="
         activeStep === 0
           ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500 hover:text-white'
       "
     >
-      <div v-if="activeStep === 0">
-        <div
-          v-show="currentStep.name === WizardSteps.UPLOAD"
-          class="p-4 md:p-8 grid items-center h-full w-full"
-        >
-          <div class="text-lg md:text-3xl text-left w-full">
-            {{ currentStep.title }}
-          </div>
-          <div class="grid grid-cols-6 m-6 z-10">
-            <div
-              class="col-span-6 sm:col-span-4 text-left text-yellow text-xl md:text-3xl"
-            >
-              What will the longest dimension be for this model?
-            </div>
-            <div class="sm:grid sm:grid-cols-6 gap-4 items-center col-span-2">
-              <input
-                id="longest-dimension-input"
-                v-model="longestDimension"
-                :disabled="isLoading"
-                class="sm:col-span-4 p-4 bg-big3dBlack border-b-2"
-                name="longest-dimension-input"
-                step="0.01"
-                type="number"
-                placeholder="in mm"
-                @focus="$event.target.select()"
-              />
-            </div>
-          </div>
-          <ModelUploader
-            :class="
-              disabledClasses && { 'opacity-30': !isLongestDimensionValid }
-            "
-            :disabled="isLoading || !isLongestDimensionValid"
-            :error-message="null"
-            :handle-file-change="handleModelUpload"
-            :is-loading="isLoading"
-            :selected-model-name="isLoading ? modelFile.name : null"
-            accept=".stl,.blend"
-            bg-image-path="images/elephant-model.png"
-            class="w-full md:w-5/6 h-full m-3"
-            label="Drag’n’drop your model here"
-          />
-          <NextStepButton
-            v-if="nextStep && modelFile"
-            :class="disabledClasses"
-            :disabled="isLoading"
-            :label="nextStep.label"
-            class="w-full m-3"
-            @click="setStep(activeStep + 1)"
-          />
-        </div>
+      <div v-show="activeStep === 0">
+        <ModelUploadView
+          :title="currentStep.title"
+          @dimensionSelect="setLongestDimension"
+          @nextStep="setStep(activeStep + 1)"
+        />
       </div>
       <div
-        v-else
+        v-show="activeStep !== 0"
         class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
         @click="activeStep = 0"
       >
@@ -275,32 +223,19 @@ export default defineComponent({
       :class="
         activeStep === 1
           ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
       "
     >
-      <div v-if="activeStep === 1">
-        <div
-          v-if="currentStep.name === WizardSteps.DIMENSIONS"
-          class="p-4 md:p-8 h-full w-full"
-        >
-          <DimensionsView
-            :title="currentStep.title"
-            :selected-longest-dimension="longestDimension"
-          />
-          <div class="flex justify-end md:p-4">
-            <NextStepButton
-              v-if="nextStep && modelFile"
-              :class="disabledClasses"
-              :disabled="isLoading"
-              :label="nextStep.label"
-              class="self-end sm:absolute"
-              @click="setStep(activeStep + 1)"
-            />
-          </div>
-        </div>
+      <div v-show="activeStep === 1">
+        <DimensionsView
+          v-if="activeStep === 1"
+          :title="currentStep.title"
+          :selected-longest-dimension="longestDimension"
+          @nextStep="setStep(activeStep + 1)"
+        />
       </div>
       <div
-        v-else
+        v-show="activeStep !== 1"
         class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
         @click="activeStep = 1"
       >
@@ -312,10 +247,10 @@ export default defineComponent({
       :class="
         activeStep === 2
           ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
       "
     >
-      <div v-if="activeStep === 2">
+      <div v-show="activeStep === 2">
         <div
           v-show="currentStep.name === WizardSteps.CONNECTORS"
           class="p-4 md:p-8 h-full w-full"
@@ -338,7 +273,7 @@ export default defineComponent({
         </div>
       </div>
       <div
-        v-else
+        v-show="activeStep !== 2"
         class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
         @click="activeStep = 2"
       >
@@ -350,10 +285,10 @@ export default defineComponent({
       :class="
         activeStep === 3
           ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
       "
     >
-      <div v-if="activeStep === 3">
+      <div v-show="activeStep === 3">
         <div v-show="currentStep.name === WizardSteps.DELIVERY">
           <Delivery
             :num-connectors="connectorInfo.connectors"
@@ -364,7 +299,7 @@ export default defineComponent({
         </div>
       </div>
       <div
-        v-else
+        v-show="activeStep !== 3"
         class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
         @click="activeStep = 3"
       >
@@ -376,10 +311,10 @@ export default defineComponent({
       :class="
         activeStep === 4
           ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow'
+          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
       "
     >
-      <div v-if="activeStep === 4" class="py-16 sm:p-20">
+      <div v-show="activeStep === 4" class="py-16 sm:p-20">
         <div v-show="currentStep.name === WizardSteps.CHECKOUT">
           <DeliveryPaymentView
             :connector-info="connectorInfo"
@@ -388,7 +323,7 @@ export default defineComponent({
         </div>
       </div>
       <div
-        v-else
+        v-show="activeStep !== 4"
         class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
         @click="activeStep = 4"
       >
@@ -406,7 +341,7 @@ input::-webkit-inner-spin-button {
 }
 
 .step {
-  @apply overflow-hidden sm:-mt-9;
+  @apply overflow-hidden;
   transition: all 0.2s;
 }
 

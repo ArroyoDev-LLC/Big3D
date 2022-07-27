@@ -90,7 +90,7 @@ export default defineComponent({
             />
             <label
               for="diy"
-              class="ml-1 font-bold grid grid-cols-3 w-2/3 sm:w-2/3"
+              class="ml-1 font-bold grid grid-cols-3 w-2/3 sm:w-2/3 cursor-pointer"
             >
               <div>Do It Yourself</div>
               <div class="flex items-center justify-center">
@@ -100,7 +100,7 @@ export default defineComponent({
                 <text class="font-bold">{{
                   formatToDollar(numConnectors * 0.5)
                 }}</text>
-                <text class="text-yellow">(${{ 0.5 }} per connector)</text>
+                <text class="text-yellow">($0.50 per connector)</text>
               </div>
             </label>
           </div>
@@ -118,7 +118,7 @@ export default defineComponent({
             />
             <label
               for="kit"
-              class="ml-1 font-bold grid grid-cols-3 w-2/3 sm:w-2/3"
+              class="ml-1 font-bold grid grid-cols-3 w-2/3 sm:w-2/3 cursor-pointer"
             >
               Finished KIT
               <div class="flex items-center justify-center">
@@ -130,7 +130,9 @@ export default defineComponent({
                     numConnectors * connectorPrice + numConnectors * 0.5
                   )
                 }}</text>
-                <text class="text-yellow">(${{ connectorPrice + 0.5 }})</text>
+                <text class="text-yellow"
+                  >({{ formatToDollar(connectorPrice + 0.5) }})</text
+                >
               </div>
             </label>
           </div>

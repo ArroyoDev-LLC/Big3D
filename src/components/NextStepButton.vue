@@ -20,9 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <button
-    class="flex justify-center items-center bg-white font-bold px-8 py-3 text-black"
-  >
+  <button class="container">
     <span class="mr-2">
       {{ label }}
     </span>
@@ -45,6 +43,9 @@ export default defineComponent({
 </template>
 
 <style lang="postcss" scoped>
+.container {
+  @apply flex justify-center items-center bg-white transform hover:scale-105 transition transition-duration-500 font-bold px-8 py-3 text-black;
+}
 /* right arrow bounce effect */
 .bounce-right {
   -webkit-animation: bounceRight 2s infinite;

@@ -76,7 +76,10 @@ export default defineComponent({
           :value="`wood:${value}`"
           :checked="index === null"
         />
-        <label class="col-span-5" :for="`wood-dimension-${index}`">
+        <label
+          class="col-span-5 cursor-pointer"
+          :for="`wood-dimension-${index}`"
+        >
           {{ value }}
         </label>
       </div>

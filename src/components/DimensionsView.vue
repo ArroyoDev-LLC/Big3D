@@ -176,78 +176,88 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-4 h-full">
-    <AdvancedDimensionsForm
-      v-if="isAdvancedFormActive"
-      class="col-span-12 md:col-span-7"
-      :advanced-dimensions-form-data="advancedDimensionsFormData"
-      @formUpdate="handleAdvancedFormUpdate"
-    />
-    <div
-      v-else
-      class="col-span-12 md:col-span-7 grid grid-cols-7 grid-rows-2 gap-3 md:grid-rows-3 m-6"
-    >
-      <span class="col-span-7 text-left text-xl md:text-3xl">
-        {{ title }}
-      </span>
+  <div class="p-4 md:p-8 h-full w-full">
+    <div class="grid grid-cols-12 gap-4 h-full">
+      <AdvancedDimensionsForm
+        v-if="isAdvancedFormActive"
+        class="col-span-12 md:col-span-7"
+        :advanced-dimensions-form-data="advancedDimensionsFormData"
+        @formUpdate="handleAdvancedFormUpdate"
+      />
       <div
-        class="col-span-5 self-center text-left text-yellow text-lg md:text-3xl"
+        v-else
+        class="col-span-12 md:col-span-7 grid grid-cols-7 grid-rows-2 gap-3 md:grid-rows-3 m-6"
       >
-        What will the longest dimension be for this model?
-      </div>
-      <div class="col-span-2 self-center">
-        <input
-          id="dynamic-longest-dimension-input"
-          v-model="dynamicLongestDimension"
-          class="w-full p-4 bg-big3dBlack border-b-2"
-          name="dynamic-longest-dimension-input"
-          type="number"
-          placeholder="in mm"
-        />
-      </div>
-    </div>
-
-    <div class="col-span-12 md:col-span-5 grid grid-rows-5">
-      <div class="row-span-1 text-xl md:text-2xl">APPROXIMATE SIZE</div>
-      <div
-        ref="scaleContainerRef"
-        class="row-span-4 border border-white relative"
-      >
-        <div class="human-scale-container absolute bottom-0 left-0">
-          <img
-            ref="humanScaleRef"
-            class="transition-all"
-            :src="humanScaleSrc"
-            alt="human-scale"
-            @load="handleHumanScaleLoad"
-          />
+        <span class="col-span-7 text-left text-xl md:text-3xl">
+          {{ title }}
+        </span>
+        <div
+          class="col-span-5 self-center text-left text-yellow text-lg md:text-3xl"
+        >
+          What will the longest dimension be for this model?
         </div>
-        <div class="model-scale-container absolute bottom-0 right-0">
-          <img
-            ref="modelScaleRef"
-            class="transition-all"
-            :src="modelScaleSrc"
-            alt="model-scale"
-            @load="handleModelScaleLoad"
+        <div class="col-span-2 self-center">
+          <input
+            id="dynamic-longest-dimension-input"
+            v-model="dynamicLongestDimension"
+            class="w-full p-4 bg-big3dBlack border-b-2"
+            name="dynamic-longest-dimension-input"
+            type="number"
+            placeholder="in mm"
           />
         </div>
       </div>
-    </div>
 
-    <button
-      v-if="isAdvancedFormActive === false"
-      class="underline cursor-pointer"
-      @click="isAdvancedFormActive = !isAdvancedFormActive"
-    >
-      Advanced
-    </button>
-    <button
-      v-else
-      class="underline cursor-pointer col-span-12 mb-2"
-      @click="isAdvancedFormActive = !isAdvancedFormActive"
-    >
-      Show Less
-    </button>
+      <div class="col-span-12 md:col-span-5 grid grid-rows-5">
+        <div class="row-span-1 text-xl md:text-2xl">APPROXIMATE SIZE</div>
+        <div
+          ref="scaleContainerRef"
+          class="row-span-4 border border-white relative"
+        >
+          <div class="human-scale-container absolute bottom-0 left-0">
+            <img
+              ref="humanScaleRef"
+              class="transition-all"
+              :src="humanScaleSrc"
+              alt="human-scale"
+              @load="handleHumanScaleLoad"
+            />
+          </div>
+          <div class="model-scale-container absolute bottom-0 right-0">
+            <img
+              ref="modelScaleRef"
+              class="transition-all"
+              :src="modelScaleSrc"
+              alt="model-scale"
+              @load="handleModelScaleLoad"
+            />
+          </div>
+        </div>
+      </div>
+
+      <button
+        v-if="isAdvancedFormActive === false"
+        class="underline cursor-pointer"
+        @click="isAdvancedFormActive = !isAdvancedFormActive"
+      >
+        Advanced
+      </button>
+      <button
+        v-else
+        class="underline cursor-pointer col-span-12 mb-2"
+        @click="isAdvancedFormActive = !isAdvancedFormActive"
+      >
+        Show Less
+      </button>
+    </div>
+    <div class="flex justify-end md:p-4">
+      <NextStepButton
+        :disabled="isLoading"
+        label="Next Step"
+        class="self-end sm:absolute"
+        @click="$emit('nextStep')"
+      />
+    </div>
   </div>
 </template>
 
