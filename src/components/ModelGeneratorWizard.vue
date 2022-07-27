@@ -241,12 +241,9 @@ input::-webkit-inner-spin-button {
 }
 
 .wizard {
-  min-height: 30rem;
-  display: grid;
-  grid-template-columns: repeat(18, minmax(0, 1fr));
   @apply md:m-8 m-4
   shadow-xl
-  bg-big3dBlack
+  bg-black
   select-none;
 }
 </style>

@@ -47,7 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full relative">
+  <div class="w-full relative sm:p-10">
     <div class="flex border-b border-dotted mb-10">
       <div
         class="text-lg font-bold mr-5 sm:mr-10"
