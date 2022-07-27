@@ -21,6 +21,8 @@ interface StepT {
   isDisabled: boolean
   label: string
   title: string
+  component: string
+  props: Object<unknown>
 }
 
 export default defineComponent({
@@ -37,86 +39,37 @@ export default defineComponent({
     const connectorStore = useConnectorStore()
     const { connector } = storeToRefs(connectorStore)
 
-    const steps = reactive<StepT[]>([
-      {
-        name: WizardSteps.UPLOAD,
-        isDisabled: false,
-        label: 'Upload Model',
-        title: 'Upload Low Poly 3D model here (.blend or .stl)'
-      },
-      {
-        name: WizardSteps.DIMENSIONS,
-        isDisabled: true,
-        label: 'Enter Dimensions',
-        title: 'Confirm Dimensions'
-      },
-      {
-        name: WizardSteps.CONNECTORS,
-        isDisabled: true,
-        label: 'Choose Connectors',
-        title: 'Choose type of Connectors'
-      },
-      {
-        name: WizardSteps.DELIVERY,
-        isDisabled: true,
-        label: 'Choose Delivery',
-        title: 'Delivery Details'
-      },
-      {
-        name: WizardSteps.CHECKOUT,
-        isDisabled: true,
-        label: 'Checkout',
-        title: 'Checkout'
-      }
-    ])
-
     const activeStep = ref<number>(0)
-    const currentStep = computed(() => steps[activeStep.value])
-    const nextStep = computed(() => steps[activeStep.value + 1] || null)
 
     /**
      * state management for loading + disabled inputs
      */
-    const isLoading = ref<boolean>(false)
-    const disabledClasses = computed(() => ({
-      'cursor-not-allowed': isLoading.value,
-      'opacity-30': isLoading.value
-    }))
 
     /**
      * helpers for manipulating steps
      */
-    const getStep = (step: number) => steps[step]
     const setStep = (step: number) => {
       activeStep.value = step
     }
-    const enableStep = (step: number) => (steps[step].isDisabled = false)
-    const disableStep = (step: number) => (steps[step].isDisabled = true)
-
-    const getStepOrder = (step: WizardSteps) => step
 
     /**
      * handle state for file upload step
      * and validate dimensions
      */
     const modelFile = ref<File | null>(null)
-    const handleModelUpload = async (files: FileList) => {
+    const longestDimension = ref<number>(0)
+    const handleModelUpload = async (files: FileList, dimension: number) => {
+      longestDimension.value = dimension
       modelFile.value = files[0]
-      isLoading.value = true
       await new Promise((r) => setTimeout(r, 5000))
-      isLoading.value = false
     }
     const toCheckout = (deliveryOption: DeliveryOptions) => {
       isDIY.value = deliveryOption === DeliveryOptions.DIY
-      setStep(activeStep.value + 1)
+      console.log(activeStep.value)
+      activeStep.value++
     }
 
     const isDIY = ref(false)
-
-    const longestDimension = ref<number>(0)
-    const unitOptions = ref(['ft', 'in', 'm', 'mm', 'cm'])
-    const longestDimensionUnit = ref('ft')
-    const isLongestDimensionValid = computed(() => longestDimension.value > 0)
 
     const setLongestDimension = (dimension: number) => {
       longestDimension.value = dimension
@@ -142,24 +95,72 @@ export default defineComponent({
         connectorStore.changeConnectorPrice(1)
       } else null
     }
+    const steps = computed<StepT[]>(() => [
+      {
+        name: WizardSteps.UPLOAD,
+        isDisabled: false,
+        label: 'Upload Model',
+        title: 'Upload Low Poly 3D model here (.blend or .stl)',
+        component: 'ModelUploadView',
+        props: {
+          title: 'Upload Low Poly 3D model here (.blend or .stl)',
+          selectedLongestDimension: longestDimension.value
+        }
+      },
+      {
+        name: WizardSteps.DIMENSIONS,
+        isDisabled: true,
+        label: 'Enter Dimensions',
+        title: 'Confirm Dimensions',
+        component: 'DimensionsView',
+        props: {
+          title: 'Confirm Dimensions',
+          selectedLongestDimension: longestDimension.value
+        }
+      },
+      {
+        name: WizardSteps.CONNECTORS,
+        isDisabled: true,
+        label: 'Choose Connectors',
+        title: 'Choose type of Connectors',
+        component: 'ConnectorView',
+        props: {
+          title: 'Choose type of Connectors',
+          connectorInfo
+        }
+      },
+      {
+        name: WizardSteps.DELIVERY,
+        isDisabled: true,
+        label: 'Choose Delivery',
+        title: 'Delivery Details',
+        component: 'Delivery',
+        props: {
+          title: 'Delivery Details',
+          numConnectors: connectorInfo.connectors,
+          numEdges: connectorInfo.edges
+        }
+      },
+      {
+        name: WizardSteps.CHECKOUT,
+        isDisabled: true,
+        label: 'Checkout',
+        title: 'Checkout',
+        component: 'DeliveryPaymentView',
+        props: {
+          title: 'Checkout',
+          connectorInfo
+        }
+      }
+    ])
 
     return {
-      WizardSteps,
       steps,
       activeStep,
-      currentStep,
-      nextStep,
-      isLoading,
-      disabledClasses,
       modelFile,
       connectorInfo,
       longestDimension,
-      unitOptions,
-      getStepOrder,
-      getStep,
       setStep,
-      enableStep,
-      disableStep,
       handleModelUpload,
       handleConnectorInput,
       toCheckout,
@@ -192,122 +193,32 @@ export default defineComponent({
     class="flex sm:flex-row flex-col wizard border-10 border-ridge border-amber rounded-lg"
   >
     <div
-      class="step bg-black"
-      :class="
-        activeStep === 0
-          ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500 hover:text-white'
-      "
+      v-for="(step, index) in steps"
+      :key="index"
+      :class="activeStep === index ? 'w-full' : ''"
     >
-      <div v-show="activeStep === 0">
-        <ModelUploadView
-          :title="currentStep.title"
-          @dimensionSelect="setLongestDimension"
-          @nextStep="setStep(activeStep + 1)"
-        />
-      </div>
       <div
-        v-show="activeStep !== 0"
-        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
-        @click="activeStep = 0"
+        class="bg-black step"
+        :class="
+          activeStep === index
+            ? 'sm:h-180 sm:w-full bg-black'
+            : 'h-18 sm:h-180 sm:w-30 bg-yellow hover:bg-yellow-500 hover:text-white'
+        "
       >
-        <span>Upload Model</span>
-      </div>
-    </div>
-    <div
-      class="step"
-      :class="
-        activeStep === 1
-          ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
-      "
-    >
-      <div v-show="activeStep === 1">
-        <DimensionsView
-          v-if="activeStep === 1"
-          :title="currentStep.title"
-          :selected-longest-dimension="longestDimension"
-          @nextStep="setStep(activeStep + 1)"
-        />
-      </div>
-      <div
-        v-show="activeStep !== 1"
-        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
-        @click="activeStep = 1"
-      >
-        <span>Enter Dimension</span>
-      </div>
-    </div>
-    <div
-      class="step"
-      :class="
-        activeStep === 2
-          ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
-      "
-    >
-      <div v-show="activeStep === 2">
-        <ConnectorView
-          :connector-info="connectorInfo"
-          :title="currentStep.title"
-          @radioChange="handleConnectorInput"
-          @nextStep="setStep(activeStep + 1)"
-        />
-      </div>
-      <div
-        v-show="activeStep !== 2"
-        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
-        @click="activeStep = 2"
-      >
-        <span>Choose Connectors</span>
-      </div>
-    </div>
-    <div
-      class="step"
-      :class="
-        activeStep === 3
-          ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
-      "
-    >
-      <div v-show="activeStep === 3">
-        <div v-show="currentStep.name === WizardSteps.DELIVERY">
-          <Delivery
-            :num-connectors="connectorInfo.connectors"
-            :num-edges="connectorInfo.edges"
-            class="w-full h-full m-3"
+        <div v-if="activeStep === index">
+          <component
+            :is="step.component"
+            v-bind="step.props"
+            @nextStep="setStep(activeStep + 1)"
+            @modelUpload="handleModelUpload"
+            @dimensionUpdate="setLongestDimension"
             @toCheckout="toCheckout"
+            @radioChange="handleConnectorInput"
           />
         </div>
-      </div>
-      <div
-        v-show="activeStep !== 3"
-        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
-        @click="activeStep = 3"
-      >
-        <span>Choose Delivery</span>
-      </div>
-    </div>
-    <div
-      class="step"
-      :class="
-        activeStep === 4
-          ? 'sm:h-180 sm:w-full bg-black'
-          : 'h-18 sm:h-180 sm:w-1 bg-yellow hover:bg-yellow-500  hover:text-white'
-      "
-    >
-      <div v-show="activeStep === 4" class="py-16 sm:p-20">
-        <DeliveryPaymentView
-          :connector-info="connectorInfo"
-          :is-d-i-y="isDIY"
-        />
-      </div>
-      <div
-        v-show="activeStep !== 4"
-        class="transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer"
-        @click="activeStep = 4"
-      >
-        <span>Checkouts</span>
+        <div v-else class="minimized" @click="activeStep = index">
+          <span>{{ step.label }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -325,6 +236,10 @@ input::-webkit-inner-spin-button {
   transition: all 0.2s;
 }
 
+.minimized {
+  @apply transform-gpu sm:rotate-270 sm:translate-y-80 text-center cursor-pointer;
+}
+
 .wizard {
   min-height: 30rem;
   display: grid;
@@ -333,61 +248,5 @@ input::-webkit-inner-spin-button {
   shadow-xl
   bg-big3dBlack
   select-none;
-}
-
-.wizard__step {
-  @apply col-span-1
-  border-b-2
-  sm:border-b-0
-  border-r-0
-  sm:border-r-2
-  border-black
-  sm:hover:bg-gold
-  relative
-  inline-block
-  bg-yellow
-  cursor-pointer
-  h-full;
-}
-
-.wizard__step div {
-  @apply absolute text-lg font-bold whitespace-nowrap top-1/2 left-1/2;
-  -moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-  transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-}
-
-.wizard__current {
-  grid-column: span 13 / span 13;
-  @apply text-white
-  flex justify-center items-center;
-}
-
-@media (max-width: 640px) {
-  .wizard {
-    min-height: 50rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(18, minmax(0, 1fr));
-  }
-
-  .wizard__step {
-    @apply row-span-1 py-2;
-    display: initial;
-    position: initial;
-  }
-
-  .wizard__step div {
-    position: initial;
-    @apply text-lg font-bold whitespace-nowrap;
-    -moz-transform: translateX(0%) translateY(0%) rotate(0deg);
-    -webkit-transform: translateX(0%) translateY(0%) rotate(0deg);
-    transform: translateX(0%) translateY(0%) rotate(0deg);
-  }
-
-  .wizard__current {
-    grid-column: span 1 / span 1;
-    grid-row: span 13 / span 13;
-  }
 }
 </style>

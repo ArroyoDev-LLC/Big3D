@@ -20,17 +20,20 @@ export default defineComponent({
     containerClasses: {
       type: String,
       default: ''
+    },
+    groupName: {
+      type: String,
+      default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, { emit }) {
     const group = ref(props.radioGroup)
     const selection = ref('')
-    const setValue = (value: string) => {
-      console.log(value)
-      emit('select', value)
-    }
     return {
-      setValue,
       selection,
       group
     }
@@ -42,14 +45,15 @@ export default defineComponent({
   <div v-for="(item, index) in group" :key="index">
     <div :class="containerClasses">
       <input
-        :id="index"
+        :id="`${groupName}-${index}`"
         v-model="selection"
         type="radio"
         :value="item.value"
         :checked="index === null"
+        :disabled="disabled"
         @click="$emit('select', item.value)"
       />
-      <label :class="itemClasses" :for="index">
+      <label :class="itemClasses" :for="`${groupName}-${index}`">
         <slot :name="item.label ? item.label : item.value">
           {{ item.label ? item.label : item.value }}
         </slot>

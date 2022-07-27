@@ -13,10 +13,14 @@ export default defineComponent({
     title: {
       type: String,
       default: 'Upload Model'
+    },
+    selectedLongestDimension: {
+      type: Number,
+      default: 0
     }
   },
   setup(props, { emit }) {
-    const longestDimension = ref()
+    const longestDimension = ref(props.selectedLongestDimension)
     const disabledClasses = computed(() => ({
       'cursor-not-allowed': props.isLoading,
       'opacity-30': props.isLoading
@@ -29,6 +33,7 @@ export default defineComponent({
       isLoading.value = true
       await new Promise((r) => setTimeout(r, 5000))
       isLoading.value = false
+      emit('modelUpload', files[0], longestDimension.value)
     }
     /**
      * prevent user from entering dimensions

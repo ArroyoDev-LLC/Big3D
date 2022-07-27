@@ -36,7 +36,7 @@ export default defineComponent({
   },
   emits: [],
 
-  setup(props) {
+  setup(props, { emit }) {
     const dynamicLongestDimension = ref<number>(
       props.selectedLongestDimension as number
     )
@@ -158,6 +158,7 @@ export default defineComponent({
           ).height * clamp(dynamicLongestDimension.value / 10000, 0, 1)
         }px`
       }
+      emit('dimensionUpdate', dynamicLongestDimension.value)
     })
 
     return {
