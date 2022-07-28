@@ -5,6 +5,7 @@ interface RadioItem {
   value: string
   label?: string
   id?: string
+  disabled?: boolean
 }
 
 export default defineComponent({
@@ -51,7 +52,7 @@ export default defineComponent({
         type="radio"
         :value="typeof item === 'string' ? item : item.value"
         :checked="index === null"
-        :disabled="disabled"
+        :disabled="disabled || item.disabled"
         @click="$emit('select', item.value)"
       />
       <label :class="itemClasses" :for="`${groupName}-${index}`">
