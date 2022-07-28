@@ -14,13 +14,13 @@ exports[`RadioGroup > renders disabled all 1`] = `
 
 exports[`RadioGroup > renders disabled one 1`] = `
 "<div data-v-f668ec31=\\"\\">
-  <div class=\\"\\" data-v-f668ec31=\\"\\"><input id=\\"group-0\\" type=\\"radio\\" disabled=\\"\\" value=\\"a\\" data-v-f668ec31=\\"\\"><label class=\\"\\" for=\\"group-0\\" data-v-f668ec31=\\"\\">a</label></div>
+  <div class=\\"\\" data-v-f668ec31=\\"\\"><input id=\\"a\\" type=\\"radio\\" disabled=\\"\\" value=\\"a\\" data-v-f668ec31=\\"\\"><label class=\\"\\" for=\\"group-0\\" data-v-f668ec31=\\"\\">a</label></div>
 </div>
 <div data-v-f668ec31=\\"\\">
-  <div class=\\"\\" data-v-f668ec31=\\"\\"><input id=\\"group-1\\" type=\\"radio\\" value=\\"b\\" data-v-f668ec31=\\"\\"><label class=\\"\\" for=\\"group-1\\" data-v-f668ec31=\\"\\">b</label></div>
+  <div class=\\"\\" data-v-f668ec31=\\"\\"><input id=\\"b\\" type=\\"radio\\" value=\\"b\\" data-v-f668ec31=\\"\\"><label class=\\"\\" for=\\"group-1\\" data-v-f668ec31=\\"\\">b</label></div>
 </div>
 <div data-v-f668ec31=\\"\\">
-  <div class=\\"\\" data-v-f668ec31=\\"\\"><input id=\\"group-2\\" type=\\"radio\\" value=\\"c\\" data-v-f668ec31=\\"\\"><label class=\\"\\" for=\\"group-2\\" data-v-f668ec31=\\"\\">c</label></div>
+  <div class=\\"\\" data-v-f668ec31=\\"\\"><input id=\\"b\\" type=\\"radio\\" value=\\"c\\" data-v-f668ec31=\\"\\"><label class=\\"\\" for=\\"group-2\\" data-v-f668ec31=\\"\\">c</label></div>
 </div>"
 `;
 

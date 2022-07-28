@@ -14,9 +14,9 @@ const groupWithId = [
   { value: 'c', id: 'c' }
 ]
 const groupDisableOne = [
-  { value: 'a', disabled: true },
-  { value: 'b', disabled: false },
-  { value: 'c' }
+  { value: 'a', id: 'a', disabled: true },
+  { value: 'b', id: 'b', disabled: false },
+  { value: 'c', id: 'b' }
 ]
 const groupString = ['a', 'b', 'c']
 const groupName = 'group'
@@ -53,11 +53,29 @@ describe('RadioGroup', () => {
       props: { radioGroup: groupDisableOne, groupName }
     })
     expect(wrapper.html()).toMatchSnapshot()
+    wrapper.find('#b').trigger('click')
+    expect(wrapper.emitted()).toHaveProperty('select')
+    wrapper.find('#a').trigger('click')
+    expect(wrapper.emitted('select')).toHaveLength(1)
   })
   it('renders string', () => {
     const wrapper = mount(RadioGroup, {
       props: { radioGroup: groupString, groupName }
     })
     expect(wrapper.html()).toMatchSnapshot()
+  })
+  it('emits on select', () => {
+    const wrapper = mount(RadioGroup, { props: { radioGroup: groupWithId } })
+    wrapper.find('#a').trigger('click')
+    expect(wrapper.emitted()).toHaveProperty('select')
+  })
+  it('can access slots', () => {
+    const wrapper = mount(RadioGroup, {
+      props: { radioGroup: groupWithId },
+      slots: {
+        a: '<div>A</div>'
+      }
+    })
+    expect(wrapper.html()).toContain('<div>A</div>')
   })
 })

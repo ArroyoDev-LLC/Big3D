@@ -60,7 +60,7 @@ export default defineComponent({
         @click="$emit('select', item.value)"
       />
       <label :class="itemClasses" :for="`${groupName}-${index}`">
-        <slot :name="item.label ? item.label : item.value">
+        <slot :name="item.label ? item.label : item.value ? item.value : item">
           {{
             typeof item === 'string'
               ? item

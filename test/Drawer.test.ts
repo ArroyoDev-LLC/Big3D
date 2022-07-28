@@ -22,4 +22,12 @@ describe('Drawer', () => {
     const wrapper = mount(Drawer, { props: { title: 'Title' } })
     expect(wrapper.find('.title').text()).toBe('Title')
   })
+  it('should set content', () => {
+    const wrapper = mount(Drawer, {
+      slots: {
+        content: '<div>New Content</div>'
+      }
+    })
+    expect(wrapper.html()).toContain('<div>New Content</div>')
+  })
 })
