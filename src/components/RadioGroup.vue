@@ -4,6 +4,7 @@ import { defineComponent, ref, watchEffect } from 'vue'
 interface RadioItem {
   value: string
   label?: string
+  id?: string
 }
 
 export default defineComponent({
@@ -45,17 +46,23 @@ export default defineComponent({
   <div v-for="(item, index) in group" :key="index">
     <div :class="containerClasses">
       <input
-        :id="`${groupName}-${index}`"
+        :id="item.id ? item.id : `${groupName}-${index}`"
         v-model="selection"
         type="radio"
-        :value="item.value"
+        :value="typeof item === 'string' ? item : item.value"
         :checked="index === null"
         :disabled="disabled"
         @click="$emit('select', item.value)"
       />
       <label :class="itemClasses" :for="`${groupName}-${index}`">
         <slot :name="item.label ? item.label : item.value">
-          {{ item.label ? item.label : item.value }}
+          {{
+            typeof item === 'string'
+              ? item
+              : item.label
+              ? item.label
+              : item.value
+          }}
         </slot>
       </label>
     </div>
