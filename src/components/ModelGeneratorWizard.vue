@@ -38,6 +38,7 @@ export default defineComponent({
   setup() {
     const connectorStore = useConnectorStore()
     const { connector } = storeToRefs(connectorStore)
+    const connectorType = computed(() => connector.value.type)
 
     const activeStep = ref<number>(0)
 
@@ -150,7 +151,9 @@ export default defineComponent({
         component: 'DeliveryPaymentView',
         props: {
           title: 'Checkout',
-          connectorInfo
+          connectorType: connectorType.value.type,
+          connectorInfo,
+          isDIY: isDIY.value
         }
       }
     ])
@@ -166,8 +169,7 @@ export default defineComponent({
       handleConnectorInput,
       toCheckout,
       isDIY,
-      setLongestDimension,
-      connector
+      setLongestDimension
     }
   }
 })
