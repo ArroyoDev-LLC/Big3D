@@ -30,11 +30,15 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    default: {
+      type: String,
+      default: ''
     }
   },
   setup(props, { emit }) {
     const group = ref(props.radioGroup)
-    const selection = ref('')
+    const selection = ref(props.default)
     return {
       selection,
       group

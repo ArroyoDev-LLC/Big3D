@@ -58,9 +58,9 @@ export default defineComponent({
      */
     const modelFile = ref<File | null>(null)
     const longestDimension = ref<number>(0)
-    const handleModelUpload = async (files: FileList, dimension: number) => {
+    const handleModelUpload = async (file: File, dimension: number) => {
       longestDimension.value = dimension
-      modelFile.value = files[0]
+      modelFile.value = file
       await new Promise((r) => setTimeout(r, 5000))
     }
     const toCheckout = (deliveryOption: DeliveryOptions) => {
@@ -104,7 +104,8 @@ export default defineComponent({
         component: 'ModelUploadView',
         props: {
           title: 'Upload Low Poly 3D model here (.blend or .stl)',
-          selectedLongestDimension: longestDimension.value
+          selectedLongestDimension: longestDimension.value,
+          defaultFile: modelFile.value
         }
       },
       {
@@ -165,7 +166,8 @@ export default defineComponent({
       handleConnectorInput,
       toCheckout,
       isDIY,
-      setLongestDimension
+      setLongestDimension,
+      connector
     }
   }
 })

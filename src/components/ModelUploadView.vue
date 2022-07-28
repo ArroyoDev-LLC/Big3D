@@ -17,6 +17,10 @@ export default defineComponent({
     selectedLongestDimension: {
       type: Number,
       default: 0
+    },
+    defaultFile: {
+      type: File,
+      default: null
     }
   },
   setup(props, { emit }) {
@@ -27,13 +31,13 @@ export default defineComponent({
     }))
     const isLongestDimensionValid = computed(() => longestDimension.value > 0)
     const isLoading = ref<boolean>(false)
-    const modelFile = ref<File | null>(null)
+    const modelFile = ref<File | null>(props.defaultFile)
     const handleModelUpload = async (files: FileList) => {
       modelFile.value = files[0]
       isLoading.value = true
       await new Promise((r) => setTimeout(r, 5000))
       isLoading.value = false
-      emit('modelUpload', files[0], longestDimension.value)
+      emit('modelUpload', modelFile.value, longestDimension.value)
     }
     /**
      * prevent user from entering dimensions

@@ -80,6 +80,7 @@ export default defineComponent({
             item-classes="col-span-5 cursor-pointer"
             group-name="wood"
             :radio-group="woodValues"
+            @select="changeSelection"
           />
         </div>
 
