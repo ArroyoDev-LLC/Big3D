@@ -5,10 +5,10 @@ import Toast from 'primevue/toast'
 import InputText from 'primevue/inputtext'
 import Intro from './old/Intro.vue'
 import NavBar from './old/NavBar.vue'
-import Story from './old/Story.vue'
-import Samples from './old/Samples.vue'
+import Story from '@/views/Story.vue'
+import Samples from '@/components/Samples.vue'
 import Gallery from '@/views/Gallery.vue'
-import Pyramid from '@/views/old/Pyramid.vue'
+import Pyramid from '@/views/Pyramid.vue'
 
 export default defineComponent({
   name: 'OldHome',

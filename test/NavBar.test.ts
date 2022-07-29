@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import NavBar from '../src/views/old/NavBar.vue'
+import NavBar from '../src/components/NavBar.vue'
 
 const navItems = [
   {

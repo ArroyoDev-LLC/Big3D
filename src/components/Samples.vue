@@ -1,5 +1,5 @@
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from '../../node_modules/vue'
 import GoBigButton from '@/components/GoBigButton.vue'
 import DetailsCard from '@/components/DetailsCard.vue'
 import Drawer from '@/components/Drawer.vue'

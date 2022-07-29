@@ -3,12 +3,12 @@ import { defineComponent, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Toast from 'primevue/toast'
 import InputText from 'primevue/inputtext'
-import Samples from '@/views/old/Samples.vue'
-import Intro from '@/views/old/Intro.vue'
-import NavBar from '@/views/old/NavBar.vue'
-import Story from '@/views/old/Story.vue'
+import Samples from '@/components/Samples.vue'
+import Intro from '@/views/Intro.vue'
+import NavBar from '@/components/NavBar.vue'
+import Story from '@/views/Story.vue'
 import Gallery from '@/views/Gallery.vue'
-import Pyramid from '@/views/old/Pyramid.vue'
+import Pyramid from '@/views/Pyramid.vue'
 
 export default defineComponent({
   name: 'OldHome',
