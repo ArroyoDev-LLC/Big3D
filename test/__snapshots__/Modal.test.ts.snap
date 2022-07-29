@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`Modal > should render 1`] = `
+"<div class=\\"modal__backdrop\\">
+  <div class=\\"modal\\">
+    <header class=\\"modal__header\\"> This is the default title!<i class=\\"pi pi-times p-3 cursor-pointer\\"></i></header>
+    <section class=\\"modal__body\\"> I'm the default body!</section>
+    <footer class=\\"modal__footer\\">
+      <div class=\\"mx-2\\"><button label=\\"Cancel\\" outline=\\"\\"></button></div>
+      <div class=\\"mx-2\\"><button label=\\"Save\\"></button></div>
+    </footer>
+  </div>
+</div>"
+`;
