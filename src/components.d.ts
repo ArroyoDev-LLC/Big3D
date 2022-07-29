@@ -27,6 +27,7 @@ declare module '@vue/runtime-core' {
     ModelGeneratorWizard: typeof import('./components/ModelGeneratorWizard.vue')['default']
     ModelUploader: typeof import('./components/ModelUploader.vue')['default']
     ModelUploadView: typeof import('./components/ModelUploadView.vue')['default']
+    NavBar: typeof import('./components/NavBar.vue')['default']
     NextStepButton: typeof import('./components/NextStepButton.vue')['default']
     OrderCard: typeof import('./components/OrderCard.vue')['default']
     PaymentDetails: typeof import('./components/PaymentDetails.vue')['default']

@@ -138,7 +138,26 @@ export default defineComponent({
         :nav-items="menuItems"
         @tabClick="goToSection"
         @login="() => (loginClickedSate = !loginClickedSate)"
-      />
+      >
+        <template #Login="{ item }">
+          <div
+            v-if="!isUserLoggedIn"
+            :id="item.label"
+            class="login-button py-3"
+            @click="item.command"
+          >
+            {{ item.label }}
+          </div>
+          <div
+            v-else
+            class="rounded-xl shadow-lg flex justify-center items-center"
+            style="border: 1px solid black; height: 5rem"
+            @click="$router.push('account')"
+          >
+            Triston
+          </div>
+        </template>
+      </NavBar>
     </div>
     <Toast />
     <Intro id="home" class="mb-5 -mt-1" />
@@ -203,3 +222,9 @@ export default defineComponent({
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.login-button {
+  @apply bg-yellow text-xl hover:bg-gold hover:scale-105 hover:shadow-lg transform-gpu transition duration-300 ease-in-out cursor-pointer;
+}
+</style>

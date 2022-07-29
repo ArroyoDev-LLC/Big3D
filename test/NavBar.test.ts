@@ -26,4 +26,9 @@ describe('NavBar', () => {
     const wrapper = mount(NavBar, { props: { isUserLoggedIn: true } })
     expect(wrapper.html()).toMatchSnapshot()
   })
+  it('render item click', () => {
+    const wrapper = mount(NavBar, { props: { navItems } })
+    wrapper.find('.nav-item').trigger('click')
+    expect(wrapper.emitted('tabClick')[0][0]).toBe('Item')
+  })
 })

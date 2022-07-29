@@ -52,31 +52,12 @@ export default defineComponent({
     <div v-if="!sm" class="flex items-center overflow-x-auto">
       <div v-for="(item, index) in navItems" :key="index">
         <slot name="nav-item" :item="item">
-          <slot :name="item.label">
+          <slot :name="item.label" :item="item">
             <div
-              v-if="item.label !== 'Login'"
               class="nav-item link link-underline link-underline-black"
               @click="tabClick(item)"
             >
               {{ item.label }}
-            </div>
-            <div v-else>
-              <div
-                v-if="!isUserLoggedIn"
-                :id="item.label"
-                class="login-button"
-                @click="item.command"
-              >
-                {{ item.label }}
-              </div>
-              <div
-                v-else
-                class="rounded-xl shadow-lg flex justify-center items-center"
-                style="border: 1px solid black; height: 5rem"
-                @click="$router.push('account')"
-              >
-                Triston
-              </div>
             </div>
           </slot>
         </slot>
@@ -103,10 +84,6 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.login-button {
-  @apply bg-yellow text-xl hover:bg-gold hover:scale-105 hover:shadow-lg transform-gpu transition duration-300 ease-in-out cursor-pointer;
-}
-
 div:nth-child(n) {
   @apply p-2 w-full h-full;
 }
