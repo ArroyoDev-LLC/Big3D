@@ -30,4 +30,15 @@ describe('Drawer', () => {
     })
     expect(wrapper.html()).toContain('<div>New Content</div>')
   })
+  it('should set button slot', () => {
+    const wrapper = mount(Drawer, {
+      props: { defaultState: true },
+      slots: {
+        toggle: `<template #toggle="{toggle}">
+         hello {{ toggle }}
+        </template>`
+      }
+    })
+    expect(wrapper.html()).toContain('hello')
+  })
 })

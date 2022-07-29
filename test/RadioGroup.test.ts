@@ -68,6 +68,7 @@ describe('RadioGroup', () => {
     const wrapper = mount(RadioGroup, { props: { radioGroup: groupWithId } })
     wrapper.find('#a').trigger('click')
     expect(wrapper.emitted()).toHaveProperty('select')
+    expect(wrapper.emitted('select')[0][0]).toBe('a')
   })
   it('can access slots', () => {
     const wrapper = mount(RadioGroup, {

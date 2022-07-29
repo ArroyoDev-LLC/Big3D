@@ -2,6 +2,15 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import NavBar from '../src/views/old/NavBar.vue'
 
+const navItems = [
+  {
+    label: 'Item',
+    command: () => {
+      console.log('test')
+    }
+  }
+]
+
 describe('NavBar', () => {
   it('should render a nav bar', () => {
     const wrapper = mount(NavBar)
@@ -9,19 +18,12 @@ describe('NavBar', () => {
   })
   it('should render one item', () => {
     const wrapper = mount(NavBar, {
-      navItems: [
-        {
-          label: 'Item 1',
-          command: () => {
-            console.log('test')
-          }
-        }
-      ]
+      navItems
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('render logged in', () => {
-    const wrapper = mount(NavBar, { isUserLoggedIn: true })
+    const wrapper = mount(NavBar, { props: { isUserLoggedIn: true } })
     expect(wrapper.html()).toMatchSnapshot()
   })
 })

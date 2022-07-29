@@ -24,8 +24,9 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
-    const tabClick = (section: string) => {
-      emit('tabClick', section)
+    const tabClick = (item) => {
+      item.command()
+      emit('tabClick', item.label)
     }
     const isMobile = () => {
       return window.outerWidth < 376
@@ -55,13 +56,14 @@ export default defineComponent({
             <div
               v-if="item.label !== 'Login'"
               class="nav-item link link-underline link-underline-black"
-              @click="item.command"
+              @click="tabClick(item)"
             >
               {{ item.label }}
             </div>
             <div v-else>
               <div
                 v-if="!isUserLoggedIn"
+                :id="item.label"
                 class="login-button"
                 @click="item.command"
               >

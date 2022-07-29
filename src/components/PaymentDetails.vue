@@ -65,7 +65,7 @@ export default defineComponent({
       ]
 
     const taxes = ref(0)
-    const fee = ref(0)
+    const fee = ref(10)
     const convertToDollars = (amount: number) => {
       return amount.toLocaleString('en-US', {
         style: 'currency',
