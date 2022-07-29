@@ -25,4 +25,9 @@ describe('Modal', () => {
     })
     expect(wrapper.find('#footer').text()).toBe('footer')
   })
+  it('should emit close', () => {
+    const wrapper = mount(Modal)
+    wrapper.find('i').trigger('click')
+    expect(wrapper.emitted()).toHaveProperty('close')
+  })
 })

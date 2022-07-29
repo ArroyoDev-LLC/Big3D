@@ -34,11 +34,19 @@ describe('Drawer', () => {
     const wrapper = mount(Drawer, {
       props: { defaultState: true },
       slots: {
-        toggle: `<template #toggle="{toggle}">
-         hello {{ toggle }}
+        toggle: `<template #toggle="{value}">
+         hello
         </template>`
       }
     })
     expect(wrapper.html()).toContain('hello')
+  })
+  it('should set header slot', () => {
+    const wrapper = mount(Drawer, {
+      slots: {
+        header: `<template #header="{value}"> <div>header</div> </template>`
+      }
+    })
+    expect(wrapper.html()).toContain('header')
   })
 })
