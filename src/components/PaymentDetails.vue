@@ -89,8 +89,8 @@ export default defineComponent({
         'pk_test_51JXTC3LEeW8HHB6ICHZKK8JqmrcxEw2Gv1guXlT7uJNrONda0xeRU2bZi5KYz3jVO6CR6TVUlqeyjC1rfDbJ8PIv00sZSIonWF',
       loading: false,
 
-      successURL: 'https://localhost:8080',
-      cancelURL: 'https://localhost:8080'
+      successURL: 'http://localhost:3333/',
+      cancelURL: 'http://localhost:3333/'
     }
   },
   methods: {
