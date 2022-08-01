@@ -3,12 +3,12 @@ import { defineComponent, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Toast from 'primevue/toast'
 import InputText from 'primevue/inputtext'
-import Intro from './old/Intro.vue'
-import NavBar from './old/NavBar.vue'
-import Story from './old/Story.vue'
-import Samples from './old/Samples.vue'
+import Intro from './Intro.vue'
+import NavBar from './NavBar.vue'
+import Story from '@/views/Story.vue'
+import Samples from '@/components/Samples.vue'
 import Gallery from '@/views/Gallery.vue'
-import Pyramid from '@/views/old/Pyramid.vue'
+import Pyramid from '@/views/Pyramid.vue'
 
 export default defineComponent({
   name: 'OldHome',
@@ -108,7 +108,7 @@ export default defineComponent({
       <template #body>
         <div class="flex flex-col">
           <div class="w-full sm:my-3 text-left">
-            <text>Username</text>
+            <text>Username test</text>
             <InputText
               v-model="userLoginInfo.username"
               class="w-full"

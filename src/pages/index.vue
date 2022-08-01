@@ -3,12 +3,12 @@ import { defineComponent, ref } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import Toast from 'primevue/toast'
 import InputText from 'primevue/inputtext'
-import Samples from '@/views/old/Samples.vue'
-import Intro from '@/views/old/Intro.vue'
-import NavBar from '@/views/old/NavBar.vue'
-import Story from '@/views/old/Story.vue'
+import Samples from '@/components/Samples.vue'
+import Intro from '@/views/Intro.vue'
+import NavBar from '@/components/NavBar.vue'
+import Story from '@/views/Story.vue'
 import Gallery from '@/views/Gallery.vue'
-import Pyramid from '@/views/old/Pyramid.vue'
+import Pyramid from '@/views/Pyramid.vue'
 
 export default defineComponent({
   name: 'OldHome',
@@ -68,6 +68,53 @@ export default defineComponent({
       const wizardId = document.getElementById('generator-wizard')
       if (wizardId) wizardId.scrollIntoView()
     }
+    const tabClick = (section: string) => {
+      emit('tabClick', section)
+    }
+    const menuItems = ref([
+      {
+        label: 'Home',
+        command: () => {
+          goToSection('home')
+        }
+      },
+      {
+        label: 'Story+',
+        command: () => {
+          goToSection('story')
+        }
+      },
+      {
+        label: 'Samples+',
+        command: () => {
+          goToSection('samples')
+        }
+      },
+      {
+        label: 'Gallery',
+        command: () => {
+          goToSection('gallery')
+        }
+      },
+      {
+        label: 'Pricing',
+        command: () => {
+          goToSection('pricing')
+        }
+      },
+      {
+        label: 'Purchase',
+        command: () => {
+          goToSection('generator-wizard')
+        }
+      },
+      {
+        label: 'Login',
+        command: () => {
+          loginClickedSate.value = !loginClickedSate.value
+        }
+      }
+    ])
     return {
       showSuccess,
       loginToSite,
@@ -75,7 +122,8 @@ export default defineComponent({
       loginClickedSate,
       userLoginInfo,
       goToSection,
-      jumpToWizard
+      jumpToWizard,
+      menuItems
     }
   }
 })
@@ -87,26 +135,44 @@ export default defineComponent({
       <NavBar
         class="mb-1"
         :is-user-logged-in="userLoggedIn"
+        :nav-items="menuItems"
         @tabClick="goToSection"
         @login="() => (loginClickedSate = !loginClickedSate)"
-      />
+      >
+        <template #Login="{ item }">
+          <div
+            v-if="!isUserLoggedIn"
+            :id="item.label"
+            class="login-button py-3"
+            @click="item.command"
+          >
+            {{ item.label }}
+          </div>
+          <div
+            v-else
+            class="rounded-xl shadow-lg flex justify-center items-center"
+            style="border: 1px solid black; height: 5rem"
+            @click="$router.push('account')"
+          >
+            Triston
+          </div>
+        </template>
+      </NavBar>
     </div>
     <Toast />
     <Intro id="home" class="mb-5 -mt-1" />
     <Story id="story" />
     <Samples id="pricing" />
     <!--    <Printing id="printing" /> -->
-    <div id="generator-wizard">
-      <ModelGeneratorWizard />
-    </div>
     <LoginModal
-      v-if="!userLoggedIn"
-      v-show="loginClickedSate"
+      v-if="loginClickedSate"
       @close="() => (loginClickedSate = !loginClickedSate)"
     >
       <template #header>Login</template>
       <template #body>
-        <div class="flex flex-col">
+        <div
+          class="flex flex-col items-center h-full justify-center sm:text-2xl"
+        >
           <div class="w-full sm:my-3 text-left">
             <text>Username</text>
             <InputText
@@ -147,8 +213,18 @@ export default defineComponent({
       </template>
     </LoginModal>
     <Gallery id="gallery" />
-    <Pyramid id="samples" />
-    <Login />
+    <div id="samples" class="h-180 flex items-center">
+      <Pyramid />
+    </div>
+    <div id="generator-wizard">
+      <ModelGeneratorWizard />
+    </div>
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.login-button {
+  @apply bg-yellow text-xl hover:bg-gold hover:scale-105 hover:shadow-lg transform-gpu transition duration-300 ease-in-out cursor-pointer;
+}
+</style>

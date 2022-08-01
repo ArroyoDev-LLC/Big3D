@@ -1,10 +1,12 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 import { defineComponent, ref, watchEffect } from 'vue'
+import NextStepButton from '@/components/NextStepButton.vue'
+import RadioGroup from '@/components/RadioGroup.vue'
 
 export default defineComponent({
   name: 'ConnectorView',
-  components: {},
+  components: { NextStepButton, RadioGroup },
   emits: ['radioChange'],
   props: {
     title: {
@@ -24,109 +26,89 @@ export default defineComponent({
     const currentSelection = ref('')
 
     const woodValues = ref([
-      '3/4” (19.05 mm)',
-      '1/2” (12.7 mm)',
-      '1/4” (6.35 mm)'
+      { value: '3/4” (19.05 mm)' },
+      { value: '1/2” (12.7 mm)' },
+      { value: '1/4” (6.35 mm)' }
     ])
 
-    const pvcValues = ref(['3/4” (19.05 mm)', '1/2” (12.7 mm)'])
+    const pvcValues = ref([
+      { value: '3/4” (19.05 mm)' },
+      { value: '1/2” (12.7 mm)' }
+    ])
 
     watchEffect(() => {
       emit('radioChange', currentSelection.value)
     })
 
+    const changeSelection = (selection: string) => {
+      currentSelection.value = selection
+    }
+
     return {
       currentSelection,
       woodValues,
-      pvcValues
+      pvcValues,
+      changeSelection
     }
   }
 })
 </script>
 
 <template>
-  <div class="text-left text-base md:text-3xl flex justify-between">
-    {{ title }}
+  <div>
+    <div class="p-4 md:p-8 h-full w-full">
+      <div class="text-left text-base md:text-3xl flex justify-between">
+        {{ title }}
 
-    <div>
-      <span class="mx-2">
-        <span class="text-yellow">{{ connectorInfo.connectors }}</span>
-        Connectors
-      </span>
-      <span class="mx-2">
-        <span class="text-yellow">{{ connectorInfo.edges }}</span>
-        Edges
-      </span>
-    </div>
-  </div>
+        <div>
+          <span class="mx-2">
+            <span class="text-yellow">{{ connectorInfo.connectors }}</span>
+            Connectors
+          </span>
+          <span class="mx-2">
+            <span class="text-yellow">{{ connectorInfo.edges }}</span>
+            Edges
+          </span>
+        </div>
+      </div>
 
-  <div class="grid grid-cols-6 gap-4 text-left mt-6">
-    <div class="wood-option">
-      <span class="text-sm"> Square Wood Dowels </span>
-      <div
-        v-for="(value, index) in woodValues"
-        :key="`${value}-${index}`"
-        class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
-      >
-        <input
-          :id="`wood-dimension-${index}`"
-          v-model="currentSelection"
-          class="col-span-1"
-          type="radio"
-          :value="`wood:${value}`"
-          :checked="index === null"
+      <div class="grid grid-cols-6 gap-4 text-left mt-6">
+        <div class="wood-option">
+          <span class="text-sm"> Square Wood Dowels </span>
+          <RadioGroup
+            container-classes="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+            item-classes="col-span-5 cursor-pointer"
+            group-name="wood"
+            :radio-group="woodValues"
+            @select="changeSelection"
+          />
+        </div>
+
+        <img class="wood-option-img" src="/images/square-wood-dowel.png" />
+        <div class="pvc-option opacity-30">
+          <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
+          <RadioGroup
+            :radio-group="pvcValues"
+            disabled
+            group-name="pvc"
+            container-classes="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
+            item-classes="col-span-5"
+          />
+        </div>
+        <img class="pvc-option-img" src="/images/round-pvc-tubing.png" />
+      </div>
+      <div class="flex justify-end mt-20 md:p-4">
+        <NextStepButton
+          label="Next Step"
+          class="self-end absolute"
+          @click="$emit('nextStep')"
         />
-        <label class="col-span-5" :for="`wood-dimension-${index}`">
-          {{ value }}
-        </label>
       </div>
     </div>
-
-    <img class="wood-option-img" src="/images/square-wood-dowel.png" />
-    <div class="pvc-option opacity-30">
-      <span class="text-sm"> Round PVC Tubing (Coming Soon) </span>
-      <div
-        v-for="(value, index) in pvcValues"
-        :key="`${value}-${index}`"
-        class="w-full md:w-1/2 mt-4 grid grid-cols-6 gap-3 ml-5"
-      >
-        <input
-          :id="`pvc-dimension-${index}`"
-          class="col-span-1"
-          type="radio"
-          disabled
-        />
-        <label class="col-span-5" :for="`pvc-dimension-${index}`">
-          {{ value }}
-        </label>
-      </div>
-    </div>
-    <img class="pvc-option-img" src="/images/round-pvc-tubing.png" />
   </div>
 </template>
 
 <style lang="postcss" scoped>
-input[type='radio'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-
-  border: 2px solid gray;
-  transition: 0.2s all linear;
-  margin-right: 5px;
-
-  position: relative;
-  top: 4px;
-}
-
-input[type='radio']:checked {
-  border: 5px solid yellow;
-}
-
 .wood-option,
 .pvc-option {
   @apply col-span-6 md:col-span-4 p-1 md:p-3 border-t-4 border-big3dGray border-dotted;

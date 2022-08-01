@@ -14,9 +14,6 @@ export default defineComponent({
   name: 'Delivery',
   components: { RadioButton, PVDialog, NextStepButton },
   props: {
-    connectorType: {
-      type: String
-    },
     numConnectors: {
       type: Number,
       default: 0
@@ -65,7 +62,9 @@ export default defineComponent({
   <div class="px-1 sm:px-0">
     <text v-if="isMobile()">Choose Delivery</text>
     <span class="grid grid-cols-6 sm:grid-cols-3 text-xs sm:text-base sm:gap-1">
-      <div class="grid grid-rows-4 col-span-6 sm:col-span-2 gap-2">
+      <div
+        class="grid grid-rows-4 col-span-6 sm:col-span-3 md:col-span-2 gap-2"
+      >
         <div
           class="row-span-1 border-b border-dashed border-opacity-30 grid grid-flow-col sm:grid-cols-3"
         >
@@ -80,50 +79,62 @@ export default defineComponent({
         </div>
         <div
           :class="deliveryOption === DeliveryOptions.KIT ? 'opacity-40' : ''"
-          class="row-span-1 border-b border-dashed border-opacity-30 grid grid-cols-3"
+          class="row-span-1 border-b border-dashed border-opacity-30"
         >
-          <div class="col-span-1">
+          <div class="flex w-full ml-16">
             <RadioButton
               id="diy"
               v-model="deliveryOption"
               name="deliveryOption"
               value="DIY Route"
             />
-            <label for="diy" class="ml-1 font-bold">DIY Route</label>
-          </div>
-          <div class="col-span-1 flex items-center justify-center">
-            <img src="/connectors.png" class="w-10 sm:w-20" />
-          </div>
-          <div class="col-span-1 text-right flex flex-col">
-            <text class="font-bold">{{
-              formatToDollar(numConnectors * 0.5)
-            }}</text>
-            <text class="text-yellow">(${{ 0.5 }} per connector)</text>
+            <label
+              for="diy"
+              class="ml-1 font-bold grid grid-cols-3 w-2/3 sm:w-2/3 cursor-pointer"
+            >
+              <div>Do It Yourself</div>
+              <div class="flex items-center justify-center">
+                <img src="/connectors.png" class="w-10 sm:w-20" />
+              </div>
+              <div class="text-right flex flex-col">
+                <text class="font-bold">{{
+                  formatToDollar(numConnectors * 0.5)
+                }}</text>
+                <text class="text-yellow">($0.50 per connector)</text>
+              </div>
+            </label>
           </div>
         </div>
         <div
           :class="deliveryOption === DeliveryOptions.DIY ? 'opacity-40' : ''"
-          class="row-span-1 border-b border-dashed border-opacity-30 grid grid-cols-3"
+          class="row-span-1 border-b border-dashed border-opacity-30"
         >
-          <div class="col-span-1">
+          <div class="flex w-full ml-16">
             <RadioButton
               id="kit"
               v-model="deliveryOption"
               name="deliveryOption"
               value="Finished KIT"
             />
-            <label for="kit" class="ml-1 font-bold">Finished KIT</label>
-          </div>
-          <div class="col-span-1 flex items-center justify-center">
-            <img src="/parcel.png" class="w-10 sm:w-20" />
-          </div>
-          <div class="col-span-1 text-right flex flex-col">
-            <text class="font-bold">{{
-              formatToDollar(
-                numConnectors * connectorPrice + numConnectors * 0.5
-              )
-            }}</text>
-            <text class="text-yellow">(${{ connectorPrice + 0.5 }})</text>
+            <label
+              for="kit"
+              class="ml-1 font-bold grid grid-cols-3 w-2/3 sm:w-2/3 cursor-pointer"
+            >
+              Finished KIT
+              <div class="flex items-center justify-center">
+                <img src="/parcel.png" class="w-10 sm:w-20" />
+              </div>
+              <div class="text-right flex flex-col">
+                <text class="font-bold">{{
+                  formatToDollar(
+                    numConnectors * connectorPrice + numConnectors * 0.5
+                  )
+                }}</text>
+                <text class="text-yellow"
+                  >({{ formatToDollar(connectorPrice + 0.5) }})</text
+                >
+              </div>
+            </label>
           </div>
         </div>
         <div v-if="isMobile() && deliveryOption" class="col-span-1">
@@ -135,9 +146,12 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <div v-if="!isMobile()" class="col-span-1 bg-gray-1000 p-10 h-full">
-        <text>WHAT'S INCLUDED</text>
-        <div class="pb-16 pt-4 max-h-60 overflow-hidden">
+      <div
+        v-if="!isMobile()"
+        class="col-span-6 sm:col-span-3 md:col-span-1 bg-gray-1000 p-10 h-full"
+      >
+        <text class="text-base">WHAT'S INCLUDED</text>
+        <div class="pb-16 pt-4">
           <ul
             v-show="deliveryOption === DeliveryOptions.DIY"
             class="list-disc text-white px-6"
@@ -160,7 +174,7 @@ export default defineComponent({
           </ul>
         </div>
         <div class="bottom-2 w-full justify-center flex">
-          <NextStepButton class="w-1/2" @click="toCheckout" />
+          <NextStepButton @click="toCheckout" />
         </div>
       </div>
     </span>

@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`Drawer > should render 1`] = `
+"<div class=\\"flex justify-between cursor-pointer border-dotted border-b border-opacity-40 py-1\\" data-v-a874e27e=\\"\\">
+  <div class=\\"title\\" data-v-a874e27e=\\"\\">Drawer</div><button class=\\"text-yellow text-xl font-bold\\" data-v-a874e27e=\\"\\">+</button>
+</div>
+<div class=\\"drawer h-1\\" data-v-a874e27e=\\"\\">
+  <!--v-if-->
+</div>"
+`;

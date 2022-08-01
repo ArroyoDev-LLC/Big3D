@@ -28,13 +28,13 @@ export default defineComponent({
 
 <style scoped>
 .goBigButton {
-  @apply text-black cursor-pointer hover:bg-gold hover:shadow-xl hover:scale-105 transform-gpu transition duration-500 ease-in-out
+  @apply text-black cursor-pointer hover:bg-yellow-500 hover:shadow-xl hover:scale-105 transform-gpu transition duration-500 ease-in-out
   font-bold
   rounded-lg
   bg-yellow
   w-64
   p-6
-
+  text-center
   shadow-md
   text-4xl;
 }

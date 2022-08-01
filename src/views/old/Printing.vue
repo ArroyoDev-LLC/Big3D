@@ -2,9 +2,7 @@
 export default {
   name: 'Printing',
   data() {
-    return {
-      imgArray: [1, 1, 1, 1, 1]
-    }
+    return {}
   }
 }
 </script>
@@ -48,7 +46,6 @@ export default {
         </div>
       </div>
       <img class="m-1 w-full h-1/3 p-5" src="Frame 18.png" />
-      <!-- <img :key="idx + item" v-for=" idx, item in imgArray" src='https://picsum.photos/200/165' /> -->
     </div>
   </div>
 </template>
