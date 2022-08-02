@@ -96,11 +96,13 @@ export default defineComponent({
               <div class="flex items-center justify-center">
                 <img src="/connectors.png" class="w-10 sm:w-20" />
               </div>
-              <div class="text-right flex flex-col">
-                <text class="font-bold">{{
-                  formatToDollar(numConnectors * 0.5)
-                }}</text>
+              <div class="text-right flex flex-col relative">
+                <text class="font-bold"
+                  >{{ numConnectors }} x .50 =
+                  {{ formatToDollar(numConnectors * 0.5) }}</text
+                >
                 <text class="text-yellow">($0.50 per connector)</text>
+                <text class="absolute bottom-0 right-0">Digital Download</text>
               </div>
             </label>
           </div>
@@ -125,13 +127,17 @@ export default defineComponent({
                 <img src="/parcel.png" class="w-10 sm:w-20" />
               </div>
               <div class="text-right flex flex-col">
-                <text class="font-bold">{{
-                  formatToDollar(
-                    numConnectors * connectorPrice + numConnectors * 0.5
-                  )
-                }}</text>
+                <text class="font-bold"
+                  >{{ numConnectors }} x 2 =
+                  {{
+                    formatToDollar(
+                      numConnectors * connectorPrice + numConnectors * 2
+                    )
+                  }}</text
+                >
+                <text>+ Shipping</text>
                 <text class="text-yellow"
-                  >({{ formatToDollar(connectorPrice + 0.5) }})</text
+                  >({{ formatToDollar(connectorPrice + 2) }})</text
                 >
               </div>
             </label>

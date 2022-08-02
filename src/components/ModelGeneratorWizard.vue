@@ -210,15 +210,17 @@ export default defineComponent({
         "
       >
         <div v-if="activeStep === index">
-          <component
-            :is="step.component"
-            v-bind="step.props"
-            @nextStep="setStep(activeStep + 1)"
-            @modelUpload="handleModelUpload"
-            @dimensionUpdate="setLongestDimension"
-            @toCheckout="toCheckout"
-            @radioChange="handleConnectorInput"
-          />
+          <slot :name="step.component">
+            <component
+              :is="step.component"
+              v-bind="step.props"
+              @nextStep="setStep(activeStep + 1)"
+              @modelUpload="handleModelUpload"
+              @dimensionUpdate="setLongestDimension"
+              @toCheckout="toCheckout"
+              @radioChange="handleConnectorInput"
+            />
+          </slot>
         </div>
         <div v-else class="minimized" @click="activeStep = index">
           <span>{{ step.label }}</span>
