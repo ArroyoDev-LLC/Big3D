@@ -45,7 +45,7 @@ export default defineComponent({
      */
     watchEffect(() => {
       const min = 0
-      const max = 10000
+      const max = 5000
       if (longestDimension.value < min) {
         longestDimension.value = min
       } else if (longestDimension.value > max) {

@@ -26,10 +26,7 @@ export default defineComponent({
 
       <p class="text-lg dark:text-white">
         Want to try to print a sample first? Try
-        <a
-          href="https://app.zenhub.com/files/333636351/a756bcf2-d187-4a82-b62d-a760eab590d4/download"
-          class="text-blue-600 underline"
-        >
+        <a href="/samples/pyramid.stl" class="text-blue-600 underline" download>
           this model
         </a>
         on your <br />
