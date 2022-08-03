@@ -58,7 +58,8 @@ export default defineComponent({
     const handleAdvancedFormUpdate = (
       formData: AdvancedDimensionFormSchema
     ) => {
-      console.log(formData)
+      console.log(formData.longestDimension)
+      emit('dimensionUpdate', formData.longestDimension)
     }
 
     const humanScaleInfo = reactive<ScaleInfoT>({

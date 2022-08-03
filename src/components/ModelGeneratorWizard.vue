@@ -73,6 +73,7 @@ export default defineComponent({
     const isDIY = ref(false)
 
     const setLongestDimension = (dimension: number) => {
+      console.log(dimension)
       longestDimension.value = dimension
     }
 

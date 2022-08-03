@@ -101,7 +101,7 @@ export default defineComponent({
                   >{{ numConnectors }} x .50 =
                   {{ formatToDollar(numConnectors * 0.5) }}</text
                 >
-                <text class="text-yellow">($0.50 per connector)</text>
+                <text class="text-yellow mb-10">($0.50 per connector)</text>
                 <text class="absolute bottom-0 right-0">Digital Download</text>
               </div>
             </label>
