@@ -31,14 +31,14 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    default: {
-      type: String,
-      default: ''
+    defaultSelect: {
+      type: Object<unknown>,
+      default: null
     }
   },
   setup(props, { emit }) {
     const group = ref(props.radioGroup)
-    const selection = ref(props.default)
+    const selection = ref(props.defaultSelect)
     return {
       selection,
       group
@@ -55,7 +55,11 @@ export default defineComponent({
         v-model="selection"
         type="radio"
         :value="typeof item === 'string' ? item : item.value"
-        :checked="index === null"
+        :checked="
+          typeof item === 'string'
+            ? item === selection
+            : item.value === selection
+        "
         :disabled="disabled || item.disabled"
         @click="$emit('select', item.value)"
       />

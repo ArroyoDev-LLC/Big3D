@@ -21,12 +21,16 @@ export default defineComponent({
     numEdges: {
       type: Number,
       default: 0
+    },
+    defaultDeliveryOption: {
+      type: String,
+      default: ''
     }
   },
   setup(props, { emit }) {
     const store = useConnectorStore()
     const { connectorPrice } = storeToRefs(store)
-    const deliveryOption = ref()
+    const deliveryOption = ref(props.defaultDeliveryOption)
     const formatToDollar = (dollarAmount: number) => {
       return dollarAmount.toLocaleString('en-US', {
         style: 'currency',
@@ -81,7 +85,10 @@ export default defineComponent({
           :class="deliveryOption === DeliveryOptions.KIT ? 'opacity-40' : ''"
           class="row-span-1 border-b border-dashed border-opacity-30"
         >
-          <div class="flex w-full ml-16">
+          <div
+            class="flex w-full ml-16"
+            @click="$emit('deliverySelect', DeliveryOptions.KIT)"
+          >
             <RadioButton
               id="diy"
               v-model="deliveryOption"
@@ -111,7 +118,10 @@ export default defineComponent({
           :class="deliveryOption === DeliveryOptions.DIY ? 'opacity-40' : ''"
           class="row-span-1 border-b border-dashed border-opacity-30"
         >
-          <div class="flex w-full ml-16">
+          <div
+            class="flex w-full ml-16"
+            @click="$emit('deliverySelect', DeliveryOptions.DIY)"
+          >
             <RadioButton
               id="kit"
               v-model="deliveryOption"

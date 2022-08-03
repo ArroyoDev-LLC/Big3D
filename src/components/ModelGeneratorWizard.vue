@@ -37,7 +37,7 @@ export default defineComponent({
   props: {},
   setup() {
     const connectorStore = useConnectorStore()
-    const { connector } = storeToRefs(connectorStore)
+    const { connector, connectorPrice } = storeToRefs(connectorStore)
     const connectorType = computed(() => connector.value.type)
 
     const activeStep = ref<number>(0)
@@ -66,14 +66,12 @@ export default defineComponent({
     }
     const toCheckout = (deliveryOption: DeliveryOptions) => {
       isDIY.value = deliveryOption === DeliveryOptions.DIY
-      console.log(activeStep.value)
       activeStep.value++
     }
 
-    const isDIY = ref(false)
+    const isDIY = ref(true)
 
     const setLongestDimension = (dimension: number) => {
-      console.log(dimension)
       longestDimension.value = dimension
     }
 
@@ -85,17 +83,8 @@ export default defineComponent({
       edges: 0
     })
 
-    const handleConnectorInput = (selection: string) => {
-      const [type, dimension] = selection.split(':')
-      connectorStore.changeConnector({ type, dimension })
-
-      if (connector.value.dimension === '3/4” (19.05 mm)') {
-        connectorStore.changeConnectorPrice(2)
-      } else if (connector.value.dimension === '1/2” (12.7 mm)') {
-        connectorStore.changeConnectorPrice(1.5)
-      } else if (connector.value.dimension === '1/4” (6.35 mm)') {
-        connectorStore.changeConnectorPrice(1)
-      } else null
+    const handleConnectorInput = (selection: number) => {
+      connectorStore.changeConnectorPrice(selection)
     }
     const steps = computed<StepT[]>(() => [
       {
@@ -129,6 +118,7 @@ export default defineComponent({
         component: 'ConnectorView',
         props: {
           title: 'Choose type of Connectors',
+          price: connectorPrice,
           connectorInfo
         }
       },
@@ -141,7 +131,10 @@ export default defineComponent({
         props: {
           title: 'Delivery Details',
           numConnectors: connectorInfo.connectors,
-          numEdges: connectorInfo.edges
+          numEdges: connectorInfo.edges,
+          defaultDeliveryOption: isDIY.value
+            ? DeliveryOptions.DIY
+            : DeliveryOptions.KIT
         }
       },
       {
@@ -170,7 +163,8 @@ export default defineComponent({
       handleConnectorInput,
       toCheckout,
       isDIY,
-      setLongestDimension
+      setLongestDimension,
+      DeliveryOptions
     }
   }
 })
@@ -218,6 +212,7 @@ export default defineComponent({
               @nextStep="setStep(activeStep + 1)"
               @modelUpload="handleModelUpload"
               @dimensionUpdate="setLongestDimension"
+              @deliverySelect="(item) => (isDIY = item !== DeliveryOptions.DIY)"
               @toCheckout="toCheckout"
               @radioChange="handleConnectorInput"
             />

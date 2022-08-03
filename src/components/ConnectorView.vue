@@ -18,17 +18,21 @@ export default defineComponent({
       type: Object as PropType<{ connectors: number; edges: number }>,
       required: true,
       default: () => ({ connectors: 0, edges: 0 })
+    },
+    price: {
+      type: Number,
+      default: 0
     }
   },
 
   // setup function
   setup(props, { emit }) {
-    const currentSelection = ref('')
+    const currentSelection = ref(props.price)
 
     const woodValues = ref([
-      { value: '3/4” (19.05 mm)' },
-      { value: '1/2” (12.7 mm)' },
-      { value: '1/4” (6.35 mm)' }
+      { value: 2, label: '3/4” (19.05 mm)' },
+      { value: 1.5, label: '1/2” (12.7 mm)' },
+      { value: 1, label: '1/4” (6.35 mm)' }
     ])
 
     const pvcValues = ref([
@@ -80,6 +84,7 @@ export default defineComponent({
             item-classes="col-span-5 cursor-pointer"
             group-name="wood"
             :radio-group="woodValues"
+            :default-select="price"
             @select="changeSelection"
           />
         </div>
