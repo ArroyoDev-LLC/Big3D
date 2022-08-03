@@ -21,12 +21,16 @@ export default defineComponent({
     numEdges: {
       type: Number,
       default: 0
+    },
+    defaultDeliveryOption: {
+      type: String,
+      default: ''
     }
   },
   setup(props, { emit }) {
     const store = useConnectorStore()
     const { connectorPrice } = storeToRefs(store)
-    const deliveryOption = ref()
+    const deliveryOption = ref(props.defaultDeliveryOption)
     const formatToDollar = (dollarAmount: number) => {
       return dollarAmount.toLocaleString('en-US', {
         style: 'currency',
@@ -81,7 +85,10 @@ export default defineComponent({
           :class="deliveryOption === DeliveryOptions.KIT ? 'opacity-40' : ''"
           class="row-span-1 border-b border-dashed border-opacity-30"
         >
-          <div class="flex w-full ml-16">
+          <div
+            class="flex w-full ml-16"
+            @click="$emit('deliverySelect', DeliveryOptions.KIT)"
+          >
             <RadioButton
               id="diy"
               v-model="deliveryOption"
@@ -96,11 +103,13 @@ export default defineComponent({
               <div class="flex items-center justify-center">
                 <img src="/connectors.png" class="w-10 sm:w-20" />
               </div>
-              <div class="text-right flex flex-col">
-                <text class="font-bold">{{
-                  formatToDollar(numConnectors * 0.5)
-                }}</text>
-                <text class="text-yellow">($0.50 per connector)</text>
+              <div class="text-right flex flex-col relative">
+                <text class="font-bold"
+                  >{{ numConnectors }} x .50 =
+                  {{ formatToDollar(numConnectors * 0.5) }}</text
+                >
+                <text class="text-yellow mb-10">($0.50 per connector)</text>
+                <text class="absolute bottom-0 right-0">Digital Download</text>
               </div>
             </label>
           </div>
@@ -109,7 +118,10 @@ export default defineComponent({
           :class="deliveryOption === DeliveryOptions.DIY ? 'opacity-40' : ''"
           class="row-span-1 border-b border-dashed border-opacity-30"
         >
-          <div class="flex w-full ml-16">
+          <div
+            class="flex w-full ml-16"
+            @click="$emit('deliverySelect', DeliveryOptions.DIY)"
+          >
             <RadioButton
               id="kit"
               v-model="deliveryOption"
@@ -125,13 +137,17 @@ export default defineComponent({
                 <img src="/parcel.png" class="w-10 sm:w-20" />
               </div>
               <div class="text-right flex flex-col">
-                <text class="font-bold">{{
-                  formatToDollar(
-                    numConnectors * connectorPrice + numConnectors * 0.5
-                  )
-                }}</text>
+                <text class="font-bold"
+                  >{{ numConnectors }} x 2 =
+                  {{
+                    formatToDollar(
+                      numConnectors * connectorPrice + numConnectors * 2
+                    )
+                  }}</text
+                >
+                <text>+ Shipping</text>
                 <text class="text-yellow"
-                  >({{ formatToDollar(connectorPrice + 0.5) }})</text
+                  >({{ formatToDollar(connectorPrice + 2) }})</text
                 >
               </div>
             </label>

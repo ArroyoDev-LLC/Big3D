@@ -58,7 +58,7 @@ export default defineComponent({
     const handleAdvancedFormUpdate = (
       formData: AdvancedDimensionFormSchema
     ) => {
-      console.log(formData)
+      emit('dimensionUpdate', formData.longestDimension)
     }
 
     const humanScaleInfo = reactive<ScaleInfoT>({
@@ -121,7 +121,7 @@ export default defineComponent({
 
     watchEffect(() => {
       const min = 0
-      const max = 10000
+      const max = 5000
       if (dynamicLongestDimension.value < min) {
         dynamicLongestDimension.value = min
       } else if (dynamicLongestDimension.value > max) {
@@ -144,7 +144,10 @@ export default defineComponent({
             humanScaleInfo.height,
             containerWidth,
             containerHeight
-          ).height * clamp(1676 / 10000, 0, 1)
+          ).height *
+          (dynamicLongestDimension.value > 1676
+            ? 1676 / dynamicLongestDimension.value
+            : 1)
         }px`
       }
 
@@ -155,7 +158,10 @@ export default defineComponent({
             modelScaleInfo.height,
             containerWidth,
             containerHeight
-          ).height * clamp(dynamicLongestDimension.value / 10000, 0, 1)
+          ).height *
+          (dynamicLongestDimension.value < 1676
+            ? dynamicLongestDimension.value / 1676
+            : 1)
         }px`
       }
       emit('dimensionUpdate', dynamicLongestDimension.value)
@@ -211,27 +217,31 @@ export default defineComponent({
 
       <div class="col-span-12 md:col-span-5 grid grid-rows-5">
         <div class="row-span-1 text-xl md:text-2xl">APPROXIMATE SIZE</div>
-        <div
-          ref="scaleContainerRef"
-          class="row-span-4 border border-white relative"
-        >
-          <div class="human-scale-container absolute bottom-0 left-0">
-            <img
-              ref="humanScaleRef"
-              class="transition-all"
-              :src="humanScaleSrc"
-              alt="human-scale"
-              @load="handleHumanScaleLoad"
-            />
-          </div>
-          <div class="model-scale-container absolute bottom-0 right-0">
-            <img
-              ref="modelScaleRef"
-              class="transition-all"
-              :src="modelScaleSrc"
-              alt="model-scale"
-              @load="handleModelScaleLoad"
-            />
+        <div class="row-span-4 flex item-center justify-center w-full">
+          <div
+            ref="scaleContainerRef"
+            class="border border-white relative w-full"
+            style="max-height: 284px; max-width: 340px"
+          >
+            <div class="human-scale-container absolute bottom-0 left-0">
+              <img
+                ref="humanScaleRef"
+                class="transition-all"
+                :src="humanScaleSrc"
+                alt="human-scale"
+                @load="handleHumanScaleLoad"
+              />
+              <div class="absolute bottom-0 text-white text-lg">5'6"</div>
+            </div>
+            <div class="model-scale-container absolute bottom-0 right-0">
+              <img
+                ref="modelScaleRef"
+                class="transition-all"
+                :src="modelScaleSrc"
+                alt="model-scale"
+                @load="handleModelScaleLoad"
+              />
+            </div>
           </div>
         </div>
       </div>

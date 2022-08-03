@@ -21,37 +21,25 @@ export default defineComponent({
     const { deliveryOption, connector } = storeToRefs(connectorStore)
     const lineItems = ref([])
 
-    if (deliveryOption.value === 'KIT') {
-      if (connector.value.dimension === '3/4” (19.05 mm)') {
+    if (deliveryOption.value === 'Finished KIT') {
+      if (connector.value.type === '3/4” (19.05 mm)') {
         lineItems.value = [
           {
-            price: 'price_1JZFpULEeW8HHB6IbLxWuk67',
-            quantity: props.connectorInfo.connectors
-          },
-          {
-            price: 'price_1JZFv0LEeW8HHB6Ij1g5Nul8',
+            price: 'price_1LSOy7LEeW8HHB6IAQKO6m4L',
             quantity: props.connectorInfo.connectors
           }
         ]
-      } else if (connector.value.dimension === '1/2” (12.7 mm)') {
+      } else if (connector.value.type === '1/2” (12.7 mm)') {
         lineItems.value = [
           {
-            price: 'price_1JZFnsLEeW8HHB6I0jDVJiZX',
-            quantity: props.connectorInfo.connectors
-          },
-          {
-            price: 'price_1JZFv0LEeW8HHB6Ij1g5Nul8',
+            price: 'price_1LSOy7LEeW8HHB6IAQKO6m4L',
             quantity: props.connectorInfo.connectors
           }
         ]
-      } else if (connector.value.dimension === '1/4” (6.35 mm)') {
+      } else if (connector.value.type === '1/4” (6.35 mm)') {
         lineItems.value = [
           {
-            price: 'prod_KCCtLjhsgvLQTr',
-            quantity: props.connectorInfo.connectors
-          },
-          {
-            price: 'price_1JZFv0LEeW8HHB6Ij1g5Nul8',
+            price: 'price_1LSOy7LEeW8HHB6IAQKO6m4L',
             quantity: props.connectorInfo.connectors
           }
         ]
@@ -65,7 +53,11 @@ export default defineComponent({
       ]
 
     const taxes = ref(0)
-    const fee = ref(10)
+    const fee = computed(
+      () =>
+        props.connectorInfo.connectors *
+        (deliveryOption.value === 'Finished KIT' ? 2 : 0.5)
+    )
     const convertToDollars = (amount: number) => {
       return amount.toLocaleString('en-US', {
         style: 'currency',
