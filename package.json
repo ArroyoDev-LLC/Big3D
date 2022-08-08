@@ -1,8 +1,16 @@
 {
+  "name": "big3d-root",
+  "description": "Big3D Monorepo",
+  "type": "module",
+  "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@7.4.0",
+  "packageManager": "pnpm@7.9.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ArroyoDev-LLC/Big3D.git"
+  },
   "engines": {
-    "node": ">=16 <17",
+    "node": ">=16 <=18",
     "pnpm": ">=7 <=8"
   },
   "scripts": {
