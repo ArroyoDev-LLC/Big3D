@@ -2,12 +2,12 @@
   "name": "@arroyodev-llc/big3d-web",
   "type": "module",
   "version": "0.1.0",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/ArroyoDev-LLC/Big3D.git",
     "directory": "packages/web"
   },
-  "private": true,
   "scripts": {
     "build": "vite build",
     "dev": "vite --port 3333 --open",
