@@ -26,7 +26,7 @@ jobs:
       - name: Lint
         run: pnpm run lint
 
-  typecheck:
+  type-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -39,15 +39,15 @@ jobs:
       - name: Install
         run: pnpm install
 
-      # - name: Typecheck
-      #   run: pnpm run typecheck
+  #      - name: Typecheck
+  #        run: pnpm -F '{packages/web}' run typecheck
 
   test:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        node-version: [18.x]
         os: [ubuntu-latest]
       fail-fast: false
 
@@ -62,7 +62,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
-      - run: pnpm run test:unit
+      - run: pnpm run test
 
   test-e2e:
     runs-on: ubuntu-latest
@@ -86,11 +86,12 @@ jobs:
       - run: pnpm install
 
       - name: Cypress PNPM Patch
-        run: cp pnpm-lock.yaml package-lock.json
+        run: cp pnpm-lock.yaml packages/web/package-lock.json
 
       - name: Cypress
         uses: cypress-io/github-action@v4
         with:
+          working-directory: packages/web
           install-command: echo
           build: pnpm run build
-          start: npx vite --port 3333
+          start: pnpm exec vite --port 3333
