@@ -1,5 +1,9 @@
-# Created by https://www.toptal.com/developers/gitignore/api/web,webstorm+all,visualstudiocode,vue,vuejs
-# Edit at https://www.toptal.com/developers/gitignore?templates=web,webstorm+all,visualstudiocode,vue,vuejs
+# Created by https://www.toptal.com/developers/gitignore/api/vue,web,vuejs,webstorm+all,visualstudiocode,direnv
+# Edit at https://www.toptal.com/developers/gitignore?templates=vue,web,vuejs,webstorm+all,visualstudiocode,direnv
+
+### direnv ###
+.direnv
+.envrc
 
 ### VisualStudioCode ###
 .vscode/*
@@ -34,6 +38,9 @@
 # TODO: where does this rule come from?
 docs/_book
 
+# TODO: where does this rule come from?
+test/
+
 ### Vuejs ###
 # Recommended template: Node.gitignore
 
@@ -56,6 +63,7 @@ yarn-error.log
 *.wasm
 *.wat
 *.xhtml
+!**/styles/*.css
 !tailwind.css
 
 ### WebStorm+all ###
@@ -146,4 +154,5 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
-# End of https://www.toptal.com/developers/gitignore/api/web,webstorm+all,visualstudiocode,vue,vuejs
+# End of https://www.toptal.com/developers/gitignore/api/vue,web,vuejs,webstorm+all,visualstudiocode,direnv
+
