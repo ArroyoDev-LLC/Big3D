@@ -1,0 +1,32 @@
+# Shared .envrc
+
+# Place the following line on top of your .envrc to source this shared file
+# source_env_if_exists .envrc.shared
+
+layout node
+
+# Util
+export PROJ_ROOT="$(git rev-parse --show-toplevel)"
+
+local setup_url="https://gist.github.com/deepanchal/1d000470d946399f0f250013e7ba4a40"
+
+# Load asdf
+if ! has asdf; then
+	log_error "ASDF not found. Follow $setup_url for setting up asdf & direnv"
+else
+	use asdf
+fi
+
+#: AWS Config
+# export AWS_PROFILE=${AWS_PROFILE:-"your-aws-profile-name"}
+# export AWS_DEFAULT_REGION=us-east-1
+
+#: Docker
+export DOCKER_BUILDKIT=1
+
+##: Misc
+export DEBUG_COLORS=1
+
+# Local env + overrides.
+source_env_if_exists .env.local
+
